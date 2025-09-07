@@ -5,22 +5,20 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'PMI-ACP Site',
+  title: 'VNOptimus',
   tagline: 'Dạy lại những gì đã học',
   favicon: 'img/favicon.ico',
 
   // Future flags
   future: { v4: true },
 
-  // Set the production url of your site here
-  url: 'https://your-project.vercel.app', // đổi thành domain của bạn khi deploy
-  // Set the /<baseUrl>/ pathname under which your site is served
+  // Production URL
+  url: 'https://vnoptimus.vercel.app',
   baseUrl: '/',
 
-
-  // Repo info (nếu dùng GitHub Pages)
-  organizationName: 'your-username', // GitHub org/user
-  projectName: 'pmi-acp-site',       // repo name
+  // Repo info
+  organizationName: 'lehoangduy1911',   // GitHub user/org
+  projectName: 'pmi-acp-site',          // repo name
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -41,13 +39,12 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Nếu muốn nút "Edit this page", đổi đường link repo của bạn:
-          editUrl: 'https://github.com/your-username/pmi-acp-site/tree/main/',
+          editUrl: 'https://github.com/lehoangduy1911/pmi-acp-site/tree/main/',
         },
         blog: {
           showReadingTime: true,
           feedOptions: { type: ['rss', 'atom'], xslt: true },
-          editUrl: 'https://github.com/your-username/pmi-acp-site/tree/main/',
+          editUrl: 'https://github.com/lehoangduy1911/pmi-acp-site/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -57,17 +54,13 @@ const config: Config = {
     ],
   ],
 
-  // Local search plugin (khai báo như theme)
+  // Local search
   themes: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
         language: ['vi', 'en'],
-        // Một vài tuỳ chọn hay dùng:
-        // indexDocs: true,
-        // indexBlog: true,
-        // highlightSearchTermsOnTargetPage: true,
       },
     ],
   ],
@@ -75,11 +68,11 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'PMI-ACP Site',
+      title: 'VNOptimus',
       // logo: { alt: 'Logo', src: 'img/logo.svg' },
       items: [
         { to: '/docs/pmi-acp/start-here', label: 'PMI-ACP', position: 'left' },
-        // Thanh tìm kiếm do theme local-search tự chèn (không cần {type:'search'})
+        // search from local-search plugin auto-injected
         { type: 'localeDropdown', position: 'right' },
       ],
     },
@@ -94,7 +87,7 @@ const config: Config = {
           title: 'More',
           items: [
             { label: 'Blog', to: '/blog' },
-            { label: 'GitHub', href: 'https://github.com/your-username/pmi-acp-site' },
+            { label: 'GitHub', href: 'https://github.com/lehoangduy1911/pmi-acp-site' },
           ],
         },
       ],
