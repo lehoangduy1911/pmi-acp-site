@@ -1,0 +1,139 @@
+duyle@192 ~ % git remote -v
+
+fatal: not a git repository (or any of the parent directories): .git
+duyle@192 ~ % cd pmi-acp-site
+duyle@192 pmi-acp-site % git remote -v
+
+origin	https://github.com/lehoangduy1911/pmi-acp-site.git (fetch)
+origin	https://github.com/lehoangduy1911/pmi-acp-site.git (push)
+duyle@192 pmi-acp-site % git config --get user.name
+git config --get user.email
+
+Duy Le
+lehoangduy1911@gmail.com
+duyle@192 pmi-acp-site % ssh-keygen -t ed25519 -C "lehoangduy1911@gmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/Users/duyle/.ssh/id_ed25519): 191191
+Enter passphrase for "191191" (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in 191191
+Your public key has been saved in 191191.pub
+The key fingerprint is:
+SHA256:4SJn5HeHwx3qt8yVC/UfXvdBErOqCltPzr0r45GdiMM lehoangduy1911@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|                 |
+|                 |
+|      . .   .o   |
+|     o . o + .+  |
+|    . = S * oo.. |
+|     +.o.o+oo.oo |
+|     . E =.+o oo+|
+|      + *o++ +..B|
+|     . .o*o+* ..o|
++----[SHA256]-----+
+duyle@192 pmi-acp-site % git remote set-url origin git@github.com:lehoangduy1911/pmi-acp-site.git
+duyle@192 pmi-acp-site % git commit -m "fix: front matter week 1–6 and site config"
+[main bd2b5f0] fix: front matter week 1–6 and site config
+ 13 files changed, 42 insertions(+), 46 deletions(-)
+ create mode 100644 191191
+ create mode 100644 191191.pub
+duyle@192 pmi-acp-site % git add -A
+git commit -m "update content"
+git push
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? y
+Please type 'yes', 'no' or the fingerprint: yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+duyle@192 pmi-acp-site % cd /Users/duyle/pmi-acp-site
+git remote set-url origin https://github.com/lehoangduy1911/pmi-acp-site.git
+git push -u origin main
+
+Enumerating objects: 40, done.
+Counting objects: 100% (34/34), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (21/21), done.
+Writing objects: 100% (24/24), 2.83 KiB | 2.83 MiB/s, done.
+Total 24 (delta 11), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (11/11), completed with 4 local objects.
+To https://github.com/lehoangduy1911/pmi-acp-site.git
+   18b06f7..bd2b5f0  main -> main
+branch 'main' set up to track 'origin/main'.
+duyle@192 pmi-acp-site % ssh-keygen -t ed25519 -C "lehoangduy1911@gmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/Users/duyle/.ssh/id_ed25519): 
+Enter passphrase for "/Users/duyle/.ssh/id_ed25519" (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/duyle/.ssh/id_ed25519
+Your public key has been saved in /Users/duyle/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:/L6NVJ6tfi+iPN742MSybmqEddXHb4QqCjkm9Tvt7M0 lehoangduy1911@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|             . o |
+|      .     . o +|
+|     . o   . . o.|
+|    . =.o o .   o|
+|     o =S= ..  . |
+|      . =..+ o   |
+|       . ++ = .  |
+|        .+=&..o  |
+|       ..*&*Eo o.|
++----[SHA256]-----+
+duyle@192 pmi-acp-site % 
+duyle@192 pmi-acp-site % 
+duyle@192 pmi-acp-site % eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+Agent pid 91215
+Identity added: /Users/duyle/.ssh/id_ed25519 (lehoangduy1911@gmail.com)
+duyle@192 pmi-acp-site % pbcopy < ~/.ssh/id_ed25519.pub
+duyle@192 pmi-acp-site % ssh -T git@github.com
+git@github.com: Permission denied (publickey).
+duyle@192 pmi-acp-site % ls -al ~/.ssh
+
+total 24
+drwx------   5 duyle  staff   160 Sep  7 22:29 .
+drwxr-xr-x+ 95 duyle  staff  3040 Sep  7 22:25 ..
+-rw-------   1 duyle  staff   419 Sep  7 22:29 id_ed25519
+-rw-r--r--   1 duyle  staff   106 Sep  7 22:29 id_ed25519.pub
+-rw-r--r--   1 duyle  staff    92 Sep  7 22:25 known_hosts
+duyle@192 pmi-acp-site % nano ~/.ssh/config
+
+
+  UW PICO 5.09             File: /Users/duyle/.ssh/config             Modified  
+
+Host github.com
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos   
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell  
