@@ -13,9 +13,10 @@ const config: Config = {
   future: { v4: true },
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io', // đổi thành domain của bạn khi deploy
+  url: 'https://your-project.vercel.app', // đổi thành domain của bạn khi deploy
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
+
 
   // Repo info (nếu dùng GitHub Pages)
   organizationName: 'your-username', // GitHub org/user
