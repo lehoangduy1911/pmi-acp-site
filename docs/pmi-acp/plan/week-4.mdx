@@ -2,7 +2,172 @@
 id: week-4
 title: "Tuần 4 – Problem Detection & Resolution"
 ---
-- Ngày 1–2: Agile Principles & Mindset
-- Ngày 3–4: Value-Driven Delivery
-- Ngày 5–6: 50 câu luyện đề theo chủ đề
-- Ngày 7: Ôn + mini-mock 50 câu
+
+import Subscribe from '@site/src/components/Subscribe';
+
+- Ngày 22–28: Phát hiện sớm vấn đề, chẩn đoán dòng chảy, phân tích nguyên nhân gốc, thiết kế thí nghiệm cải tiến, vận hành “stop-the-line”, và biến cải tiến thành hành động đo lường được.
+
+## Định hướng tuần
+Tuần 4 gom toàn bộ kỹ thuật **phát hiện–giải quyết vấn đề** để bạn xử lý sự cố sớm, giảm lãng phí, ổn định tốc độ giao hàng và giữ chất lượng bẩm sinh.
+
+---
+
+## Ngày 22 — Tín hiệu vấn đề & chỉ báo sớm
+**Mục tiêu:** nhận diện vấn đề trước khi “vỡ đê”.  
+**Làm gì (60–90’):**
+- Liệt kê chỉ báo sớm: block > 24h, WIP vượt giới hạn, chờ review quá 2 ngày, tỉ lệ rework cao, bug lặp.
+- Phân loại **leading vs lagging** (ví dụ: thời gian chờ review là leading; số bug sản xuất là lagging).
+- Định nghĩa **Andon/Stop-the-line**: khi nào kích hoạt, ai có quyền dừng, kênh thông báo.
+**Đầu ra:** checklist “early warning” và tiêu chí kích hoạt Andon.
+
+---
+
+## Ngày 23 — Chẩn đoán dòng chảy (CFD, WIP, throughput, cycle time)
+**Mục tiêu:** đọc được bottleneck trên **Cumulative Flow Diagram (CFD)**.  
+**Làm gì:**
+- Lấy 1 board thật/giả lập, vẽ CFD đơn giản theo ngày.
+- Tính **WIP trung bình**, **throughput** và **cycle time** bằng công thức gần đúng `Cycle time ≈ WIP / Throughput`.
+- Viết 3 giả thuyết nguyên nhân khi “đang làm” phình to.
+**Đầu ra:** 1 ảnh CFD + bảng số liệu ngắn + 3 giả thuyết.
+
+:::tip Mẹo nhanh
+Đường “Done” phẳng lâu là tín hiệu **đầu ra tắc nghẽn**; ưu tiên giải phóng việc gần xong trước khi kéo việc mới.
+:::
+
+---
+
+## Ngày 24 — Root cause: 5 Whys, Fishbone, Cause tree
+**Mục tiêu:** tìm nguyên nhân gốc, không đổ lỗi cá nhân.  
+**Làm gì:**
+- Chọn 1 sự cố thật gần đây, chạy **5 Whys**.
+- Vẽ **Fishbone** theo nhóm: People, Process, Tools, Requirements, Environment.
+- Xác định 2–3 **root causes** có bằng chứng.
+**Đầu ra:** 1 trang 5 Whys + fishbone đơn giản + danh sách root causes.
+
+---
+
+## Ngày 25 — Thiết kế thí nghiệm cải tiến (PDCA/PDSA, giả thuyết, guardrails)
+**Mục tiêu:** biến nguyên nhân gốc thành **thí nghiệm nhỏ, rủi ro thấp**.  
+**Làm gì:**
+- Viết **Problem statement**, **giả thuyết**, **metric thành công**, **guardrails** (biên an toàn).
+- Lập kế hoạch **PDSA**: Plan → Do → Study → Act trong 1–2 iteration.
+**Đầu ra:** 1 thẻ **A3/PDSA** ngắn gọn sẵn sàng chạy.
+
+---
+
+## Ngày 26 — Chất lượng vận hành: DoR/DoD, Quality gates, Stop-the-line
+**Mục tiêu:** đưa chất lượng vào **chính sách** thay vì kiểm tra muộn.  
+**Làm gì:**
+- Cập nhật **DoR** (có AC rõ, testable, nhỏ, độc lập) và **DoD** (unit test, review, kiểm phi chức năng tối thiểu).
+- Thêm **quality gates**: ví dụ “không merge nếu lỗi nghiêm trọng mở”.
+- Hoàn thiện **quy trình Andon**: ai dừng, hành động tức thời, thời gian khôi phục.
+**Đầu ra:** DoR/DoD cập nhật + tài liệu Andon một trang.
+
+---
+
+## Ngày 27 — Retro facilitation & Biến insight thành hành động
+**Mục tiêu:** retro hiệu quả và hành động **thực sự diễn ra**.  
+**Làm gì:**
+- Chọn format phù hợp: **Starfish**, **Sailboat**, **4Ls**.
+- Chuyển insight → **2 hành động** dạng SMART, có **owner**, **deadline**, **metric** và đưa vào **Improvement Backlog** riêng.
+- Thiết lập **theory of change** ngắn: “Nếu… thì… vì…”.
+**Đầu ra:** kế hoạch retro 60’ + 2 hành động có chủ sở hữu.
+
+---
+
+## Ngày 28 — Ôn tích hợp + Mini-mock Tuần 4 (12 câu)
+**Mục tiêu:** kiểm tra end-to-end về phát hiện, chẩn đoán, xử lý, và vận hành cải tiến.  
+**Làm gì:** rà 6 bộ note tuần này → làm 12 câu dưới → tự chấm & ghi “Top 3 khoảng trống”.
+
+### Mini-mock Tuần 4 (12 câu)
+
+1) Dấu hiệu sớm nhất cho thấy dòng chảy bắt đầu tắc:  
+A. Đường Done tăng nhanh  
+B. Cột “đang review” dày lên bất thường  
+C. Nhiều ý tưởng mới  
+D. Sprint Goal dài hơn
+
+2) CFD cho thấy WIP tăng, Done gần như ngang trong 5 ngày. Hành động đầu tiên hợp lý:  
+A. Kéo thêm việc mới  
+B. Tăng WIP limit  
+C. Dừng kéo mới, tập trung giải phóng việc gần xong và gỡ blocker  
+D. Thêm tài liệu
+
+3) Phân biệt leading vs lagging:  
+A. Bug production là leading, thời gian chờ review là lagging  
+B. Thời gian chờ review là leading, bug production là lagging  
+C. Cả hai là lagging  
+D. Cả hai là leading
+
+4) 5 Whys dùng để:  
+A. Tìm người chịu trách nhiệm  
+B. Tìm nguyên nhân gốc có thể hành động  
+C. Ước lượng thời gian  
+D. Xếp hạng backlog
+
+5) “Stop-the-line” đúng nhất khi:  
+A. Chỉ Scrum Master có quyền dừng  
+B. Ai cũng có quyền dừng khi tiêu chí Andon thỏa và có kịch bản khôi phục rõ  
+C. Chỉ PO quyết  
+D. Không nên dừng vì trễ tiến độ
+
+6) Cycle time gần đúng theo Little’s Law với WIP 15 và throughput 3 item/tuần là:  
+A. 3 tuần  
+B. 4 tuần  
+C. 5 tuần  
+D. 6 tuần
+
+7) Fishbone giúp:  
+A. Kiểm thử hiệu năng  
+B. Nhìn đa chiều nguyên nhân theo nhóm  
+C. Xác nhận scope  
+D. Lập hợp đồng
+
+8) Khi hành động cải tiến cứ “trôi mất” sau retro:  
+A. Tạo thêm biểu mẫu  
+B. Giao hết cho Scrum Master  
+C. Chỉ giữ 1–2 hành động có owner, deadline, metric và kiểm tra hàng tuần  
+D. Dừng retro
+
+9) Thí nghiệm PDSA cần có:  
+A. Giải pháp hoàn chỉnh  
+B. Giả thuyết, metric thành công, guardrails và thời hạn đánh giá  
+C. Báo cáo dài  
+D. Kế hoạch 6 tháng
+
+10) Cột “đang review” thường xuyên đầy. Can thiệp ưu tiên:  
+A. Thêm việc mới  
+B. Nâng WIP toàn board  
+C. Thay đổi chính sách: giới hạn song song, ưu tiên review trước khi bắt đầu việc mới  
+D. Chờ cuối sprint
+
+11) DoD bổ sung “kiểm phi chức năng tối thiểu” nhằm:  
+A. Tăng giấy tờ  
+B. Chuyển lỗi sang QA  
+C. Ngăn nợ kỹ thuật tích tụ và bảo đảm chất lượng bẩm sinh  
+D. Tăng tốc trước mắt
+
+12) Khi stakeholder đòi tính năng gấp, tốt nhất là:  
+A. Cho vào ngay  
+B. Đưa vào **class of service: Expedite** với giới hạn, truyền thông tác động và kế hoạch trả nợ  
+C. Tăng người làm  
+D. Dời việc khác không báo
+
+**Đáp án & giải thích ngắn:**  
+1) B (hàng chờ review phình là tín hiệu tắc đầu ra).  
+2) C (giải phóng việc gần xong, gỡ blocker trước).  
+3) B (chờ review là leading; bug production là lagging).  
+4) B (tìm root cause có thể hành động).  
+5) B (Andon minh bạch, quyền dừng rộng nhưng có tiêu chí).  
+6) C (`15 / 3 ≈ 5`).  
+7) B (nhóm nguyên nhân People/Process/Tools/Requirements/Environment).  
+8) C (ít nhưng làm thật và đo lường).  
+9) B (giả thuyết + metric + guardrails + thời hạn).  
+10) C (thay chính sách để ưu tiên review).  
+11) C (chất lượng bẩm sinh, giảm nợ kỹ thuật).  
+12) B (Expedite có giới hạn, minh bạch tác động).
+
+---
+
+## Nhận email nhắc học tuần 4
+<Subscribe source="week-4" />
