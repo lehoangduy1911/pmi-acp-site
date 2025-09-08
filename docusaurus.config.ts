@@ -57,10 +57,7 @@ const config: Config = {
   ],
 
   themes: [
-    [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
-      { hashed: true, language: ['vi', 'en'] },
-    ],
+    [require.resolve('@easyops-cn/docusaurus-search-local'), { hashed: true, language: ['en'] }],
   ],
 
   // 🔁 Redirect các đường cũ -> category landing mới
