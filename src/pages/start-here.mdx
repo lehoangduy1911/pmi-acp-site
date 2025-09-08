@@ -1,0 +1,154 @@
+---
+title: "Start Here — Cách dùng site & kế hoạch học PMI-ACP"
+description: "Bắt đầu đúng cách: yêu cầu đầu vào, cấu trúc đề thi, cách chấm điểm, cách dùng lộ trình, nguyên tắc ghi chú/sửa sai ở mock, và quy tắc học 25–45’/ngày."
+---
+
+import React, {useEffect, useState} from 'react';
+
+export const Checklist = () => {
+  const STORAGE_KEY = 'start-here-checklist-v1';
+  const items = [
+    { id: 'read-blueprint', label: 'Đọc bài “Blueprint PMI-ACP” (4 domain, tỉ trọng, format đề)' },
+    { id: 'read-howto', label: 'Đọc bài “Cách dùng site & lộ trình 6 tuần”' },
+    { id: 'book-slots', label: 'Đặt lịch học cố định 45–60’/ngày (lịch điện thoại)' },
+    { id: 'pretest', label: 'Làm Pretest 20–30 câu để đo baseline' },
+    { id: 'setup-notes', label: 'Tạo sổ tay “Vì sao sai” & “Bẫy đề hôm nay”' },
+  ];
+  const [checked, setChecked] = useState({});
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) setChecked(JSON.parse(saved));
+    } catch {}
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));
+    } catch {}
+  }, [checked]);
+  const done = Object.values(checked).filter(Boolean).length;
+  const toggle = (id) => setChecked((s) => ({ ...s, [id]: !s[id] }));
+  const reset = () => setChecked({});
+  return (
+    <div className="card">
+      <div className="card__header">
+        <h3>Checklist khởi động <small>({done}/{items.length})</small></h3>
+      </div>
+      <div className="card__body">
+        <ul style={{listStyle:'none', paddingLeft:0, margin:0}}>
+          {items.map(it => (
+            <li key={it.id} style={{marginBottom:'.35rem'}}>
+              <label style={{display:'flex', gap:'.5rem', alignItems:'center', cursor:'pointer'}}>
+                <input type="checkbox" checked={!!checked[it.id]} onChange={() => toggle(it.id)} />
+                <span>{it.label}</span>
+              </label>
+            </li>
+          ))}
+        </ul>
+        <button className="button button--secondary button--sm" style={{marginTop:'.5rem'}} onClick={reset}>Reset</button>
+      </div>
+    </div>
+  );
+};
+
+# 👋 Bắt đầu từ đây
+
+Trang này giúp bạn **bắt đầu đúng cách** và dùng website hiệu quả để luyện **PMI-ACP**.
+
+- Bạn sẽ biết **cần gì để đăng ký thi**, **đề thi gồm những gì**, **cách chấm** (nên đặt target bao nhiêu), cách **dùng lộ trình 6 tuần**, **ghi chú/sửa sai sau mock**, và **quy tắc học 25–45’/ngày**.
+- Cuối trang có **Checklist khởi động** lưu tiến độ ngay trên máy bạn.
+
+---
+
+## 1) Yêu cầu đầu vào (Eligibility) — tóm tắt thực dụng
+> PMI có thể cập nhật điều kiện theo thời gian. Hãy **đối chiếu trang chính thức** trước khi nộp hồ sơ.
+
+- **Giờ đào tạo Agile**: nên chuẩn bị tối thiểu **21–28 giờ** học chính thức (online/offline đều được, có chứng nhận).
+- **Kinh nghiệm làm việc**: ưu tiên có **kinh nghiệm Agile thực tế** trong vài năm gần nhất (Scrum/Kanban/hybrid…).
+- **Hồ sơ**: tóm tắt quá trình học & dự án/role liên quan, sẵn sàng để **PMI audit** (nếu được chọn ngẫu nhiên).
+
+:::tip Mẹo nhanh
+Nếu thiếu giờ đào tạo, hoàn thành **học liệu cốt lõi trên site + 1 khóa online** để hợp thức hóa giờ học trước khi đặt lịch thi.
+:::
+
+---
+
+## 2) Cấu trúc đề thi (Exam blueprint) — khung tổng quan
+- **Số câu & thời lượng**: thường **120 câu / ~180 phút**; có **câu thử nghiệm** không tính điểm; có thể có **1 lần nghỉ** ở giữa.
+- **Dạng câu**: trắc nghiệm 1 đáp án, **multiple response**, kéo-thả, câu dựa trên **exhibit/case**.
+- **Blueprint domain** (tỉ trọng tham khảo): **Mindset**, **Leadership**, **Product**, **Delivery**.
+- **Ngôn ngữ**: tiếng Anh (và một số ngôn ngữ khác tùy thời điểm).
+
+:::note
+PMI **không công bố điểm đậu cố định**. Bạn nên đặt **mục tiêu ổn định ≥ 75–80%** ở các bài **mock có bấm giờ** và **đều tay ở mọi domain**.
+:::
+
+---
+
+## 3) Cách chấm điểm & mục tiêu điểm mock
+- **Không có “điểm cắt” chính thức** → tránh “chơi sát nút”.
+- **Mục tiêu an toàn khi ôn**:
+  - Mock ngắn theo chủ đề: ≥ **80%** sau khi đã review.
+  - Mock full 120 câu bấm giờ: ≥ **75%** **ổn định 2 lần liên tiếp**.
+- **Theo dõi theo domain**: sau mỗi mock, phân tích **điểm theo domain** để biết trọng tâm cần vá.
+
+---
+
+## 4) Cách dùng lộ trình 6 tuần trên site
+1. Vào **Tuần 1** → đọc **Learning Objectives** + thuật ngữ.
+2. Học **25–30’ lý thuyết** → làm **5–10 câu** có giải thích.
+3. Ghi “**bẫy đề hôm nay**” (1–2 dòng).
+4. Cuối tuần làm **mini-mock** theo chủ đề; **review sai** theo khung ở mục 5.
+5. Tuần 5: **Mock 120 câu** bấm giờ; Tuần 6: vá lỗ hổng + **Mock cuối**.
+6. Lặp lại vòng: **học ngắn → luyện câu → review sai → cập nhật bẫy → mini-retro**.
+
+---
+
+## 5) Nguyên tắc ghi chú & sửa sai sau mock
+Dùng bảng 1 trang (giấy/Notion/Excel):
+
+| Trường | Ghi gì |
+| --- | --- |
+| **Domain / Chủ đề** | Ví dụ: Delivery / Flow & WIP |
+| **Câu (ID)** | Mã câu hoặc mô tả ngắn |
+| **Tại sao sai** | Thiếu kiến thức? Đọc ẩu? Bẫy keyword? |
+| **Loại bẫy** | Đảo ngữ, từ khóa “NOT/EXCEPT”, “best next”, “product vs project”… |
+| **Nguồn học lại** | Link bài học/slide sách |
+| **Hành động vá** | Đọc lại đoạn X, vẽ quick-note, làm thêm 10 câu tương tự |
+| **Ngày retest** | Lịch ôn lại (spaced) |
+
+Nguyên tắc vàng:
+- **Viết “vì sao sai” bằng câu của chính bạn** (ngắn, cụ thể).
+- **Gộp bẫy** thành 5–7 nhóm lớn để nhận diện nhanh trong lần tới.
+- Sau review, **làm lại 3–5 câu tương tự** ngay để “khóa” kiến thức.
+
+---
+
+## 6) Quy tắc học 25–45’/ngày (Pomodoro gọn)
+**Công thức đề xuất**: **25’ học → 5’ nghỉ → 15’ làm câu** (tổng 45’).  
+Bận rộn? Dùng phiên **25–30’**: 15’ đọc nhanh + 10–15’ làm câu.
+
+- Học **đúng 1 mục tiêu nhỏ** mỗi phiên (≤15’ lý thuyết).
+- Luôn **giải thích vì sao chọn/loại đáp án** (không học vẹt).
+- **Ghi 1 bẫy đề/ngày** → đến cuối tuần tổng hợp “Top 3 bẫy”.
+
+---
+
+## 7) Câu hỏi thường gặp (mini-FAQ)
+**Thi ở đâu?** Pearson VUE test center hoặc online proctored.  
+**Có break giữa bài thi không?** Thường có 1 break ở giữa; sau break không quay lại phần trước.  
+**Điểm pass bao nhiêu?** PMI không công bố; hãy đặt target **ổn định** trên mock.
+
+---
+
+## 8) Checklist khởi động
+
+<Checklist />
+
+---
+
+### Liên kết nhanh
+- 👉 **Blueprint PMI-ACP**: `/blog/pmi-acp-blueprint-2025`  
+- 👉 **Cách dùng site & lộ trình 6 tuần**: `/blog/cach-dung-site-lo-trinh-6-tuan`  
+- 👉 **Tuần 1**: `/docs/week-1` *(đổi theo cấu trúc của bạn)*
+
