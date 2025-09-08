@@ -2,7 +2,162 @@
 id: week-5
 title: "Tuần 5 – Continuous Improvement (Product, Process, People)"
 ---
-- Ngày 1–2: Agile Principles & Mindset
-- Ngày 3–4: Value-Driven Delivery
-- Ngày 5–6: 50 câu luyện đề theo chủ đề
-- Ngày 7: Ôn + mini-mock 50 câu
+
+import Subscribe from '@site/src/components/Subscribe';
+
+- Ngày 29–35: Cải tiến liên tục theo 3 trục **Sản phẩm – Quy trình – Con người**: xác định Outcome & North Star Metric, thiết kế thí nghiệm, đọc số liệu dòng chảy và DORA, chuẩn hóa cải tiến, tạo môi trường an toàn tâm lý, biến tri thức thành tài sản tổ chức.
+
+## Định hướng tuần
+Tuần 5 giúp bạn thiết lập “hệ điều hành cải tiến” bền vững: **đặt mục tiêu theo kết quả (outcome)**, **thử nghiệm nhỏ – học nhanh**, **đo đúng – sửa đúng**, và **nâng năng lực đội ngũ**.
+
+---
+
+## Ngày 29 — Product Outcomes & North Star Metric (NSM)
+**Mục tiêu:** chuyển trọng tâm từ output sang **outcome** đo được.  
+**Làm gì (60–90’):**
+- Chọn **North Star Metric** cho sản phẩm của bạn và vẽ **metric tree**: NSM → input metrics (ví dụ: activation, retention, conversion).  
+- Viết 3 outcome rõ ràng theo cấu trúc: *Tăng/giảm [metric] từ X đến Y trong Z tuần cho nhóm khách hàng A*.  
+**Đầu ra:** 1 trang NSM + metric tree + 3 outcome.
+
+:::tip Mẹo đo lường
+Ưu tiên **few metrics, well-defined** thay vì quá nhiều chỉ số gây nhiễu. Chỉ số phải gắn với hành vi người dùng thực.
+:::
+
+---
+
+## Ngày 30 — Discovery Loop & Thí nghiệm sản phẩm
+**Mục tiêu:** thiết kế **hypothesis backlog** và thí nghiệm rủi ro thấp.  
+**Làm gì:**
+- Viết 5 giả thuyết theo mẫu: *Nếu [ý tưởng], thì [tín hiệu đo được] sẽ thay đổi vì [lý do]*.  
+- Chọn 1–2 thí nghiệm: prototype có thể demo, hay A/B nhỏ (khi đủ traffic và tuân thủ đạo đức).  
+- Định nghĩa **guardrails metrics** để tránh tác dụng phụ.  
+**Đầu ra:** Hypothesis backlog + kế hoạch 1–2 thí nghiệm một tuần.
+
+---
+
+## Ngày 31 — Process Improvement System (OODA/PDCA, Visual Management)
+**Mục tiêu:** chuẩn hóa nhịp **quan sát → quyết định → hành động → học**.  
+**Làm gì:**
+- Thiết kế **weekly ops review** (30–45 phút): flow metrics, chất lượng, outcome.  
+- Tạo bảng **standard work** ngắn cho việc triage, review, release.  
+- Cập nhật board với **policy rõ ràng** để mọi người thấy và tuân theo.  
+**Đầu ra:** agenda ops review + standard work + chính sách board.
+
+---
+
+## Ngày 32 — DevOps & Quality Feedback (DORA, Trunk-based, Feature Flags)
+**Mục tiêu:** rút ngắn vòng phản hồi kỹ thuật.  
+**Làm gì:**
+- Chọn 2 trong 4 chỉ số **DORA** (tần suất triển khai, lead time thay đổi, tỉ lệ lỗi sau triển khai, thời gian khôi phục) để theo dõi.  
+- Lập kế hoạch **trunk-based** nhẹ, **feature flags**, **test pyramid**.  
+- Viết checklist “release nhỏ an toàn”.  
+**Đầu ra:** dashboard chỉ số chọn lọc + checklist release.
+
+---
+
+## Ngày 33 — People: Coaching, Feedback, Psychological Safety
+**Mục tiêu:** nâng năng lực đội ngũ và an toàn tâm lý.  
+**Làm gì:**
+- Tạo **skills matrix** 5–7 kỹ năng cốt lõi (novice → advanced).  
+- Thử 2 kỹ thuật feedback: **SBI** (Situation-Behavior-Impact) và **COIN** (Context-Observation-Impact-Next).  
+- Họp ngắn “**team health check**” theo thang 1–5 cho: focus, flow, quality, learning, safety.  
+**Đầu ra:** skills matrix v1 + kế hoạch coaching 2 tuần + kết quả health check.
+
+---
+
+## Ngày 34 — Knowledge Capture & Reuse (Playbook, COP)
+**Mục tiêu:** biến học được thành **tài sản** của team.  
+**Làm gì:**
+- Viết **post-incident note** 1 trang (không đổ lỗi, tập trung học).  
+- Tạo **playbook** cho 1 quy trình hay lặp lại (triage, review, deploy).  
+- Khởi động **Community of Practice (CoP)**: lịch sinh hoạt 2 tuần một lần, chủ đề 3 tháng.  
+**Đầu ra:** 1 playbook + lịch CoP + note sau sự cố.
+
+---
+
+## Ngày 35 — Ôn tích hợp + Mini-mock Tuần 5 (12 câu)
+**Mục tiêu:** kiểm tra end-to-end về outcome, thí nghiệm, flow, DORA, an toàn tâm lý, tri thức.  
+**Làm gì:** rà 6 bộ note → làm 12 câu dưới → tự chấm & ghi “Top 3 khoảng trống”.
+
+### Mini-mock Tuần 5 (12 câu)
+
+1) **Outcome** khác **output** chủ yếu ở chỗ:  
+A. Output là tổng số hạng mục bàn giao trong kỳ  
+B. Output phản ánh chi phí và khối lượng công việc tạo ra  
+C. Outcome phản ánh tác động lên hành vi/giá trị người dùng  
+D. Outcome chỉ là tên gọi khác của output dự án
+
+2) Khi chọn **North Star Metric**, tốt nhất là:  
+A. Chọn chỉ số dễ đạt tăng nhanh nhất trong ngắn hạn  
+B. Chọn chỉ số lãnh đạo thích để dễ thuyết phục  
+C. Chọn thật nhiều chỉ số để bao phủ mọi góc độ  
+D. Chọn chỉ số phản ánh giá trị lõi, có liên hệ nhân quả bền vững
+
+3) Một **giả thuyết tốt** nên có:  
+A. Có tín hiệu đo lường rõ ràng và lý do kỳ vọng thay đổi  
+B. Viết chung chung để linh hoạt khi phân tích kết quả  
+C. Không cần đo đạc, chỉ cần cảm nhận của nhóm  
+D. Càng dài càng tốt để bao quát nhiều khả năng
+
+4) Trong ops review hằng tuần, nên ưu tiên:  
+A. Kể chi tiết từng task đã làm trong tuần vừa rồi  
+B. Xem toàn bộ log hệ thống để không bỏ sót điều gì  
+C. Tập trung 3–5 chỉ số then chốt, action rõ và chủ sở hữu  
+D. Hoãn họp nếu bận để chờ đủ dữ liệu tuần sau
+
+5) Bộ **DORA** chủ yếu dùng để:  
+A. Phản ánh hiệu quả phát hành và độ ổn định vận hành hệ thống  
+B. Chấm điểm năng suất cá nhân theo tháng của từng thành viên  
+C. Thay thế toàn bộ các chỉ số sản phẩm khác trong dự án  
+D. Đánh giá độ dài tài liệu và quy trình bắt buộc trong dự án
+
+6) Muốn tăng tần suất triển khai **an toàn**, nên làm trước:  
+A. Bỏ kiểm thử để rút ngắn thời gian phát hành ngay lập tức  
+B. Gom mọi thay đổi vào một lần phát hành lớn mỗi quý  
+C. Tăng số tài liệu bàn giao trong quy trình release chuẩn  
+D. Áp dụng trunk-based nhẹ, feature flags và tự động hóa kiểm thử quan trọng
+
+7) **Psychological safety** giúp:  
+A. Mọi người tránh nói về lỗi để giữ tinh thần ổn định  
+B. Mọi người dám nêu rủi ro, nhận phản hồi và thử nghiệm để học nhanh  
+C. Giảm minh bạch để hạn chế tranh luận trong các buổi họp  
+D. Loại bỏ phản hồi thẳng thắn để giảm áp lực giao tiếp
+
+8) **SBI/COIN** là kỹ thuật:  
+A. Đo chi phí triển khai và giá thành sản phẩm chi tiết  
+B. Phản hồi hành vi cụ thể, thống nhất bước tiếp theo rõ ràng  
+C. Lập biểu mẫu pháp lý để ghi nhận yêu cầu thay đổi dự án  
+D. Đánh dấu hoàn thành công việc trên bảng theo dõi công việc
+
+9) **Skills matrix** chủ yếu dùng để:  
+A. So sánh xếp hạng cá nhân để thưởng phạt công bằng  
+B. Che giấu thông tin kỹ năng để tránh nhạy cảm trong nhóm  
+C. Lập kế hoạch pairing/mentoring và phân công linh hoạt  
+D. Gắn cứng vai trò theo chuyên môn để giữ tiến độ ổn định
+
+10) **Playbook** khác tài liệu dài ở chỗ:  
+A. Ngắn gọn, thao tác hóa, dùng ngay trong tình huống thực tế  
+B. Dài dòng chi tiết để tham khảo khi có thời gian rảnh  
+C. Mang tính học thuật, ít áp dụng trong vận hành hằng ngày  
+D. Chỉ dùng để lưu trữ kiến thức cũ không còn sử dụng
+
+11) Khi thí nghiệm có dấu hiệu ảnh hưởng xấu tới **guardrails metrics**, nên:  
+A. Tiếp tục chạy cho đủ dữ liệu rồi tổng kết sau cùng  
+B. Bỏ qua dấu hiệu xấu vì có thể tự cân bằng về sau  
+C. Xóa dữ liệu thí nghiệm để tránh bị hiểu sai kết quả  
+D. Tạm dừng hoặc điều chỉnh, thông báo tác động và kế hoạch khôi phục
+
+12) Sau retro, để hành động cải tiến không “trôi mất”, nên:  
+A. Tăng số lượng hành động để đảm bảo có cái làm được  
+B. Chọn 1–2 hành động có owner, deadline, metric; review hằng tuần  
+C. Giao toàn bộ cho Scrum Master để không phân tán  
+D. Viết biên bản dài chi tiết để làm tài liệu tham khảo
+
+**Đáp án (rải đều A/B/C/D):**  
+1) C · 2) D · 3) A · 4) C · 5) A · 6) D · 7) B · 8) B · 9) C · 10) A · 11) D · 12) B
+
+
+---
+
+## Nhận email nhắc học tuần 5
+<Subscribe source="week-5" />
