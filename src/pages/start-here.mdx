@@ -3,54 +3,8 @@ title: "Start Here — Cách dùng site & kế hoạch học PMI-ACP"
 description: "Bắt đầu đúng cách: yêu cầu đầu vào, cấu trúc đề thi, cách chấm điểm, cách dùng lộ trình, nguyên tắc ghi chú/sửa sai ở mock, và quy tắc học 25–45’/ngày."
 ---
 
-import React, {useEffect, useState} from 'react';
 import Subscribe from '@site/src/components/Subscribe';
-
-export const Checklist = () => {
-  const STORAGE_KEY = 'start-here-checklist-v1';
-  const items = [
-    { id: 'read-blueprint', label: 'Đọc bài “Blueprint PMI-ACP” (4 domain, tỉ trọng, format đề)' },
-    { id: 'read-howto', label: 'Đọc bài “Cách dùng site & lộ trình 6 tuần”' },
-    { id: 'book-slots', label: 'Đặt lịch học cố định 45–60’/ngày (lịch điện thoại)' },
-    { id: 'pretest', label: 'Làm Pretest 20–30 câu để đo baseline' },
-    { id: 'setup-notes', label: 'Tạo sổ tay “Vì sao sai” & “Bẫy đề hôm nay”' },
-  ];
-  const [checked, setChecked] = useState({});
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) setChecked(JSON.parse(saved));
-    } catch {}
-  }, []);
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));
-    } catch {}
-  }, [checked]);
-  const done = Object.values(checked).filter(Boolean).length;
-  const toggle = (id) => setChecked((s) => ({ ...s, [id]: !s[id] }));
-  const reset = () => setChecked({});
-  return (
-    <div className="card">
-      <div className="card__header">
-        <h3>Checklist khởi động <small>({done}/{items.length})</small></h3>
-      </div>
-      <div className="card__body">
-        <ul style={{listStyle:'none', paddingLeft:0, margin:0}}>
-          {items.map(it => (
-            <li key={it.id} style={{marginBottom:'.35rem'}}>
-              <label style={{display:'flex', gap:'.5rem', alignItems:'center', cursor:'pointer'}}>
-                <input type="checkbox" checked={!!checked[it.id]} onChange={() => toggle(it.id)} />
-                <span>{it.label}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-        <button className="button button--secondary button--sm" style={{marginTop:'.5rem'}} onClick={reset}>Reset</button>
-      </div>
-    </div>
-  );
-};
+import StartHereChecklist from '@site/src/components/StartHereChecklist';
 
 # 👋 Bắt đầu từ đây
 
@@ -58,6 +12,18 @@ Trang này giúp bạn **bắt đầu đúng cách** và dùng website hiệu qu
 
 - Bạn sẽ biết **cần gì để đăng ký thi**, **đề thi gồm những gì**, **cách chấm** (nên đặt target bao nhiêu), cách **dùng lộ trình 6 tuần**, **ghi chú/sửa sai sau mock**, và **quy tắc học 25–45’/ngày**.
 - Cuối trang có **Checklist khởi động** lưu tiến độ ngay trên máy bạn.
+
+---
+
+## Liên kết nhanh (link tĩnh, an toàn)
+- 👉 **Blueprint PMI-ACP**: /blog/pmi-acp-blueprint-2025  
+- 👉 **Cách dùng site & lộ trình 6 tuần**: /blog/cach-dung-site-lo-trinh-6-tuan  
+- 👉 **Kế hoạch Tuần 1**: /docs/pmi-acp/plan/week-1  
+- 👉 **Kế hoạch Tuần 2**: /docs/pmi-acp/plan/week-2  
+- 👉 **Kế hoạch Tuần 3**: /docs/pmi-acp/plan/week-3  
+- 👉 **Kế hoạch Tuần 4**: /docs/pmi-acp/plan/week-4  
+- 👉 **Kế hoạch Tuần 5**: /docs/pmi-acp/plan/week-5  
+- 👉 **Kế hoạch Tuần 6**: /docs/pmi-acp/plan/week-6  
 
 ---
 
@@ -96,11 +62,11 @@ PMI **không công bố điểm đậu cố định**. Bạn nên đặt **mục
 ---
 
 ## 4) Cách dùng lộ trình 6 tuần trên site
-1. Vào **Tuần 1** → đọc **Learning Objectives** + thuật ngữ.
-2. Học **25–30’ lý thuyết** → làm **5–10 câu** có giải thích.
-3. Ghi “**bẫy đề hôm nay**” (1–2 dòng).
-4. Cuối tuần làm **mini-mock** theo chủ đề; **review sai** theo khung ở mục 5.
-5. Tuần 5: **Mock 120 câu** bấm giờ; Tuần 6: vá lỗ hổng + **Mock cuối**.
+1. Vào **Tuần 1** → đọc **Learning Objectives** + thuật ngữ.  
+2. Học **25–30’ lý thuyết** → làm **5–10 câu** có giải thích.  
+3. Ghi “**bẫy đề hôm nay**” (1–2 dòng).  
+4. Cuối tuần làm **mini-mock** theo chủ đề; **review sai** theo khung ở mục 5.  
+5. Tuần 5: **Mock 120 câu** bấm giờ; Tuần 6: vá lỗ hổng + **Mock cuối**.  
 6. Lặp lại vòng: **học ngắn → luyện câu → review sai → cập nhật bẫy → mini-retro**.
 
 ---
@@ -119,8 +85,8 @@ Dùng bảng 1 trang (giấy/Notion/Excel):
 | **Ngày retest** | Lịch ôn lại (spaced) |
 
 Nguyên tắc vàng:
-- **Viết “vì sao sai” bằng câu của chính bạn** (ngắn, cụ thể).
-- **Gộp bẫy** thành 5–7 nhóm lớn để nhận diện nhanh trong lần tới.
+- **Viết “vì sao sai” bằng câu của chính bạn** (ngắn, cụ thể).  
+- **Gộp bẫy** thành 5–7 nhóm lớn để nhận diện nhanh trong lần tới.  
 - Sau review, **làm lại 3–5 câu tương tự** ngay để “khóa” kiến thức.
 
 ---
@@ -129,8 +95,8 @@ Nguyên tắc vàng:
 **Công thức đề xuất**: **25’ học → 5’ nghỉ → 15’ làm câu** (tổng 45’).  
 Bận rộn? Dùng phiên **25–30’**: 15’ đọc nhanh + 10–15’ làm câu.
 
-- Học **đúng 1 mục tiêu nhỏ** mỗi phiên (≤15’ lý thuyết).
-- Luôn **giải thích vì sao chọn/loại đáp án** (không học vẹt).
+- Học **đúng 1 mục tiêu nhỏ** mỗi phiên (≤15’ lý thuyết).  
+- Luôn **giải thích vì sao chọn/loại đáp án** (không học vẹt).  
 - **Ghi 1 bẫy đề/ngày** → đến cuối tuần tổng hợp “Top 3 bẫy”.
 
 ---
@@ -144,13 +110,9 @@ Bận rộn? Dùng phiên **25–30’**: 15’ đọc nhanh + 10–15’ làm c
 
 ## 8) Checklist khởi động
 
-<Checklist />
+<StartHereChecklist />
 
 ---
 
-### Liên kết nhanh
-- 👉 **Blueprint PMI-ACP**: `/blog/pmi-acp-blueprint-2025`  
-- 👉 **Cách dùng site & lộ trình 6 tuần**: `/blog/cach-dung-site-lo-trinh-6-tuan`  
-- 👉 **Tuần 1**: `/docs/week-1` *(đổi theo cấu trúc của bạn)*
-
+### Liên hệ & cập nhật
 <Subscribe source="start-here" />
