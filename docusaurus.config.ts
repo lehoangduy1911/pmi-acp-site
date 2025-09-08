@@ -90,18 +90,25 @@ const config: Config = {
         { to: '/docs/pmi-acp/start-here', label: 'Bắt đầu học', position: 'left' },
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
+
+        // ➕ About
+        { to: '/about', label: 'About', position: 'left' },
+
         // search from local-search plugin is auto-injected
         { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
+
+        // NOTE: Bạn đang có cả '/docs/.../start-here' và '/start-here'.
+        // Nên giữ 1 trong 2 để tránh trùng UX. Tạm thời vẫn giữ như cũ:
         { to: '/start-here', label: 'Start Here', position: 'left' },
-        { to: "/faq", label: "FAQ", position: "left" },
+        { to: '/faq', label: 'FAQ', position: 'left' },
       ],
     },
 
     announcementBar: {
       id: 'welcome',
       content:
-        '🎉 Chào mừng đến VNOptimus — <a href="/docs/pmi-acp/start-here">Bắt đầu học</a> hoặc xem <a href="/docs/pmi-acp/plan/week-1">Kế hoạch học</a>.',
+        '🎉 Chào mừng đến VNOptimus — <a href="/docs/pmi-acp/start-here">Bắt đầu học</a>, <a href="/docs/pmi-acp/plan/week-1">Kế hoạch học</a>, hoặc xem <a href="/about">About</a>.',
       backgroundColor: '#eef2ff',
       textColor: '#111827',
       isCloseable: true,
@@ -126,6 +133,7 @@ const config: Config = {
         {
           title: 'More',
           items: [
+            { label: 'About', to: '/about' }, // ➕ About ở footer
             { label: 'Blog', to: '/blog' },
             { label: 'GitHub', href: 'https://github.com/lehoangduy1911/pmi-acp-site' },
           ],
