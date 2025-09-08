@@ -1,19 +1,19 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+"PMI-ACP":
+  label: "PMI-ACP"
+  description: "Luyện thi PMI-ACP"
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+"study-plan":
+  label: "Study plan"
+  description: "Lộ trình học 6 tuần"
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+"roadmap":
+  label: "Roadmap"
+  description: "Lộ trình & phương pháp"
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+"blueprint":
+  label: "Blueprint"
+  description: "Cấu trúc đề & tỉ trọng"
+
+"exam":
+  label: "Exam"
+  description: "Định dạng đề, tips, mock"
