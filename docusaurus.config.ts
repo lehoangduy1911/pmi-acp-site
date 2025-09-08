@@ -94,6 +94,7 @@ const config: Config = {
         { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
         { to: '/start-here', label: 'Start Here', position: 'left' },
+        { to: "/faq", label: "FAQ", position: "left" },
       ],
     },
 
