@@ -1,25 +1,60 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2563eb; /* xanh dương */
-  --ifm-color-primary-dark: #1e40af;
-  --ifm-code-font-size: 95%;
+  /* thương hiệu */
+  --ifm-color-primary: #2563eb;               /* blue-600 */
+  --ifm-color-primary-dark: #1d4ed8;          /* blue-700 */
+  --ifm-color-primary-darker: #1e40af;        /* blue-800 */
+  --ifm-color-primary-light: #3b82f6;         /* blue-500 */
+  --ifm-link-color: var(--ifm-color-primary);
+
+  /* typography */
+  --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --ifm-heading-font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+
+  /* bố cục */
+  --ifm-container-width: 1200px;
+  --ifm-container-width-xl: 1320px;
 }
 
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+html[data-theme='dark'] {
+  --ifm-color-primary: #60a5fa; /* nhẹ hơn trong dark */
 }
+
+.hero--primary {
+  background: linear-gradient(180deg, #1d4ed8 0%, #2563eb 100%);
+}
+.hero__title { font-family: var(--ifm-heading-font-family); font-weight: 700; }
+.hero__subtitle { opacity: .95; }
+
+.docItemContainer .theme-doc-markdown {
+  max-width: 760px;  /* tăng khả năng đọc */
+  margin: 0 auto;
+}
+.theme-admonition { border-radius: 12px; }
+
+/* Nút CTA nhất quán */
+.button--primary.button {
+  border-radius: 10px;
+  padding: 0.7rem 1.1rem;
+  font-weight: 600;
+}
+
+/* Card tiện dụng cho homepage/MDX */
+.vno-card-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+}
+.vno-card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px; padding: 16px;
+  background: var(--ifm-background-surface-color);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+/* (Tuỳ chọn) Hero gradient khác cho dark */
+html[data-theme='dark'] .hero--primary {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ifm-color-primary) 92%, black) 0%, var(--ifm-color-primary) 100%);
+}
+
+.vno-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.06); }
