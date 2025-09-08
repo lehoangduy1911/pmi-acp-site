@@ -103,7 +103,6 @@ const config: Config = {
         { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/contact', label: 'Contact', position: 'left' },
-        { label: 'Contact', to: '/contact' },
       ],
     },
 
@@ -140,6 +139,7 @@ const config: Config = {
             { label: 'GitHub', href: 'https://github.com/lehoangduy1911/pmi-acp-site' },
           ],
         },
+        { label: 'Contact', to: '/contact' },
       ],
       copyright: `© ${new Date().getFullYear()} VNOptimus`,
     },
