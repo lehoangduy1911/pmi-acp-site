@@ -1,3 +1,4 @@
+// src/pages/index.tsx
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -10,6 +11,9 @@ export default function Home() {
       title="VNOptimus — Học & Luyện thi PMI-ACP"
       description="Lộ trình 6 tuần, bài học ngắn, checklist và thi thử PMI-ACP. Song ngữ vi/en."
     >
+      {/* Skip link for accessibility */}
+      <a href="#main-content" className={styles.skipLink}>Bỏ qua nội dung</a>
+
       {/* HERO */}
       <header className={clsx('hero', 'hero--primary', styles.hero)}>
         <div className="container">
@@ -34,59 +38,70 @@ export default function Home() {
               Kế hoạch học
             </Link>
           </div>
-
         </div>
       </header>
 
-      <main>
+      <main id="main-content">
         {/* 4 LỢI ÍCH */}
         <section className={styles.section}>
           <div className="container">
             <h2 className={styles.sectionTitle}>Vì sao chọn VNOptimus?</h2>
             <div className={styles.cardGrid}>
-              <article className={styles.card}>
+              {/* Card 1: clickable toàn bộ */}
+              <Link
+                to="/docs/pmi-acp/plan/week-1"
+                className={styles.card + ' ' + styles.cardLink}
+                aria-label="Lộ trình 6 tuần — Xem Tuần 1"
+              >
                 <div className={styles.cardIcon}>📅</div>
                 <h3 className={styles.cardTitle}>Lộ trình 6 tuần</h3>
                 <p className={styles.cardDesc}>
                   Chia nhỏ theo tuần, mục tiêu rõ ràng từng ngày. Dễ theo dõi và duy trì thói quen.
                 </p>
-                <Link className="button button--sm button--link" to="/docs/pmi-acp/plan/week-1">
-                  Xem Tuần 1 →
-                </Link>
-              </article>
+                <span className={styles.srOnly}>Xem Tuần 1</span>
+              </Link>
 
-              <article className={styles.card}>
+              {/* Card 2 */}
+              <Link
+                to="/docs/pmi-acp/module-01/lesson-01"
+                className={styles.card + ' ' + styles.cardLink}
+                aria-label="Bài ngắn, trọng tâm — Vào học ngay"
+              >
                 <div className={styles.cardIcon}>⚡️</div>
                 <h3 className={styles.cardTitle}>Bài ngắn, trọng tâm</h3>
                 <p className={styles.cardDesc}>
                   Mỗi bài 5–10 phút, đi thẳng vào khái niệm và ví dụ áp dụng thực tế.
                 </p>
-                <Link className="button button--sm button--link" to="/docs/pmi-acp/module-01/lesson-01">
-                  Vào học ngay →
-                </Link>
-              </article>
+                <span className={styles.srOnly}>Vào học ngay</span>
+              </Link>
 
-              <article className={styles.card}>
+              {/* Card 3 */}
+              <Link
+                to="/docs/pmi-acp/plan/week-2"
+                className={styles.card + ' ' + styles.cardLink}
+                aria-label="Checklist luyện đề — Bắt đầu checklist"
+              >
                 <div className={styles.cardIcon}>✅</div>
                 <h3 className={styles.cardTitle}>Checklist luyện đề</h3>
                 <p className={styles.cardDesc}>
                   Bài tập và mini-mock theo ngày giúp nắm chắc kiến thức & tiến bộ đều.
                 </p>
-                <Link className="button button--sm button--link" to="/docs/pmi-acp/plan/week-2">
-                  Bắt đầu checklist →
-                </Link>
-              </article>
+                <span className={styles.srOnly}>Bắt đầu checklist</span>
+              </Link>
 
-              <article className={styles.card}>
+              {/* Card 4 */}
+              <Link
+                to="/docs/pmi-acp/start-here"
+                className={styles.card + ' ' + styles.cardLink}
+                aria-label="Song ngữ vi/en — Cách dùng song ngữ"
+              >
                 <div className={styles.cardIcon}>🌐</div>
                 <h3 className={styles.cardTitle}>Song ngữ vi/en</h3>
                 <p className={styles.cardDesc}>
                   Toggle chuyển ngữ ở mọi trang giúp bạn quen thuật ngữ tiếng Anh trước kỳ thi.
                 </p>
-                <Link className="button button--sm button--link" to="/docs/pmi-acp/start-here">
-                  Cách dùng song ngữ →
-                </Link>
-              </article>
+                <span className={styles.srOnly}>Cách dùng song ngữ</span>
+              </Link>
             </div>
           </div>
         </section>
@@ -101,7 +116,9 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Bắt đầu</h4>
                   <p>Xem định hướng & cách học hiệu quả.</p>
-                  <Link to="/docs/pmi-acp/start-here" className="button button--sm button--link">Start here →</Link>
+                  <Link to="/docs/pmi-acp/start-here" className="button button--sm button--link">
+                    Start here →
+                  </Link>
                 </div>
               </li>
 
@@ -110,7 +127,9 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Học nhanh</h4>
                   <p>Vào các bài trọng tâm của Module 01.</p>
-                  <Link to="/docs/pmi-acp/module-01/lesson-01" className="button button--sm button--link">Lesson 01 →</Link>
+                  <Link to="/docs/pmi-acp/module-01/lesson-01" className="button button--sm button--link">
+                    Lesson 01 →
+                  </Link>
                 </div>
               </li>
 
@@ -119,7 +138,9 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Luyện đề</h4>
                   <p>Làm mini-mock & checklist theo tuần.</p>
-                  <Link to="/docs/pmi-acp/plan/week-3" className="button button--sm button--link">Tuần 3 →</Link>
+                  <Link to="/docs/pmi-acp/plan/week-3" className="button button--sm button--link">
+                    Tuần 3 →
+                  </Link>
                 </div>
               </li>
 
@@ -128,7 +149,9 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  <Link to="/docs/pmi-acp/plan/week-6" className="button button--sm button--link">Week 6 →</Link>
+                  <Link to="/docs/pmi-acp/plan/week-6" className="button button--sm button--link">
+                    Week 6 →
+                  </Link>
                 </div>
               </li>
             </ol>
