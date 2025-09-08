@@ -9,21 +9,17 @@ const config: Config = {
   tagline: 'Dạy lại những gì đã học',
   favicon: 'img/favicon.ico',
 
-  // Future flags
   future: { v4: true },
 
-  // Production URL
   url: 'https://vnoptimus.vercel.app',
   baseUrl: '/',
 
-  // Repo info
-  organizationName: 'lehoangduy1911',   // GitHub user/org
-  projectName: 'pmi-acp-site',          // repo name
+  organizationName: 'lehoangduy1911',
+  projectName: 'pmi-acp-site',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // i18n
   i18n: {
     defaultLocale: 'vi',
     locales: ['vi', 'en'],
@@ -33,7 +29,6 @@ const config: Config = {
     },
   },
 
-  // Web fonts
   stylesheets: [
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600&display=swap',
   ],
@@ -61,13 +56,22 @@ const config: Config = {
     ],
   ],
 
-  // Local search
   themes: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
+      { hashed: true, language: ['vi', 'en'] },
+    ],
+  ],
+
+  // 🔁 Redirect các đường cũ -> category landing mới
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
       {
-        hashed: true,
-        language: ['vi', 'en'],
+        redirects: [
+          { from: ['/docs/pmi-acp/module-01/lesson-01'], to: '/docs/pmi-acp/module-01' },
+          { from: ['/docs/pmi-acp/module-01/lesson-02'], to: '/docs/pmi-acp/module-01' },
+        ],
       },
     ],
   ],
@@ -77,10 +81,7 @@ const config: Config = {
 
     // Docs UX
     docs: {
-      sidebar: {
-        hideable: true,
-        autoCollapseCategories: true,
-      },
+      sidebar: { hideable: true, autoCollapseCategories: true },
     },
 
     navbar: {
@@ -88,13 +89,13 @@ const config: Config = {
       logo: { alt: 'VNOptimus', src: 'img/logo.svg' },
       items: [
         { to: '/docs/pmi-acp/start-here', label: 'Bắt đầu học', position: 'left' },
+        { to: '/docs/pmi-acp/module-01', label: 'Module 01', position: 'left' }, // ⬅️ category landing
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
-        // search from local-search plugin is auto-injected
         { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
         { to: '/start-here', label: 'Start Here', position: 'left' },
-        { to: "/faq", label: "FAQ", position: "left" },
+        { to: '/faq', label: 'FAQ', position: 'left' },
       ],
     },
 
@@ -112,14 +113,11 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [{ label: 'Bắt đầu', to: '/docs/pmi-acp/start-here' }],
-        },
+        { title: 'Docs', items: [{ label: 'Bắt đầu', to: '/docs/pmi-acp/start-here' }] },
         {
           title: 'Học nhanh',
           items: [
-            { label: 'Module 01', to: '/docs/pmi-acp/module-01/lesson-01' },
+            { label: 'Module 01', to: '/docs/pmi-acp/module-01' }, // ⬅️ category landing
             { label: 'Kế hoạch Tuần 1', to: '/docs/pmi-acp/plan/week-1' },
           ],
         },
@@ -134,15 +132,9 @@ const config: Config = {
       copyright: `© ${new Date().getFullYear()} VNOptimus`,
     },
 
-    tableOfContents: {
-      minHeadingLevel: 2,
-      maxHeadingLevel: 4,
-    },
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
 
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
+    prism: { theme: prismThemes.github, darkTheme: prismThemes.dracula },
   } satisfies Preset.ThemeConfig,
 };
 
