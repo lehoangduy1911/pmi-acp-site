@@ -102,6 +102,8 @@ const config: Config = {
         // Nên giữ 1 trong 2 để tránh trùng UX. Tạm thời vẫn giữ như cũ:
         { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
+        { to: '/contact', label: 'Contact', position: 'left' },
+        { label: 'Contact', to: '/contact' },
       ],
     },
 
