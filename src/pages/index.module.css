@@ -48,6 +48,8 @@
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  /* đảm bảo các item kéo giãn đều chiều cao hàng */
 }
 
 @media (max-width:1200px) {
@@ -62,7 +64,14 @@
   }
 }
 
+/* CARD = flex column để CTA xuống đáy */
 .card {
+  display: flex;
+  /* NEW */
+  flex-direction: column;
+  /* NEW */
+  height: 100%;
+  /* NEW: kéo giãn hết item */
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 14px;
   padding: 16px;
@@ -93,6 +102,7 @@
   margin: 0 0 8px;
 }
 
+/* Card clickable + CTA text ở đáy */
 .cardLink {
   text-decoration: none;
   color: inherit;
@@ -106,6 +116,21 @@
   outline: 3px solid var(--ifm-color-primary);
   outline-offset: 4px;
 }
+
+/* CTA xanh – đẩy xuống đáy card */
+.cardCta {
+  /* NEW */
+  margin-top: auto;
+  /* đẩy CTA xuống đáy -> các dòng xanh thẳng hàng */
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.cardLink:hover .cardCta {
+  text-decoration: underline;
+}
+
+/* NEW */
 
 /* STEPS */
 .steps {

@@ -1,4 +1,3 @@
-// src/pages/index.tsx
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -47,7 +46,7 @@ export default function Home() {
           <div className="container">
             <h2 className={styles.sectionTitle}>Vì sao chọn VNOptimus?</h2>
             <div className={styles.cardGrid}>
-              {/* Card 1: clickable toàn bộ */}
+              {/* Card 1 */}
               <Link
                 to="/docs/pmi-acp/plan/week-1"
                 className={styles.card + ' ' + styles.cardLink}
@@ -58,7 +57,7 @@ export default function Home() {
                 <p className={styles.cardDesc}>
                   Chia nhỏ theo tuần, mục tiêu rõ ràng từng ngày. Dễ theo dõi và duy trì thói quen.
                 </p>
-                <span className={styles.srOnly}>Xem Tuần 1</span>
+                <span className={styles.cardCta}>Xem Tuần 1 →</span>
               </Link>
 
               {/* Card 2 */}
@@ -72,7 +71,7 @@ export default function Home() {
                 <p className={styles.cardDesc}>
                   Mỗi bài 5–10 phút, đi thẳng vào khái niệm và ví dụ áp dụng thực tế.
                 </p>
-                <span className={styles.srOnly}>Vào học ngay</span>
+                <span className={styles.cardCta}>Vào học ngay →</span>
               </Link>
 
               {/* Card 3 */}
@@ -86,7 +85,7 @@ export default function Home() {
                 <p className={styles.cardDesc}>
                   Bài tập và mini-mock theo ngày giúp nắm chắc kiến thức & tiến bộ đều.
                 </p>
-                <span className={styles.srOnly}>Bắt đầu checklist</span>
+                <span className={styles.cardCta}>Bắt đầu checklist →</span>
               </Link>
 
               {/* Card 4 */}
@@ -100,7 +99,7 @@ export default function Home() {
                 <p className={styles.cardDesc}>
                   Toggle chuyển ngữ ở mọi trang giúp bạn quen thuật ngữ tiếng Anh trước kỳ thi.
                 </p>
-                <span className={styles.srOnly}>Cách dùng song ngữ</span>
+                <span className={styles.cardCta}>Cách dùng song ngữ →</span>
               </Link>
             </div>
           </div>
@@ -121,7 +120,6 @@ export default function Home() {
                   </Link>
                 </div>
               </li>
-
               <li className={styles.stepItem}>
                 <div className={styles.stepIndex}>2</div>
                 <div className={styles.stepBody}>
@@ -132,7 +130,6 @@ export default function Home() {
                   </Link>
                 </div>
               </li>
-
               <li className={styles.stepItem}>
                 <div className={styles.stepIndex}>3</div>
                 <div className={styles.stepBody}>
@@ -143,7 +140,6 @@ export default function Home() {
                   </Link>
                 </div>
               </li>
-
               <li className={styles.stepItem}>
                 <div className={styles.stepIndex}>4</div>
                 <div className={styles.stepBody}>
