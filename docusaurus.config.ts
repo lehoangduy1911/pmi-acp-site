@@ -122,7 +122,9 @@ const config: Config = {
       links: [
         {
           title: 'Docs',
-          items: [{ label: 'Bắt đầu', to: '/docs/pmi-acp/start-here' }],
+          items: [
+            { label: 'Bắt đầu', to: '/docs/pmi-acp/start-here' },
+          ],
         },
         {
           title: 'Học nhanh',
@@ -134,12 +136,12 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            { label: 'About', to: '/about' }, // ➕ About ở footer
+            { label: 'About', to: '/about' },
+            { label: 'Contact', to: '/contact' }, // ⬅️ chuyển Contact vào đây
             { label: 'Blog', to: '/blog' },
             { label: 'GitHub', href: 'https://github.com/lehoangduy1911/pmi-acp-site' },
           ],
         },
-        { label: 'Contact', to: '/contact' },
       ],
       copyright: `© ${new Date().getFullYear()} VNOptimus`,
     },
