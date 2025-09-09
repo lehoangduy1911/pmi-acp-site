@@ -68,6 +68,22 @@ const config: Config = {
       {
         hashed: true,
         language: ['vi', 'en'],
+
+        // ➕ Bật index đầy đủ
+        indexDocs: true,
+        indexBlog: true,
+        indexPages: true,
+
+        // ➕ Định base path rõ ràng
+        docsRouteBasePath: '/docs',
+        blogRouteBasePath: '/blog',
+
+        // ➕ UX tìm kiếm
+        highlightSearchTermsOnTargetPage: true, // tô sáng từ khoá trên trang đích
+        explicitSearchResultPath: true,         // dùng route /search cho kết quả
+
+        // (tuỳ chọn) giới hạn số kết quả hiển thị
+        // searchResultLimits: 8,
       },
     ],
   ],
@@ -137,7 +153,7 @@ const config: Config = {
           title: 'More',
           items: [
             { label: 'About', to: '/about' },
-            { label: 'Contact', to: '/contact' }, // ⬅️ chuyển Contact vào đây
+            { label: 'Contact', to: '/contact' },
             { label: 'Blog', to: '/blog' },
             { label: 'GitHub', href: 'https://github.com/lehoangduy1911/pmi-acp-site' },
           ],

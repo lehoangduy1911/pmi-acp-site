@@ -1,9 +1,13 @@
 :root {
   /* thương hiệu */
-  --ifm-color-primary: #2563eb;               /* blue-600 */
-  --ifm-color-primary-dark: #1d4ed8;          /* blue-700 */
-  --ifm-color-primary-darker: #1e40af;        /* blue-800 */
-  --ifm-color-primary-light: #3b82f6;         /* blue-500 */
+  --ifm-color-primary: #2563eb;
+  /* blue-600 */
+  --ifm-color-primary-dark: #1d4ed8;
+  /* blue-700 */
+  --ifm-color-primary-darker: #1e40af;
+  /* blue-800 */
+  --ifm-color-primary-light: #3b82f6;
+  /* blue-500 */
   --ifm-link-color: var(--ifm-color-primary);
 
   /* typography */
@@ -18,43 +22,120 @@
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #60a5fa; /* nhẹ hơn trong dark */
+  --ifm-color-primary: #60a5fa;
+  /* nhẹ hơn trong dark */
 }
 
+/* ===== Hero ===== */
 .hero--primary {
   background: linear-gradient(180deg, #1d4ed8 0%, #2563eb 100%);
 }
-.hero__title { font-family: var(--ifm-heading-font-family); font-weight: 700; }
-.hero__subtitle { opacity: .95; }
 
+.hero__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 700;
+}
+
+.hero__subtitle {
+  opacity: .95;
+}
+
+/* ===== Docs body width ===== */
 .docItemContainer .theme-doc-markdown {
-  max-width: 760px;  /* tăng khả năng đọc */
+  max-width: 760px;
+  /* tăng khả năng đọc */
   margin: 0 auto;
 }
-.theme-admonition { border-radius: 12px; }
 
-/* Nút CTA nhất quán */
+/* Admonition bo tròn */
+.theme-admonition {
+  border-radius: 12px;
+}
+
+/* ===== CTA buttons ===== */
 .button--primary.button {
   border-radius: 10px;
   padding: 0.7rem 1.1rem;
   font-weight: 600;
 }
 
-/* Card tiện dụng cho homepage/MDX */
+/* ===== Card utilities (homepage/MDX) ===== */
 .vno-card-grid {
-  display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
+
 .vno-card {
   border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 14px; padding: 16px;
+  border-radius: 14px;
+  padding: 16px;
   background: var(--ifm-background-surface-color);
   transition: transform .15s ease, box-shadow .15s ease;
 }
 
-/* (Tuỳ chọn) Hero gradient khác cho dark */
-html[data-theme='dark'] .hero--primary {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--ifm-color-primary) 92%, black) 0%, var(--ifm-color-primary) 100%);
+.vno-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
 }
 
-.vno-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+/* (Tuỳ chọn) Hero gradient khác cho dark */
+html[data-theme='dark'] .hero--primary {
+  background: linear-gradient(180deg,
+      color-mix(in oklab, var(--ifm-color-primary) 92%, black) 0%,
+      var(--ifm-color-primary) 100%);
+}
+
+/* =========================================================
+   Breadcrumbs – rõ ràng, thân thiện mobile & a11y
+   ========================================================= */
+.breadcrumbs {
+  flex-wrap: wrap;
+  /* Cho phép xuống dòng trên mobile */
+  gap: .25rem .5rem;
+  margin-bottom: .25rem;
+  /* Khít phần tiêu đề tài liệu */
+  font-size: .9rem;
+  /* Nhỏ hơn heading một chút */
+}
+
+.breadcrumbs__link {
+  color: var(--ifm-color-emphasis-700);
+  border-radius: 6px;
+  padding: 2px 6px;
+  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+/* Hover có nền nhẹ với item không active */
+.breadcrumbs__item:not(.breadcrumbs__item--active) .breadcrumbs__link:hover {
+  text-decoration: none;
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* Focus ring cho keyboard users */
+.breadcrumbs__link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ifm-background-color),
+    0 0 0 4px color-mix(in oklab, var(--ifm-color-primary) 70%, white);
+}
+
+/* Mục hiện tại đậm & màu primary */
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  background: transparent;
+  cursor: default;
+}
+
+/* Dấu phân cách mờ nhẹ để tăng tương phản text */
+.breadcrumbs__item .breadcrumbs__separator {
+  opacity: .5;
+}
+
+/* Tối ưu thêm cho màn hình hẹp */
+@media (max-width: 600px) {
+  .breadcrumbs {
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+}
