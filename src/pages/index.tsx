@@ -24,10 +24,10 @@ export default function Home() {
           <div className={styles.ctaGroup} role="group" aria-label="Hero actions">
             <Link
               className={clsx('button', 'button--secondary', 'button--lg')}
-              to="/docs/pmi-acp/start-here"
-              aria-label="Bắt đầu học PMI-ACP"
+              to="/start-here"
+              aria-label="Start Here PMI-ACP"
             >
-              Bắt đầu học
+              Start Here
             </Link>
             <Link
               className={clsx('button', 'button--lg', styles.altButton)}
@@ -90,7 +90,7 @@ export default function Home() {
 
               {/* Card 4 */}
               <Link
-                to="/docs/pmi-acp/start-here"
+                to="/start-here"
                 className={styles.card + ' ' + styles.cardLink}
                 aria-label="Song ngữ vi/en — Cách dùng song ngữ"
               >
@@ -115,7 +115,7 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Bắt đầu</h4>
                   <p>Xem định hướng & cách học hiệu quả.</p>
-                  <Link to="/docs/pmi-acp/start-here" className="button button--sm button--link">
+                  <Link to="/start-here" className="button button--sm button--link">
                     Start here →
                   </Link>
                 </div>

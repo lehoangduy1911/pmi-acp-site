@@ -1,12 +1,16 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {
       type: 'category',
       label: 'PMI-ACP',
-      link: { type: 'doc', id: 'pmi-acp/start-here' },
+      // category.link chỉ nhận 'generated-index' | 'doc'
+      link: { type: 'generated-index', title: 'PMI-ACP' },
       items: [
+        // Thêm link tới trang pages Start Here ở mức item (hợp lệ)
+        { type: 'link', label: 'Start Here', href: '/start-here' },
+
         {
           type: 'category',
           label: 'Module 01 – Agile Mindset',

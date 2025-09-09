@@ -15,8 +15,8 @@ export default function Home(): JSX.Element {
             Lộ trình 4 tuần • Bài học ngắn • Checklist luyện đề mỗi ngày
           </p>
           <div style={{ marginTop: 24 }}>
-            <Link className="button button--secondary button--lg" to="/docs/pmi-acp/start-here">
-              Bắt đầu học ngay
+            <Link className="button button--secondary button--lg" to="/start-here">
+              Start Here ngay
             </Link>
           </div>
         </div>

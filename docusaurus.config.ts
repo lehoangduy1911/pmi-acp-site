@@ -61,28 +61,33 @@ const config: Config = {
     ],
   ],
 
-  // Local search
+  // ✅ Plugins (cùng cấp với presets/themes)
+  plugins: [
+    [
+      require.resolve('@docusaurus/plugin-client-redirects'),
+      {
+        redirects: [
+          { from: '/docs/pmi-acp/start-here', to: '/start-here' },
+          { from: '/en/docs/pmi-acp/start-here', to: '/en/start-here' }, // ⬅️ thêm redirect EN
+        ],
+      },
+    ],
+  ],
+
+  // ✅ Local search
   themes: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
         language: ['vi', 'en'],
-
-        // ➕ Bật index đầy đủ
         indexDocs: true,
         indexBlog: true,
         indexPages: true,
-
-        // ➕ Định base path rõ ràng
         docsRouteBasePath: '/docs',
         blogRouteBasePath: '/blog',
-
-        // ➕ UX tìm kiếm
-        highlightSearchTermsOnTargetPage: true, // tô sáng từ khoá trên trang đích
-        explicitSearchResultPath: true,         // dùng route /search cho kết quả
-
-        // (tuỳ chọn) giới hạn số kết quả hiển thị
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
         // searchResultLimits: 8,
       },
     ],
@@ -103,21 +108,15 @@ const config: Config = {
       title: 'VNOptimus',
       logo: { alt: 'VNOptimus', src: 'img/logo.svg' },
       items: [
-        { to: '/docs/pmi-acp/start-here', label: 'Bắt đầu học', position: 'left' },
+        { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
-
-        // ➕ About
+        { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/about', label: 'About', position: 'left' },
 
         // search from local-search plugin is auto-injected
         { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
-
-        // NOTE: Bạn đang có cả '/docs/.../start-here' và '/start-here'.
-        // Nên giữ 1 trong 2 để tránh trùng UX. Tạm thời vẫn giữ như cũ:
-        { to: '/start-here', label: 'Start Here', position: 'left' },
-        { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/contact', label: 'Contact', position: 'left' },
       ],
     },
@@ -125,7 +124,7 @@ const config: Config = {
     announcementBar: {
       id: 'welcome',
       content:
-        '🎉 Chào mừng đến VNOptimus — <a href="/docs/pmi-acp/start-here">Bắt đầu học</a>, <a href="/docs/pmi-acp/plan/week-1">Kế hoạch học</a>, hoặc xem <a href="/about">About</a>.',
+        '🎉 Chào mừng đến VNOptimus — <a href="/start-here">Start Here</a>, <a href="/docs/pmi-acp/plan/week-1">Kế hoạch học</a>, hoặc xem <a href="/about">About</a>.',
       backgroundColor: '#eef2ff',
       textColor: '#111827',
       isCloseable: true,
@@ -139,7 +138,7 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            { label: 'Bắt đầu', to: '/docs/pmi-acp/start-here' },
+            { label: 'Start Here', to: '/start-here' },
           ],
         },
         {
