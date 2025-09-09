@@ -2,38 +2,24 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
   title: 'VNOptimus',
   tagline: 'Dạy lại những gì đã học',
   favicon: 'img/favicon.ico',
-
-  // Future flags
   future: { v4: true },
-
-  // Production URL
   url: 'https://vnoptimus.vercel.app',
   baseUrl: '/',
-
-  // Repo info
-  organizationName: 'lehoangduy1911',   // GitHub user/org
-  projectName: 'pmi-acp-site',          // repo name
-
+  organizationName: 'lehoangduy1911',
+  projectName: 'pmi-acp-site',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // i18n
   i18n: {
     defaultLocale: 'vi',
     locales: ['vi', 'en'],
-    localeConfigs: {
-      vi: { label: 'Tiếng Việt' },
-      en: { label: 'English' },
-    },
+    localeConfigs: { vi: { label: 'Tiếng Việt' }, en: { label: 'English' } },
   },
 
-  // Web fonts
   stylesheets: [
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600&display=swap',
   ],
@@ -61,14 +47,13 @@ const config: Config = {
     ],
   ],
 
-  // ✅ Plugins (cùng cấp với presets/themes)
+  // ✅ Redirects: chỉ 1 rule, không /en
   plugins: [
     [
       require.resolve('@docusaurus/plugin-client-redirects'),
       {
         redirects: [
           { from: '/docs/pmi-acp/start-here', to: '/start-here' },
-          { from: '/en/docs/pmi-acp/start-here', to: '/en/start-here' }, // ⬅️ thêm redirect EN
         ],
       },
     ],
@@ -88,22 +73,13 @@ const config: Config = {
         blogRouteBasePath: '/blog',
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
-        // searchResultLimits: 8,
       },
     ],
   ],
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
-
-    // Docs UX
-    docs: {
-      sidebar: {
-        hideable: true,
-        autoCollapseCategories: true,
-      },
-    },
-
+    docs: { sidebar: { hideable: true, autoCollapseCategories: true } },
     navbar: {
       title: 'VNOptimus',
       logo: { alt: 'VNOptimus', src: 'img/logo.svg' },
@@ -113,14 +89,11 @@ const config: Config = {
         { to: '/blog', label: 'Blog', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/about', label: 'About', position: 'left' },
-
-        // search from local-search plugin is auto-injected
         { type: 'localeDropdown', position: 'right' },
         { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
         { to: '/contact', label: 'Contact', position: 'left' },
       ],
     },
-
     announcementBar: {
       id: 'welcome',
       content:
@@ -129,18 +102,11 @@ const config: Config = {
       textColor: '#111827',
       isCloseable: true,
     },
-
     colorMode: { respectPrefersColorScheme: true },
-
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            { label: 'Start Here', to: '/start-here' },
-          ],
-        },
+        { title: 'Docs', items: [{ label: 'Start Here', to: '/start-here' }] },
         {
           title: 'Học nhanh',
           items: [
@@ -160,16 +126,8 @@ const config: Config = {
       ],
       copyright: `© ${new Date().getFullYear()} VNOptimus`,
     },
-
-    tableOfContents: {
-      minHeadingLevel: 2,
-      maxHeadingLevel: 4,
-    },
-
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-    },
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
+    prism: { theme: prismThemes.github, darkTheme: prismThemes.dracula },
   } satisfies Preset.ThemeConfig,
 };
 
