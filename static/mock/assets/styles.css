@@ -1,0 +1,250 @@
+/* ===== Force light form controls (fix input bị đen) ===== */
+:root {
+    color-scheme: light;
+}
+
+/* Tăng khả năng truy cập khi tab */
+:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* ==== Inputs (nền trắng, viền rõ ràng) ==== */
+input[type="number"],
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+    background-color: #ffffff;
+    color: #0f172a;
+    /* slate-900 */
+    border: 1px solid #e5e7eb;
+    /* slate-200 */
+    border-radius: .5rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input:focus {
+    border-color: #6366f1;
+}
+
+/* ==== Option buttons: số câu / ngôn ngữ ==== */
+.opt {
+    background: #fff;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .2s ease, transform .08s ease;
+}
+
+.opt:hover {
+    border-color: #c7d2fe;
+}
+
+/* indigo-200 */
+.opt:active {
+    transform: translateY(1px);
+}
+
+.opt[data-selected="true"] {
+    background: #4f46e5;
+    /* indigo-600 */
+    color: #ffffff;
+    border-color: #4f46e5;
+    box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
+}
+
+.opt[data-selected="true"]:hover {
+    filter: brightness(1);
+}
+
+/* Badges nhỏ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: .125rem .5rem;
+    border-radius: .375rem;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+.badge-emerald {
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+.badge-rose {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.badge-gray {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+/* Navigator pills */
+.num-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    font-weight: 600;
+    font-size: .875rem;
+    height: 2.5rem;
+}
+
+.num-empty {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.num-answered {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.num-flag {
+    background: #fef3c7;
+    color: #92400e;
+    box-shadow: 0 0 0 2px #fcd34d inset;
+}
+
+/* Review states */
+.opt-correct {
+    border-color: #34d399;
+    background: #ecfdf5;
+}
+
+.opt-wrong {
+    border-color: #f43f5e;
+    background: #fef2f2;
+}
+
+/* Buttons + ripple */
+button,
+.btn-anim {
+    position: relative;
+    overflow: hidden;
+    transition: transform .12s ease, box-shadow .25s ease, filter .2s ease;
+    will-change: transform;
+}
+
+button:hover,
+.btn-anim:hover {
+    filter: brightness(0.98);
+    box-shadow: 0 6px 18px -8px rgb(2 6 23 / .25);
+}
+
+button:active,
+.btn-anim:active {
+    transform: translateY(1px) scale(.98);
+}
+
+/* Ripple circle */
+.ripple {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, .25);
+    /* indigo-500 */
+    transform: translate(-50%, -50%);
+    animation: ripple .6s ease-out forwards;
+}
+
+@keyframes ripple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: .55;
+    }
+
+    to {
+        width: 240px;
+        height: 240px;
+        opacity: 0;
+    }
+}
+
+/* ===== Press-hold pending state (xám) ===== */
+.is-pending,
+[aria-busy="true"] {
+    background-color: #e5e7eb !important;
+    /* slate-200 */
+    border-color: #e5e7eb !important;
+    color: #6b7280 !important;
+    /* slate-500 */
+    filter: grayscale(.25) brightness(.97);
+    box-shadow: none !important;
+    pointer-events: none;
+    /* chặn click đúp */
+}
+
+/* ==== Unified chips (32px) ==== */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    height: 32px;
+    padding: 0 .75rem;
+    border-radius: .75rem;
+    font-weight: 600;
+    font-size: .85rem;
+    line-height: 1;
+    white-space: nowrap;
+    border: 1px solid #e2e8f0;
+}
+
+.chip-gray {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.chip-emerald {
+    background: #ecfdf5;
+    color: #065f46;
+    border-color: #a7f3d0;
+}
+
+.chip-rose {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+.chip-topic {
+    max-width: min(46vw, 260px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chip-flag {
+    cursor: pointer;
+}
+
+/* Heat-map chips */
+.chip-amber {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fcd34d;
+}
+
+/* amber-50/amber-700/amber-300 */
+.chip-orange {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fdba74;
+}
+
+/* orange-50/orange-800/orange-300 */
+/* đã có: .chip-emerald (easy), .chip-rose (very hard) */
