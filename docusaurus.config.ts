@@ -49,7 +49,7 @@ const config: Config = {
     ],
   ],
 
-  // ✅ Redirects: chỉ giữ rule hợp lệ, KHÔNG trỏ tới /mock
+  // ✅ Redirects: giữ rule hợp lệ, KHÔNG trỏ tới /mock
   plugins: [
     [
       require.resolve('@docusaurus/plugin-client-redirects'),
@@ -88,8 +88,8 @@ const config: Config = {
       items: [
         { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
-        // ✅ Dùng href cho trang mock tĩnh
-        { href: '/mock/index.html', label: 'Mock 50/120', position: 'left' },
+        // ✅ Link tĩnh mở tab mới (ép full reload)
+        { href: '/mock/index.html', label: 'Mock 50/120', position: 'left', target: '_blank' },
         { to: '/blog', label: 'Blog', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/about', label: 'About', position: 'left' },
