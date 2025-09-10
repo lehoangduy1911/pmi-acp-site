@@ -2,6 +2,9 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+// ✅ Chỉ bật Plausible ở production
+const isProd = process.env.NODE_ENV === 'production';
+
 const config: Config = {
   title: 'VNOptimus',
   tagline: 'Dạy lại những gì đã học',
@@ -49,18 +52,6 @@ const config: Config = {
     ],
   ],
 
-  // Redirects: chỉ giữ rule hợp lệ, KHÔNG trỏ tới /mock
-  plugins: [
-    [
-      require.resolve('@docusaurus/plugin-client-redirects'),
-      {
-        redirects: [
-          { from: '/docs/pmi-acp/start-here', to: '/start-here' },
-        ],
-      },
-    ],
-  ],
-
   // Local search
   themes: [
     [
@@ -78,6 +69,18 @@ const config: Config = {
       },
     ],
   ],
+
+  // ✅ Scripts: dùng bản outbound-links; analytics.js luôn bật để track CTA
+  scripts: isProd
+    ? [
+      {
+        src: 'https://plausible.io/js/script.outbound-links.js',
+        defer: true,
+        'data-domain': 'vnoptimus.vercel.app',
+      } as any,
+      { src: '/js/analytics.js', defer: true },
+    ]
+    : [{ src: '/js/analytics.js', defer: true }],
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
