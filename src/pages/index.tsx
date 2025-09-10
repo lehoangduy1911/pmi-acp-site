@@ -1,3 +1,4 @@
+// src/pages/index.tsx
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -38,14 +39,14 @@ export default function Home() {
               Kế hoạch học
             </Link>
 
-            {/* ✅ Link tới mock: dùng thẻ <a> thường để Docusaurus không validate như nội bộ */}
-            <a
+            {/* ✅ Chuyển mượt trong SPA về route nội bộ /mock */}
+            <Link
               className={clsx('button', 'button--outline', 'button--lg')}
-              href="/mock/index.html"
+              to="/mock"
               aria-label="Mở trang thi thử PMI-ACP (client-side)"
             >
               Mock 50/120 →
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -155,10 +156,10 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  {/* ✅ Dùng <a> thường để tránh validator nội bộ */}
-                  <a href="/mock/index.html" className="button button--sm button--link">
+                  {/* Route nội bộ /mock */}
+                  <Link to="/mock" className="button button--sm button--link">
                     Thi thử →
-                  </a>
+                  </Link>
                 </div>
               </li>
             </ol>
