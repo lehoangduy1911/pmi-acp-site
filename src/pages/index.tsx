@@ -38,7 +38,7 @@ export default function Home() {
               Kế hoạch học
             </Link>
 
-            {/* ✅ Mock: dùng route nội bộ /mock để SPA không báo broken links */}
+            {/* ✅ Link nội bộ mượt đến route /mock (iframe sẽ tải file tĩnh) */}
             <Link
               className={clsx('button', 'button--outline', 'button--lg')}
               to="/mock"
@@ -155,7 +155,7 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  {/* ✅ Link nội bộ /mock (SPA sẽ vào trang redirect rồi chuyển sang file tĩnh) */}
+                  {/* ✅ Điều hướng nội bộ, trang /mock sẽ nhúng file tĩnh */}
                   <Link to="/mock" className="button button--sm button--link">
                     Thi thử →
                   </Link>

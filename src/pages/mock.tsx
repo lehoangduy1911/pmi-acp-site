@@ -1,23 +1,18 @@
-// src/pages/mock.tsx
-import { useEffect } from 'react';
+import React from 'react';
+import Layout from '@theme/Layout';
 
-export default function MockBridge() {
-    useEffect(() => {
-        const p = window.location.pathname;
-        const isEN = p.startsWith('/en/');
-        // Redirect thẳng sang file tĩnh đã được copy bởi postbuild
-        const target = isEN ? '/en/mock/index.html' : '/mock/index.html';
-        // Dùng replace để không để lại entry trong history
-        window.location.replace(target);
-    }, []);
-
+export default function MockPage() {
+    // Trang nội bộ /mock nhúng mock tĩnh qua iframe
     return (
-        <div style={{ padding: '2rem' }}>
-            <p>Đang mở trang thi thử…</p>
-            <p>
-                Nếu trình duyệt không tự chuyển, hãy bấm vào đây:&nbsp;
-                <a href="/mock/index.html">/mock/index.html</a>
-            </p>
-        </div>
+        <Layout title="Mock PMI-ACP" description="Thi thử PMI-ACP (client-side)">
+            <div style={{ height: 'calc(100vh - var(--ifm-navbar-height))' }}>
+                <iframe
+                    src="/mock/index.html"
+                    title="Mock PMI-ACP"
+                    style={{ border: 0, width: '100%', height: '100%' }}
+                    loading="eager"
+                />
+            </div>
+        </Layout>
     );
 }
