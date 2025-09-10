@@ -12,7 +12,7 @@
     ],
     "headers": [
         {
-            "source": "/mock/assets/(.*)",
+            "source": "/mock/assets(.*)/(.*)",
             "headers": [
                 {
                     "key": "Cache-Control",
@@ -26,6 +26,33 @@
                 {
                     "key": "Cache-Control",
                     "value": "public, max-age=86400, stale-while-revalidate=604800"
+                }
+            ]
+        },
+        {
+            "source": "/mock",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                }
+            ]
+        },
+        {
+            "source": "/mock/",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
+                }
+            ]
+        },
+        {
+            "source": "/mock/index.html",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store"
                 }
             ]
         }

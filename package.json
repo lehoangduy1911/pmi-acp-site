@@ -19,7 +19,8 @@
     "git:commit": "node scripts/git-commit.js",
     "git:commit:empty": "node scripts/git-commit.js --empty",
     "git:push": "node scripts/git-push.js",
-    "git:push:empty": "node scripts/git-push.js --empty"
+    "git:push:empty": "node scripts/git-push.js --empty",
+    "mock:release": "node scripts/release-mock-assets.js"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.1",
