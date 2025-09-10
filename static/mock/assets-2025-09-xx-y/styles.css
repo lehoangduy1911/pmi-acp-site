@@ -1,0 +1,679 @@
+/* =========================
+   Base reset + variables
+   ========================= */
+:root {
+    color-scheme: light;
+    --pager-h: 64px;
+    --container-pad-x: clamp(12px, 3vw, 20px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #f8fafc;
+    /* slate-50 */
+    color: #0f172a;
+    /* slate-900 */
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+}
+
+:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* Container & cards */
+.container {
+    width: min(980px, 100%);
+    margin-inline: auto;
+    padding-inline: var(--container-pad-x);
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 6px 30px -10px rgb(2 6 23 / .12);
+}
+
+.card-pro {
+    border-radius: 18px;
+    box-shadow: 0 20px 60px -25px rgb(2 6 23 / .18);
+}
+
+/* =========================
+   Layout scaffolding
+   ========================= */
+.page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 8px;
+}
+
+/* =========================
+   Pager (keep bottom only)
+   ========================= */
+.pager {
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    padding: 10px var(--container-pad-x);
+    box-shadow: 0 10px 30px -12px rgb(2 6 23 / .15);
+}
+
+.pager--bottom {
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    z-index: 10;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+}
+
+.pager--top {
+    display: none !important;
+}
+
+.pager .btnGroup {
+    display: flex;
+    gap: .75rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.pager .btnGroup .left,
+.pager .btnGroup .right {
+    display: flex;
+    gap: .5rem;
+}
+
+.pager .btnGroup .left button {
+    min-width: 130px;
+}
+
+/* Câu trước/sau */
+.pager .btnGroup .right button {
+    min-width: 110px;
+}
+
+/* Trang ← → */
+
+/* =========================
+   Toolbar (exam)
+   ========================= */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #ffffffd9;
+    backdrop-filter: saturate(1.1) blur(6px);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.toolbar .toolbar-grid {
+    display: grid;
+    gap: 10px 12px;
+    padding: 10px var(--container-pad-x);
+}
+
+@media (min-width:997px) {
+    .toolbar .toolbar-grid {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+    }
+}
+
+@media (max-width:996px) {
+    .toolbar .toolbar-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.toolbar .metrics,
+.toolbar .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.toolbar .actions {
+    justify-content: flex-end;
+}
+
+/* Progress */
+.toolbar .progressbar .bar-bg {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.toolbar .progressbar .bar-fg {
+    height: 100%;
+    background: #4f46e5;
+}
+
+/* =========================
+   Inputs & Buttons
+   ========================= */
+input[type="number"],
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+    background: #fff;
+    color: #0f172a;
+    border: 1px solid #e5e7eb;
+    border-radius: .5rem;
+    height: 40px;
+    padding: 0 12px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6366f1;
+}
+
+button,
+.btn-anim {
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    transition: transform .12s ease, box-shadow .25s ease, filter .2s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: .75rem;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    font-weight: 600;
+}
+
+button:hover,
+.btn-anim:hover {
+    filter: brightness(.98);
+    box-shadow: 0 6px 18px -8px rgb(2 6 23 / .25);
+}
+
+button:active,
+.btn-anim:active {
+    transform: translateY(1px) scale(.98);
+}
+
+.btn-primary {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #fff;
+}
+
+.btn-ghost {
+    background: #fff;
+    border-color: #e5e7eb;
+    color: #0f172a;
+}
+
+.btn-outline {
+    background: #fff;
+    border-color: #c7d2fe;
+    color: #3730a3;
+}
+
+.btn-lg {
+    height: 48px;
+    padding: 0 18px;
+    font-size: 1rem;
+}
+
+/* Ripple */
+.ripple {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, .25);
+    transform: translate(-50%, -50%);
+    animation: ripple .6s ease-out forwards;
+}
+
+@keyframes ripple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: .55;
+    }
+
+    to {
+        width: 240px;
+        height: 240px;
+        opacity: 0;
+    }
+}
+
+/* Pending state */
+.is-pending,
+[aria-busy="true"] {
+    background: #e5e7eb !important;
+    border-color: #e5e7eb !important;
+    color: #6b7280 !important;
+    filter: grayscale(.25) brightness(.97);
+    box-shadow: none !important;
+    pointer-events: none;
+}
+
+/* =========================
+   Chips, badges, pills
+   ========================= */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    height: 32px;
+    padding: 0 .75rem;
+    border-radius: .75rem;
+    font-weight: 600;
+    font-size: .85rem;
+    line-height: 1;
+    white-space: nowrap;
+    border: 1px solid #e2e8f0;
+}
+
+.chip-gray {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.chip-emerald {
+    background: #ecfdf5;
+    color: #065f46;
+    border-color: #a7f3d0;
+}
+
+.chip-rose {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+.chip-amber {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fcd34d;
+}
+
+.chip-orange {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fdba74;
+}
+
+.chip-topic {
+    max-width: min(46vw, 260px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chip-flag {
+    cursor: pointer;
+}
+
+.chip-timer {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+}
+
+.chip-warn {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fdba74;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: .125rem .5rem;
+    border-radius: .375rem;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+.badge-emerald {
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+.badge-rose {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.badge-gray {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.num-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    font-weight: 600;
+    font-size: .875rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    padding-inline: .5rem;
+    user-select: none;
+}
+
+.num-empty {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.num-answered {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.num-flag {
+    background: #fef3c7;
+    color: #92400e;
+    box-shadow: 0 0 0 2px #fcd34d inset;
+}
+
+/* Review state for options */
+.opt-correct {
+    border-color: #34d399;
+    background: #ecfdf5;
+}
+
+.opt-wrong {
+    border-color: #f43f5e;
+    background: #fef2f2;
+}
+
+/* Option buttons (landing segmented + generic) */
+.opt {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: .75rem;
+    height: 36px;
+    padding: 0 12px;
+    font-weight: 600;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .2s ease, transform .08s ease;
+}
+
+.opt:hover {
+    border-color: #c7d2fe;
+}
+
+.opt:active {
+    transform: translateY(1px);
+}
+
+.opt[data-selected="true"] {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+    box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
+}
+
+/* =========================
+   Typography & utilities
+   ========================= */
+h1 {
+    font-size: clamp(20px, 3.6vw, 28px);
+    margin: 0 0 10px;
+}
+
+h2 {
+    font-size: clamp(18px, 3.2vw, 24px);
+    margin: 18px 0 8px;
+}
+
+p {
+    margin: 8px 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.text-muted {
+    color: #64748b;
+}
+
+.max-w-prose {
+    max-width: 72ch;
+}
+
+/* Optimize question card paint */
+article[data-card] {
+    content-visibility: auto;
+    contain-intrinsic-size: 260px 800px;
+}
+
+/* =========================
+   Exam list tweaks
+   ========================= */
+.hint {
+    margin: 6px 0 10px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.q-list {
+    display: grid;
+    gap: 14px;
+}
+
+.q-list article[data-card] {
+    border-radius: 14px;
+}
+
+.q-list .p-4 {
+    padding: 16px !important;
+}
+
+.q-list .font-medium {
+    line-height: 1.6;
+}
+
+.q-list .mt-3 .p-3 {
+    padding: 12px !important;
+}
+
+.q-list .mt-3 .border {
+    border-color: #e5e7eb !important;
+}
+
+/* Avoid duplicate chips if template đã có sẵn */
+#chip-answered+#chip-unanswered+#chip-flagged~#chip-answered {
+    display: none;
+}
+
+/* =========================
+   Landing VIP–Pro
+   ========================= */
+.landing-hero {
+    background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+}
+
+.landing-hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 10px;
+    padding: 26px;
+    background:
+        radial-gradient(1200px 400px at -10% -20%, #eef2ff 8%, transparent 60%),
+        radial-gradient(900px 360px at 120% 120%, #ecfeff 8%, transparent 60%),
+        #ffffff;
+}
+
+@media (max-width:996px) {
+    .landing-hero-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hero-title {
+    font-size: clamp(24px, 3.4vw, 34px);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.hero-sub {
+    margin: 8px 0 14px;
+    color: #475569;
+    max-width: 60ch;
+}
+
+.hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hero-art {
+    min-height: 140px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eef2ff, #e0e7ff 40%, #c7d2fe 100%);
+    mask-image: radial-gradient(120% 120% at 100% 0, #000 60%, transparent 75%);
+}
+
+/* Segmented control */
+.seg {
+    display: inline-flex;
+    padding: 4px;
+    gap: 6px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.seg .opt {
+    border: 0;
+    background: transparent;
+    height: 40px;
+    padding: 0 14px;
+}
+
+.seg .opt[data-selected="true"] {
+    background: #4f46e5;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px -12px rgba(79, 70, 229, .45);
+}
+
+/* Labels & fields */
+.label {
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+    font-size: .95rem;
+}
+
+.field-help {
+    font-size: .8rem;
+    color: #64748b;
+    margin-top: 6px;
+}
+
+.inline-field {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.suffix {
+    color: #64748b;
+    font-size: .9rem;
+}
+
+/* Advanced options */
+.adv summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 0;
+    font-weight: 600;
+    color: #334155;
+}
+
+.adv-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 6px;
+}
+
+/* CTA: center toàn bộ cụm như bạn yêu cầu */
+.landing-actions {
+    margin-top: 18px;
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    justify-content: center !important;
+}
+
+/* =========================
+   Mobile tweaks
+   ========================= */
+@media (max-width:680px) {
+    .num-pill {
+        height: 40px;
+        min-width: 40px;
+    }
+
+    .pager .btnGroup {
+        gap: .5rem;
+    }
+
+    .pager button {
+        height: 46px;
+        padding: 0 12px;
+    }
+
+    .chip {
+        height: 34px;
+        font-size: .85rem;
+    }
+
+    #btn-start {
+        height: 46px;
+    }
+
+    .opt {
+        height: 40px;
+    }
+}
