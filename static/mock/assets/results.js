@@ -1,7 +1,7 @@
-import { TPL } from './templates.js?v=2025-09-10-3';
-import { $, escapeHtml, fmtHMS, timeStamp, csvEscape, hold, toast } from './utils.js?v=2025-09-10-3';
-import { LABELS } from './constants.js?v=2025-09-10-3';
-import { state } from './state.js?v=2025-09-10-3';
+import { TPL } from './templates.js?v=2025-09-xx-y';
+import { $, escapeHtml, fmtHMS, timeStamp, csvEscape, hold, toast } from './utils.js?v=2025-09-xx-y';
+import { LABELS } from './constants.js?v=2025-09-xx-y';
+import { state } from './state.js?v=2025-09-xx-y';
 
 export function renderResults() {
     const app = $('#app');
