@@ -1,15 +1,13 @@
 {
     "trailingSlash": false,
-    "redirects": [
+    "rewrites": [
         {
             "source": "/mock",
-            "destination": "/mock/index.html",
-            "permanent": true
+            "destination": "/mock/index.html"
         },
         {
             "source": "/mock/",
-            "destination": "/mock/index.html",
-            "permanent": true
+            "destination": "/mock/index.html"
         }
     ],
     "headers": [
