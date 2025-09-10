@@ -38,14 +38,14 @@ export default function Home() {
               Kế hoạch học
             </Link>
 
-            {/* ✅ Link tới mock: dùng href thay vì to */}
-            <Link
+            {/* ✅ Link tới mock: dùng thẻ <a> thường để Docusaurus không validate như nội bộ */}
+            <a
               className={clsx('button', 'button--outline', 'button--lg')}
               href="/mock/index.html"
               aria-label="Mở trang thi thử PMI-ACP (client-side)"
             >
               Mock 50/120 →
-            </Link>
+            </a>
           </div>
         </div>
       </header>
@@ -155,10 +155,10 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  {/* ✅ Link tới mock: dùng href */}
-                  <Link href="/mock/index.html" className="button button--sm button--link">
+                  {/* ✅ Dùng <a> thường để tránh validator nội bộ */}
+                  <a href="/mock/index.html" className="button button--sm button--link">
                     Thi thử →
-                  </Link>
+                  </a>
                 </div>
               </li>
             </ol>
