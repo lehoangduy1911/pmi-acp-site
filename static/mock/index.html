@@ -10,6 +10,9 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#4f46e5" />
 
+    <!-- QUAN TRỌNG: ấn định base để mọi đường dẫn tương đối tính từ /mock/ -->
+    <base href="/mock/">
+
     <!-- Tailwind (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -18,11 +21,11 @@
         };
     </script>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- Styles: dùng đường dẫn tuyệt đối để an toàn tuyệt đối -->
+    <link rel="stylesheet" href="/mock/assets/styles.css" />
 
     <!-- Prefetch JSON để mở đề nhanh hơn -->
-    <link rel="preload" href="./Questions.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="/mock/Questions.json" as="fetch" crossorigin="anonymous" />
 </head>
 
 <body class="bg-slate-50 text-slate-800 selection:bg-indigo-200/60">
@@ -35,8 +38,8 @@
     <!-- App root -->
     <div id="app" class="max-w-6xl mx-auto p-4 md:p-6"></div>
 
-    <!-- Entry (ES Modules) -->
-    <script type="module" src="./assets/app.js"></script>
+    <!-- Entry (ES Modules): dùng đường dẫn tuyệt đối -->
+    <script type="module" src="/mock/assets/app.js"></script>
 </body>
 
 </html>

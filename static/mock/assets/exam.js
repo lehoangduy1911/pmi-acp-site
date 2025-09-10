@@ -16,7 +16,7 @@ function diffLabel(d) {
 
 /* ---- Start exam (fetch, shuffle, state) ---- */
 export async function startExam({ questionCount, lang, minPerQ, bonusMin, shuffle, shuffleAns }) {
-    // ✅ Tạo URL tuyệt đối tới Questions.json dựa trên vị trí module này
+    // ✅ Luôn đúng theo vị trí thực của file module này (/mock/assets/exam.js)
     const QUESTIONS_URL = new URL('../Questions.json', import.meta.url).href + '?v=' + Date.now();
 
     const all = await fetch(QUESTIONS_URL).then(r => {
@@ -242,7 +242,7 @@ export function updatePageIndicator() {
 export function startTimer() {
     if (state.timerId) clearInterval(state.timerId);
     state.timerId = setInterval(() => {
-        state.timeLeftSec = Math.max(0, state.timeLeftSec - 1);
+        state.timeLeftSec = Math.max(0, Math.max(0, state.timeLeftSec - 1));
         updateTimerUi();
         if (state.timeLeftSec % 5 === 0) saveStateDebounced();
         if (state.timeLeftSec <= 0) { clearInterval(state.timerId); autoSubmitOnTimeout(); }
