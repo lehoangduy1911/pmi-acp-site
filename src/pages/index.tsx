@@ -1,3 +1,4 @@
+// src/pages/index.tsx
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -38,7 +39,7 @@ export default function Home() {
               Kế hoạch học
             </Link>
 
-            {/* ✅ Link nội bộ mượt đến route /mock (iframe sẽ tải file tĩnh) */}
+            {/* ✅ Chuyển mượt trong SPA về route nội bộ /mock */}
             <Link
               className={clsx('button', 'button--outline', 'button--lg')}
               to="/mock"
@@ -155,7 +156,7 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  {/* ✅ Điều hướng nội bộ, trang /mock sẽ nhúng file tĩnh */}
+                  {/* Route nội bộ /mock */}
                   <Link to="/mock" className="button button--sm button--link">
                     Thi thử →
                   </Link>
