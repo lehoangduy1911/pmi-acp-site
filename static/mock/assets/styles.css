@@ -1,12 +1,121 @@
-/* ===== Force light form controls (fix input bị đen) ===== */
+/* ===== Reset nhẹ + mobile-friendly ===== */
 :root {
     color-scheme: light;
+    --pager-h: 64px;
+    /* chiều cao thanh chuyển trang */
+    --container-pad-x: clamp(12px, 3vw, 20px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #f8fafc;
+    /* slate-50 */
+    color: #0f172a;
+    /* slate-900 */
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
 }
 
 /* Tăng khả năng truy cập khi tab */
 :focus-visible {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
+}
+
+/* Khung trang theo cột, chiếm full viewport (cho sticky hoạt động) */
+.page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nội dung chiếm phần còn lại giữa header/footer và pager */
+.mainContent {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 8px;
+    /* thở chút với sticky dưới */
+}
+
+/* ===== Thanh chuyển trang (sticky, không đè nội dung) ===== */
+.pager {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    /* slate-200 */
+    padding: 10px var(--container-pad-x);
+}
+
+.pager--bottom {
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    z-index: 10;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+}
+
+.pager--top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Bố cục nút trong pager */
+.pager .btnGroup {
+    display: flex;
+    gap: .75rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.pager .btnGroup .left,
+.pager .btnGroup .right {
+    display: flex;
+    gap: .5rem;
+}
+
+/* Ẩn bớt 1 bộ nút cho đỡ rối */
+@media (max-width: 996px) {
+    .pager--top {
+        display: none;
+    }
+}
+
+/* chỉ giữ thanh dưới trên mobile */
+@media (min-width: 997px) {
+    .pager--bottom {
+        display: none;
+    }
+}
+
+/* chỉ giữ thanh trên trên desktop */
+
+/* ===== Cards / khối nội dung ===== */
+.container {
+    width: min(1100px, 100%);
+    margin-inline: auto;
+    padding-inline: var(--container-pad-x);
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 6px 30px -10px rgb(2 6 23 / .12);
 }
 
 /* ==== Inputs (nền trắng, viền rõ ràng) ==== */
@@ -21,6 +130,8 @@ textarea {
     border: 1px solid #e5e7eb;
     /* slate-200 */
     border-radius: .5rem;
+    height: 40px;
+    padding: 0 12px;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -33,14 +144,106 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-input:focus {
+input:focus,
+select:focus,
+textarea:focus {
     border-color: #6366f1;
+}
+
+/* ==== Buttons + ripple ==== */
+button,
+.btn-anim {
+    position: relative;
+    overflow: hidden;
+    transition: transform .12s ease, box-shadow .25s ease, filter .2s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
+    will-change: transform;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: .75rem;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    font-weight: 600;
+}
+
+button:hover,
+.btn-anim:hover {
+    filter: brightness(0.98);
+    box-shadow: 0 6px 18px -8px rgb(2 6 23 / .25);
+}
+
+button:active,
+.btn-anim:active {
+    transform: translateY(1px) scale(.98);
+}
+
+/* Variants */
+.btn-primary {
+    background: #4f46e5;
+    /* indigo-600 */
+    border-color: #4f46e5;
+    color: #fff;
+}
+
+.btn-ghost {
+    background: #fff;
+    border-color: #e5e7eb;
+    color: #0f172a;
+}
+
+.btn-outline {
+    background: #fff;
+    border-color: #c7d2fe;
+    color: #3730a3;
+}
+
+/* Ripple circle */
+.ripple {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, .25);
+    transform: translate(-50%, -50%);
+    animation: ripple .6s ease-out forwards;
+}
+
+@keyframes ripple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: .55;
+    }
+
+    to {
+        width: 240px;
+        height: 240px;
+        opacity: 0;
+    }
+}
+
+/* ===== Press-hold pending state (xám) ===== */
+.is-pending,
+[aria-busy="true"] {
+    background-color: #e5e7eb !important;
+    border-color: #e5e7eb !important;
+    color: #6b7280 !important;
+    filter: grayscale(.25) brightness(.97);
+    box-shadow: none !important;
+    pointer-events: none;
 }
 
 /* ==== Option buttons: số câu / ngôn ngữ ==== */
 .opt {
     background: #fff;
     transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .2s ease, transform .08s ease;
+    border: 1px solid #e5e7eb;
+    border-radius: .75rem;
+    height: 36px;
+    padding: 0 12px;
+    font-weight: 600;
 }
 
 .opt:hover {
@@ -54,7 +257,6 @@ input:focus {
 
 .opt[data-selected="true"] {
     background: #4f46e5;
-    /* indigo-600 */
     color: #ffffff;
     border-color: #4f46e5;
     box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
@@ -98,6 +300,9 @@ input:focus {
     font-weight: 600;
     font-size: .875rem;
     height: 2.5rem;
+    min-width: 2.5rem;
+    padding-inline: .5rem;
+    user-select: none;
 }
 
 .num-empty {
@@ -125,69 +330,6 @@ input:focus {
 .opt-wrong {
     border-color: #f43f5e;
     background: #fef2f2;
-}
-
-/* Buttons + ripple */
-button,
-.btn-anim {
-    position: relative;
-    overflow: hidden;
-    transition: transform .12s ease, box-shadow .25s ease, filter .2s ease;
-    will-change: transform;
-}
-
-button:hover,
-.btn-anim:hover {
-    filter: brightness(0.98);
-    box-shadow: 0 6px 18px -8px rgb(2 6 23 / .25);
-}
-
-button:active,
-.btn-anim:active {
-    transform: translateY(1px) scale(.98);
-}
-
-/* Ripple circle */
-.ripple {
-    position: absolute;
-    pointer-events: none;
-    left: 0;
-    top: 0;
-    width: 0;
-    height: 0;
-    border-radius: 9999px;
-    background: rgba(99, 102, 241, .25);
-    /* indigo-500 */
-    transform: translate(-50%, -50%);
-    animation: ripple .6s ease-out forwards;
-}
-
-@keyframes ripple {
-    from {
-        width: 0;
-        height: 0;
-        opacity: .55;
-    }
-
-    to {
-        width: 240px;
-        height: 240px;
-        opacity: 0;
-    }
-}
-
-/* ===== Press-hold pending state (xám) ===== */
-.is-pending,
-[aria-busy="true"] {
-    background-color: #e5e7eb !important;
-    /* slate-200 */
-    border-color: #e5e7eb !important;
-    color: #6b7280 !important;
-    /* slate-500 */
-    filter: grayscale(.25) brightness(.97);
-    box-shadow: none !important;
-    pointer-events: none;
-    /* chặn click đúp */
 }
 
 /* ==== Unified chips (32px) ==== */
@@ -239,12 +381,76 @@ button:active,
     border-color: #fcd34d;
 }
 
-/* amber-50/amber-700/amber-300 */
+/* amber-50 */
 .chip-orange {
     background: #fff7ed;
     color: #9a3412;
     border-color: #fdba74;
 }
 
-/* orange-50/orange-800/orange-300 */
-/* đã có: .chip-emerald (easy), .chip-rose (very hard) */
+/* orange-50 */
+
+/* ===== Tiêu đề, khoảng cách ===== */
+h1 {
+    font-size: clamp(20px, 3.6vw, 28px);
+    margin: 0 0 10px;
+}
+
+h2 {
+    font-size: clamp(18px, 3.2vw, 24px);
+    margin: 18px 0 8px;
+}
+
+p {
+    margin: 8px 0;
+}
+
+/* ===== Util nhỏ ===== */
+.hidden {
+    display: none !important;
+}
+
+.text-muted {
+    color: #64748b;
+}
+
+/* slate-500 */
+.max-w-prose {
+    max-width: 72ch;
+}
+
+/* ===== Thẻ question card tối ưu vẽ (content-visibility) ===== */
+article[data-card] {
+    content-visibility: auto;
+    contain-intrinsic-size: 260px 800px;
+}
+
+/* ===== Toolbar phía trên khối thi (bộ lọc, time, vv.) ===== */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 8px var(--container-pad-x);
+}
+
+/* ===== Mobile tinh chỉnh ===== */
+@media (max-width: 680px) {
+    .num-pill {
+        height: 40px;
+        min-width: 40px;
+    }
+
+    /* mục tiêu chạm dễ hơn */
+    .pager .btnGroup {
+        gap: .5rem;
+    }
+
+    .pager button {
+        height: 44px;
+        padding: 0 12px;
+    }
+
+    /* target >= 44px */
+}

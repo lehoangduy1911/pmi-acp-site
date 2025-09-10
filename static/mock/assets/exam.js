@@ -16,10 +16,12 @@ function diffLabel(d) {
 
 /* ---- Start exam (fetch, shuffle, state) ---- */
 export async function startExam({ questionCount, lang, minPerQ, bonusMin, shuffle, shuffleAns }) {
-    // ✅ Luôn đúng theo vị trí thực của file module này (/mock/assets/exam.js)
-    const QUESTIONS_URL = new URL('../Questions.json', import.meta.url).href + '?v=' + Date.now();
+    // ✅ URL cố định + version để cho phép cache
+    const DATA_VERSION = (window.__MOCK_DATA_VERSION__ || 'v1');
+    const QUESTIONS_URL = new URL('../Questions.json', import.meta.url);
+    QUESTIONS_URL.searchParams.set('v', DATA_VERSION);
 
-    const all = await fetch(QUESTIONS_URL).then(r => {
+    const all = await fetch(QUESTIONS_URL, { cache: 'force-cache' }).then(r => {
         if (!r.ok) throw new Error('Không tải được Questions.json (' + r.status + ').');
         return r.json();
     });
@@ -70,29 +72,61 @@ function materializeQuestion(q, shuffleAns) {
 /* ---- Render exam screen ---- */
 export function renderExam() {
     const app = $('#app');
-    app.innerHTML = TPL.exam;
+    app.innerHTML = TPL.exam; // TPL.exam là string HTML (giữ nguyên giao diện hiện tại)
 
-    // Topbar chips
-    const topbar = document.querySelector('.sticky .max-w-6xl');
-    const anchor = topbar.querySelector('.flex-1');
-    const chipA = document.createElement('span'); chipA.id = 'chip-answered'; chipA.className = 'chip chip-gray'; chipA.textContent = 'Đã làm 0';
-    const chipU = document.createElement('span'); chipU.id = 'chip-unanswered'; chipU.className = 'chip chip-gray'; chipU.textContent = 'Chưa 0';
-    const chipF = document.createElement('span'); chipF.id = 'chip-flagged'; chipF.className = 'chip chip-gray'; chipF.textContent = 'Đánh dấu 0';
-    topbar.insertBefore(chipA, anchor); topbar.insertBefore(chipU, anchor); topbar.insertBefore(chipF, anchor);
+    // Topbar chips — gắn linh hoạt theo bố cục mới/cũ
+    const topbar =
+        document.querySelector('.toolbar .container') ||
+        document.querySelector('.pager--top .container') ||
+        document.querySelector('.sticky .max-w-6xl'); // fallback giao diện cũ
 
-    // Controls
-    $('#btn-switch-lang').addEventListener('click', (e) => hold(e.currentTarget, () => {
-        state.lang = state.lang === 'VI' ? 'EN' : 'VI';
-        saveStateDebounced(); renderQuestionList();
-    }));
-    $('#btn-submit').addEventListener('click', (e) => hold(e.currentTarget, submitExamConfirm));
-    $('#btn-prev').addEventListener('click', (e) => hold(e.currentTarget, () => jumpTo(state.currentIdx - 1)));
-    $('#btn-next').addEventListener('click', (e) => hold(e.currentTarget, () => jumpTo(state.currentIdx + 1)));
-    $('#btn-prev-page').addEventListener('click', (e) => hold(e.currentTarget, () => jumpPage(state.currentPage - 1)));
-    $('#btn-next-page').addEventListener('click', (e) => hold(e.currentTarget, () => jumpPage(state.currentPage + 1)));
-    $('#btn-nav').addEventListener('click', (e) => hold(e.currentTarget, openOverlay));
-    $('#overlay').addEventListener('click', (e) => { if (e.target.hasAttribute('data-close-overlay')) closeOverlay(); });
-    $('#btn-filter-unanswered').addEventListener('click', (e) => hold(e.currentTarget, () => renderNavigator(true)));
+    if (topbar) {
+        const chipA = document.createElement('span'); chipA.id = 'chip-answered'; chipA.className = 'chip chip-gray'; chipA.textContent = 'Đã làm 0';
+        const chipU = document.createElement('span'); chipU.id = 'chip-unanswered'; chipU.className = 'chip chip-gray'; chipU.textContent = 'Chưa 0';
+        const chipF = document.createElement('span'); chipF.id = 'chip-flagged'; chipF.className = 'chip chip-gray'; chipF.textContent = 'Đánh dấu 0';
+        topbar.append(chipA, chipU, chipF);
+    }
+
+    // Các nút đơn lẻ (không bị nhân đôi): switch lang, submit, mở overlay, filter unanswered
+    const btnSwitch = $('#btn-switch-lang');
+    if (btnSwitch) btnSwitch.addEventListener('click', (e) =>
+        hold(e.currentTarget, () => { state.lang = state.lang === 'VI' ? 'EN' : 'VI'; saveStateDebounced(); renderQuestionList(); })
+    );
+
+    const btnSubmit = $('#btn-submit');
+    if (btnSubmit) btnSubmit.addEventListener('click', (e) => hold(e.currentTarget, submitExamConfirm));
+
+    const btnNav = $('#btn-nav');
+    if (btnNav) btnNav.addEventListener('click', (e) => hold(e.currentTarget, openOverlay));
+
+    const overlay = $('#overlay');
+    if (overlay) overlay.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close-overlay')) closeOverlay(); });
+
+    const btnFilterUn = $('#btn-filter-unanswered');
+    if (btnFilterUn) btnFilterUn.addEventListener('click', (e) => hold(e.currentTarget, () => renderNavigator(true)));
+
+    // ✅ Event delegation cho các nút điều hướng (có thể xuất hiện ở TOP và BOTTOM)
+    const pageRoot = document.querySelector('.page') || document;
+    pageRoot.addEventListener('click', (e) => {
+        // chuẩn hóa map: hỗ trợ ID cũ, class mới và data-action
+        const map = [
+            ['prevQuestion', '#btn-prev, .js-prev-question, [data-action="prevQuestion"]'],
+            ['nextQuestion', '#btn-next, .js-next-question, [data-action="nextQuestion"]'],
+            ['prevPage', '#btn-prev-page, .js-prev-page, [data-action="prevPage"]'],
+            ['nextPage', '#btn-next-page, .js-next-page, [data-action="nextPage"]'],
+        ];
+        for (const [act, sel] of map) {
+            const btn = e.target.closest(sel);
+            if (!btn) continue;
+            e.preventDefault();
+            return hold(btn, () => {
+                if (act === 'prevQuestion') return jumpTo(state.currentIdx - 1);
+                if (act === 'nextQuestion') return jumpTo(state.currentIdx + 1);
+                if (act === 'prevPage') return jumpPage(state.currentPage - 1);
+                if (act === 'nextPage') return jumpPage(state.currentPage + 1);
+            });
+        }
+    });
 
     window.addEventListener('keydown', onKey);
 
@@ -104,18 +138,22 @@ export function renderExam() {
     setTimeout(() => jumpTo(0, false), 50);
 }
 
-/* Render 10 câu / trang */
+/* Render 10 câu / trang (frag để giảm reflow) */
 export function renderQuestionList() {
     const wrap = $('#exam-body');
+    if (!wrap) return; // an toàn nếu template tùy biến
     wrap.innerHTML = '';
 
     const start = state.currentPage * PAGE_SIZE;
     const end = Math.min(state.questionCount, start + PAGE_SIZE);
 
+    const frag = document.createDocumentFragment();
+
     for (let idx = start; idx < end; idx++) {
         const q = state.questions[idx];
 
         const card = document.createElement('article');
+        card.setAttribute('data-card', '');
         card.className = 'p-4 rounded-2xl bg-white shadow border';
         card.id = 'q-' + idx;
 
@@ -126,7 +164,7 @@ export function renderQuestionList() {
         const text = document.createElement('div'); text.className = 'font-medium'; text.textContent = state.lang === 'VI' ? q.questionVI : q.questionEN;
         title.append(num, text);
 
-        // Chips: domain rút gọn + heat-map difficulty + flag
+        // Chips
         const right = document.createElement('div'); right.className = 'flex items-center gap-2 flex-wrap';
 
         const topic = document.createElement('span');
@@ -168,16 +206,19 @@ export function renderQuestionList() {
         });
 
         card.append(head, opts);
-        wrap.append(card);
+        frag.append(card);
     }
+    wrap.append(frag);
     updatePageIndicator();
 }
 
 /* Navigator + overlay */
-export function openOverlay() { $('#overlay').classList.remove('hidden'); renderNavigator(false); }
-export function closeOverlay() { $('#overlay').classList.add('hidden'); }
+export function openOverlay() { const el = $('#overlay'); if (el) { el.classList.remove('hidden'); renderNavigator(false); } }
+export function closeOverlay() { const el = $('#overlay'); if (el) el.classList.add('hidden'); }
+
 export function renderNavigator(onlyUnanswered) {
-    const grid = $('#grid-nav'); grid.innerHTML = '';
+    const grid = $('#grid-nav'); if (!grid) return;
+    grid.innerHTML = '';
     state.questions.forEach((_, i) => {
         const answered = state.answers[i] !== undefined && state.answers[i] !== null;
         if (onlyUnanswered && answered) return;
@@ -226,7 +267,7 @@ export function updateProgressUi() {
     const flagged = Object.keys(state.flags).filter(k => !!state.flags[k]).length;
     const unanswered = Math.max(0, total - answered);
 
-    $('#progress').textContent = `${answered}/${total}`;
+    const progressEl = $('#progress'); if (progressEl) progressEl.textContent = `${answered}/${total}`;
     const pct = total ? Math.round((answered / total) * 100) : 0;
     const bar = $('#progressbar'); if (bar) bar.style.width = `${pct}%`;
 
@@ -237,18 +278,18 @@ export function updateProgressUi() {
 }
 export function updatePageIndicator() {
     const totalPages = Math.ceil(state.questionCount / PAGE_SIZE);
-    $('#page-indicator').textContent = `Trang ${state.currentPage + 1}/${totalPages}`;
+    const el = $('#page-indicator'); if (el) el.textContent = `Trang ${state.currentPage + 1}/${totalPages}`;
 }
 export function startTimer() {
     if (state.timerId) clearInterval(state.timerId);
     state.timerId = setInterval(() => {
-        state.timeLeftSec = Math.max(0, Math.max(0, state.timeLeftSec - 1));
+        state.timeLeftSec = Math.max(0, state.timeLeftSec - 1);
         updateTimerUi();
         if (state.timeLeftSec % 5 === 0) saveStateDebounced();
         if (state.timeLeftSec <= 0) { clearInterval(state.timerId); autoSubmitOnTimeout(); }
     }, 1000);
 }
-export function updateTimerUi() { $('#timer').textContent = fmtHMS(state.timeLeftSec); }
+export function updateTimerUi() { const el = $('#timer'); if (el) el.textContent = fmtHMS(state.timeLeftSec); }
 export function autoSubmitOnTimeout() { submitExam(false); alert('⏰ Hết giờ! Bài thi đã được nộp tự động.'); }
 
 /* Submit + grade */
