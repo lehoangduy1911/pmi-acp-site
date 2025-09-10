@@ -10,22 +10,40 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#4f46e5" />
 
-    <!-- QUAN TRỌNG: ấn định base để mọi đường dẫn tương đối tính từ /mock/ -->
+    <!-- Cố định base path cho mọi asset của trang mock -->
     <base href="/mock/">
 
     <!-- Tailwind (CDN) -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: { extend: { boxShadow: { soft: '0 6px 30px -10px rgb(2 6 23 / .12)' } } }
-        };
+        tailwind.config = { theme: { extend: { boxShadow: { soft: '0 6px 30px -10px rgb(2 6 23 / .12)' } } } };
     </script>
 
-    <!-- Styles: dùng đường dẫn tuyệt đối để an toàn tuyệt đối -->
-    <link rel="stylesheet" href="/mock/assets/styles.css" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/styles.css" />
 
-    <!-- Prefetch JSON để mở đề nhanh hơn -->
-    <link rel="preload" href="/mock/Questions.json" as="fetch" crossorigin="anonymous" />
+    <!-- Preload/Prefetch để giảm khựng -->
+    <link rel="modulepreload" href="assets/app.js">
+    <link rel="modulepreload" href="assets/landing.js">
+    <link rel="modulepreload" href="assets/exam.js">
+    <link rel="modulepreload" href="assets/results.js">
+    <link rel="modulepreload" href="assets/utils.js">
+    <link rel="modulepreload" href="assets/constants.js">
+    <link rel="modulepreload" href="assets/state.js">
+    <link rel="modulepreload" href="assets/templates.js">
+    <link rel="preload" href="Questions.json" as="fetch" crossorigin="anonymous" />
+
+    <!-- Version dữ liệu: ĐỔI chuỗi này khi bạn cập nhật Questions.json -->
+    <script>window.__MOCK_DATA_VERSION__ = '2025-09-10-1';</script>
+
+    <!-- Tối ưu render: các thẻ card sẽ dùng data-card -->
+    <style>
+        article[data-card] {
+            content-visibility: auto;
+            contain-intrinsic-size: 260px 800px;
+        }
+    </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800 selection:bg-indigo-200/60">
@@ -38,8 +56,8 @@
     <!-- App root -->
     <div id="app" class="max-w-6xl mx-auto p-4 md:p-6"></div>
 
-    <!-- Entry (ES Modules): dùng đường dẫn tuyệt đối -->
-    <script type="module" src="/mock/assets/app.js"></script>
+    <!-- Entry (ES Modules) -->
+    <script type="module" src="assets/app.js"></script>
 </body>
 
 </html>
