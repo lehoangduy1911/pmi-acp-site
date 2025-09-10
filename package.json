@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start --host 127.0.0.1 --port 3000",
     "build": "docusaurus build",
+    "postbuild": "if [ -d static/mock ]; then echo '↪ Copy static/mock → build/{mock,en/mock}'; mkdir -p build/mock && cp -R static/mock/* build/mock/; if [ -d build/en ]; then mkdir -p build/en/mock && cp -R static/mock/* build/en/mock/; fi; else echo '⚠️  static/mock không tồn tại, bỏ qua copy'; fi",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
