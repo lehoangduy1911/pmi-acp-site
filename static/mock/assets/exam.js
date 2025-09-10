@@ -72,22 +72,22 @@ function materializeQuestion(q, shuffleAns) {
 /* ---- Render exam screen ---- */
 export function renderExam() {
     const app = $('#app');
-    app.innerHTML = TPL.exam; // TPL.exam là string HTML (giữ nguyên giao diện hiện tại)
+    app.innerHTML = TPL.exam; // TPL.exam là string HTML
 
-    // Topbar chips — gắn linh hoạt theo bố cục mới/cũ
+    // Topbar chips — KHÔNG tạo nếu template đã có (tránh trùng)
     const topbar =
+        document.querySelector('.toolbar .metrics') ||
         document.querySelector('.toolbar .container') ||
-        document.querySelector('.pager--top .container') ||
-        document.querySelector('.sticky .max-w-6xl'); // fallback giao diện cũ
+        document.querySelector('.pager--top .container');
 
-    if (topbar) {
+    if (topbar && !document.getElementById('chip-answered')) {
         const chipA = document.createElement('span'); chipA.id = 'chip-answered'; chipA.className = 'chip chip-gray'; chipA.textContent = 'Đã làm 0';
         const chipU = document.createElement('span'); chipU.id = 'chip-unanswered'; chipU.className = 'chip chip-gray'; chipU.textContent = 'Chưa 0';
         const chipF = document.createElement('span'); chipF.id = 'chip-flagged'; chipF.className = 'chip chip-gray'; chipF.textContent = 'Đánh dấu 0';
         topbar.append(chipA, chipU, chipF);
     }
 
-    // Các nút đơn lẻ (không bị nhân đôi): switch lang, submit, mở overlay, filter unanswered
+    // Các nút đơn lẻ: switch lang, submit, overlay, filter unanswered
     const btnSwitch = $('#btn-switch-lang');
     if (btnSwitch) btnSwitch.addEventListener('click', (e) =>
         hold(e.currentTarget, () => { state.lang = state.lang === 'VI' ? 'EN' : 'VI'; saveStateDebounced(); renderQuestionList(); })
@@ -105,10 +105,9 @@ export function renderExam() {
     const btnFilterUn = $('#btn-filter-unanswered');
     if (btnFilterUn) btnFilterUn.addEventListener('click', (e) => hold(e.currentTarget, () => renderNavigator(true)));
 
-    // ✅ Event delegation cho các nút điều hướng (có thể xuất hiện ở TOP và BOTTOM)
+    // ✅ Event delegation cho các nút điều hướng (pager dưới + dự phòng top)
     const pageRoot = document.querySelector('.page') || document;
     pageRoot.addEventListener('click', (e) => {
-        // chuẩn hóa map: hỗ trợ ID cũ, class mới và data-action
         const map = [
             ['prevQuestion', '#btn-prev, .js-prev-question, [data-action="prevQuestion"]'],
             ['nextQuestion', '#btn-next, .js-next-question, [data-action="nextQuestion"]'],
@@ -141,7 +140,7 @@ export function renderExam() {
 /* Render 10 câu / trang (frag để giảm reflow) */
 export function renderQuestionList() {
     const wrap = $('#exam-body');
-    if (!wrap) return; // an toàn nếu template tùy biến
+    if (!wrap) return;
     wrap.innerHTML = '';
 
     const start = state.currentPage * PAGE_SIZE;
