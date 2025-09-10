@@ -1,8 +1,9 @@
-/* ===== Reset nhẹ + mobile-friendly ===== */
+/* =========================
+   Base reset + variables
+   ========================= */
 :root {
     color-scheme: light;
     --pager-h: 64px;
-    /* chiều cao thanh chuyển trang */
     --container-pad-x: clamp(12px, 3vw, 20px);
 }
 
@@ -29,34 +30,54 @@ body {
     line-height: 1.5;
 }
 
-/* Tăng khả năng truy cập khi tab */
 :focus-visible {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
 }
 
-/* Khung trang theo cột, chiếm full viewport (cho sticky hoạt động) */
+/* Container & cards */
+.container {
+    width: min(980px, 100%);
+    margin-inline: auto;
+    padding-inline: var(--container-pad-x);
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 6px 30px -10px rgb(2 6 23 / .12);
+}
+
+.card-pro {
+    border-radius: 18px;
+    box-shadow: 0 20px 60px -25px rgb(2 6 23 / .18);
+}
+
+/* =========================
+   Layout scaffolding
+   ========================= */
 .page {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
 }
 
-/* Nội dung chiếm phần còn lại giữa header/footer và pager */
 .mainContent {
     flex: 1;
     position: relative;
     z-index: 1;
     padding-bottom: 8px;
-    /* thở chút với sticky dưới */
 }
 
-/* ===== Thanh chuyển trang (sticky, không đè nội dung) ===== */
+/* =========================
+   Pager (keep bottom only)
+   ========================= */
 .pager {
-    background: #ffffff;
+    background: #fff;
     border-top: 1px solid #e5e7eb;
-    /* slate-200 */
     padding: 10px var(--container-pad-x);
+    box-shadow: 0 10px 30px -12px rgb(2 6 23 / .15);
 }
 
 .pager--bottom {
@@ -68,13 +89,9 @@ body {
 }
 
 .pager--top {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid #e5e7eb;
+    display: none !important;
 }
 
-/* Bố cục nút trong pager */
 .pager .btnGroup {
     display: flex;
     gap: .75rem;
@@ -88,47 +105,83 @@ body {
     gap: .5rem;
 }
 
-/* Ẩn bớt 1 bộ nút cho đỡ rối */
-@media (max-width: 996px) {
-    .pager--top {
-        display: none;
+.pager .btnGroup .left button {
+    min-width: 130px;
+}
+
+/* Câu trước/sau */
+.pager .btnGroup .right button {
+    min-width: 110px;
+}
+
+/* Trang ← → */
+
+/* =========================
+   Toolbar (exam)
+   ========================= */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #ffffffd9;
+    backdrop-filter: saturate(1.1) blur(6px);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.toolbar .toolbar-grid {
+    display: grid;
+    gap: 10px 12px;
+    padding: 10px var(--container-pad-x);
+}
+
+@media (min-width:997px) {
+    .toolbar .toolbar-grid {
+        grid-template-columns: 1fr auto;
+        align-items: center;
     }
 }
 
-/* chỉ giữ thanh dưới trên mobile */
-@media (min-width: 997px) {
-    .pager--bottom {
-        display: none;
+@media (max-width:996px) {
+    .toolbar .toolbar-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-/* chỉ giữ thanh trên trên desktop */
-
-/* ===== Cards / khối nội dung ===== */
-.container {
-    width: min(1100px, 100%);
-    margin-inline: auto;
-    padding-inline: var(--container-pad-x);
+.toolbar .metrics,
+.toolbar .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    box-shadow: 0 6px 30px -10px rgb(2 6 23 / .12);
+.toolbar .actions {
+    justify-content: flex-end;
 }
 
-/* ==== Inputs (nền trắng, viền rõ ràng) ==== */
+/* Progress */
+.toolbar .progressbar .bar-bg {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.toolbar .progressbar .bar-fg {
+    height: 100%;
+    background: #4f46e5;
+}
+
+/* =========================
+   Inputs & Buttons
+   ========================= */
 input[type="number"],
 input[type="text"],
 input[type="search"],
 select,
 textarea {
-    background-color: #ffffff;
+    background: #fff;
     color: #0f172a;
-    /* slate-900 */
     border: 1px solid #e5e7eb;
-    /* slate-200 */
     border-radius: .5rem;
     height: 40px;
     padding: 0 12px;
@@ -150,13 +203,12 @@ textarea:focus {
     border-color: #6366f1;
 }
 
-/* ==== Buttons + ripple ==== */
 button,
 .btn-anim {
     position: relative;
     overflow: hidden;
-    transition: transform .12s ease, box-shadow .25s ease, filter .2s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
     will-change: transform;
+    transition: transform .12s ease, box-shadow .25s ease, filter .2s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
     height: 40px;
     padding: 0 14px;
     border-radius: .75rem;
@@ -167,7 +219,7 @@ button,
 
 button:hover,
 .btn-anim:hover {
-    filter: brightness(0.98);
+    filter: brightness(.98);
     box-shadow: 0 6px 18px -8px rgb(2 6 23 / .25);
 }
 
@@ -176,10 +228,8 @@ button:active,
     transform: translateY(1px) scale(.98);
 }
 
-/* Variants */
 .btn-primary {
     background: #4f46e5;
-    /* indigo-600 */
     border-color: #4f46e5;
     color: #fff;
 }
@@ -196,7 +246,13 @@ button:active,
     color: #3730a3;
 }
 
-/* Ripple circle */
+.btn-lg {
+    height: 48px;
+    padding: 0 18px;
+    font-size: 1rem;
+}
+
+/* Ripple */
 .ripple {
     position: absolute;
     pointer-events: none;
@@ -224,10 +280,10 @@ button:active,
     }
 }
 
-/* ===== Press-hold pending state (xám) ===== */
+/* Pending state */
 .is-pending,
 [aria-busy="true"] {
-    background-color: #e5e7eb !important;
+    background: #e5e7eb !important;
     border-color: #e5e7eb !important;
     color: #6b7280 !important;
     filter: grayscale(.25) brightness(.97);
@@ -235,104 +291,9 @@ button:active,
     pointer-events: none;
 }
 
-/* ==== Option buttons: số câu / ngôn ngữ ==== */
-.opt {
-    background: #fff;
-    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .2s ease, transform .08s ease;
-    border: 1px solid #e5e7eb;
-    border-radius: .75rem;
-    height: 36px;
-    padding: 0 12px;
-    font-weight: 600;
-}
-
-.opt:hover {
-    border-color: #c7d2fe;
-}
-
-/* indigo-200 */
-.opt:active {
-    transform: translateY(1px);
-}
-
-.opt[data-selected="true"] {
-    background: #4f46e5;
-    color: #ffffff;
-    border-color: #4f46e5;
-    box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
-}
-
-.opt[data-selected="true"]:hover {
-    filter: brightness(1);
-}
-
-/* Badges nhỏ */
-.badge {
-    display: inline-flex;
-    align-items: center;
-    padding: .125rem .5rem;
-    border-radius: .375rem;
-    font-size: .75rem;
-    font-weight: 500;
-}
-
-.badge-emerald {
-    background: #ecfdf5;
-    color: #065f46;
-}
-
-.badge-rose {
-    background: #fef2f2;
-    color: #991b1b;
-}
-
-.badge-gray {
-    background: #f3f4f6;
-    color: #374151;
-}
-
-/* Navigator pills */
-.num-pill {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: .5rem;
-    font-weight: 600;
-    font-size: .875rem;
-    height: 2.5rem;
-    min-width: 2.5rem;
-    padding-inline: .5rem;
-    user-select: none;
-}
-
-.num-empty {
-    background: #f1f5f9;
-    color: #64748b;
-}
-
-.num-answered {
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.num-flag {
-    background: #fef3c7;
-    color: #92400e;
-    box-shadow: 0 0 0 2px #fcd34d inset;
-}
-
-/* Review states */
-.opt-correct {
-    border-color: #34d399;
-    background: #ecfdf5;
-}
-
-.opt-wrong {
-    border-color: #f43f5e;
-    background: #fef2f2;
-}
-
-/* ==== Unified chips (32px) ==== */
+/* =========================
+   Chips, badges, pills
+   ========================= */
 .chip {
     display: inline-flex;
     align-items: center;
@@ -364,6 +325,18 @@ button:active,
     border-color: #fecaca;
 }
 
+.chip-amber {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fcd34d;
+}
+
+.chip-orange {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fdba74;
+}
+
 .chip-topic {
     max-width: min(46vw, 260px);
     overflow: hidden;
@@ -374,23 +347,111 @@ button:active,
     cursor: pointer;
 }
 
-/* Heat-map chips */
-.chip-amber {
-    background: #fffbeb;
-    color: #92400e;
-    border-color: #fcd34d;
+.chip-timer {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
 }
 
-/* amber-50 */
-.chip-orange {
+.chip-warn {
     background: #fff7ed;
     color: #9a3412;
     border-color: #fdba74;
 }
 
-/* orange-50 */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: .125rem .5rem;
+    border-radius: .375rem;
+    font-size: .75rem;
+    font-weight: 500;
+}
 
-/* ===== Tiêu đề, khoảng cách ===== */
+.badge-emerald {
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+.badge-rose {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.badge-gray {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.num-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    font-weight: 600;
+    font-size: .875rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    padding-inline: .5rem;
+    user-select: none;
+}
+
+.num-empty {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.num-answered {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.num-flag {
+    background: #fef3c7;
+    color: #92400e;
+    box-shadow: 0 0 0 2px #fcd34d inset;
+}
+
+/* Review state for options */
+.opt-correct {
+    border-color: #34d399;
+    background: #ecfdf5;
+}
+
+.opt-wrong {
+    border-color: #f43f5e;
+    background: #fef2f2;
+}
+
+/* Option buttons (landing segmented + generic) */
+.opt {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: .75rem;
+    height: 36px;
+    padding: 0 12px;
+    font-weight: 600;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .2s ease, transform .08s ease;
+}
+
+.opt:hover {
+    border-color: #c7d2fe;
+}
+
+.opt:active {
+    transform: translateY(1px);
+}
+
+.opt[data-selected="true"] {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+    box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
+}
+
+/* =========================
+   Typography & utilities
+   ========================= */
 h1 {
     font-size: clamp(20px, 3.6vw, 28px);
     margin: 0 0 10px;
@@ -405,7 +466,6 @@ p {
     margin: 8px 0;
 }
 
-/* ===== Util nhỏ ===== */
 .hidden {
     display: none !important;
 }
@@ -414,43 +474,206 @@ p {
     color: #64748b;
 }
 
-/* slate-500 */
 .max-w-prose {
     max-width: 72ch;
 }
 
-/* ===== Thẻ question card tối ưu vẽ (content-visibility) ===== */
+/* Optimize question card paint */
 article[data-card] {
     content-visibility: auto;
     contain-intrinsic-size: 260px 800px;
 }
 
-/* ===== Toolbar phía trên khối thi (bộ lọc, time, vv.) ===== */
-.toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: #f8fafc;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 8px var(--container-pad-x);
+/* =========================
+   Exam list tweaks
+   ========================= */
+.hint {
+    margin: 6px 0 10px;
+    font-size: 12px;
+    color: #64748b;
 }
 
-/* ===== Mobile tinh chỉnh ===== */
-@media (max-width: 680px) {
+.q-list {
+    display: grid;
+    gap: 14px;
+}
+
+.q-list article[data-card] {
+    border-radius: 14px;
+}
+
+.q-list .p-4 {
+    padding: 16px !important;
+}
+
+.q-list .font-medium {
+    line-height: 1.6;
+}
+
+.q-list .mt-3 .p-3 {
+    padding: 12px !important;
+}
+
+.q-list .mt-3 .border {
+    border-color: #e5e7eb !important;
+}
+
+/* Avoid duplicate chips if template đã có sẵn */
+#chip-answered+#chip-unanswered+#chip-flagged~#chip-answered {
+    display: none;
+}
+
+/* =========================
+   Landing VIP–Pro
+   ========================= */
+.landing-hero {
+    background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+}
+
+.landing-hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 10px;
+    padding: 26px;
+    background:
+        radial-gradient(1200px 400px at -10% -20%, #eef2ff 8%, transparent 60%),
+        radial-gradient(900px 360px at 120% 120%, #ecfeff 8%, transparent 60%),
+        #ffffff;
+}
+
+@media (max-width:996px) {
+    .landing-hero-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hero-title {
+    font-size: clamp(24px, 3.4vw, 34px);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.hero-sub {
+    margin: 8px 0 14px;
+    color: #475569;
+    max-width: 60ch;
+}
+
+.hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hero-art {
+    min-height: 140px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eef2ff, #e0e7ff 40%, #c7d2fe 100%);
+    mask-image: radial-gradient(120% 120% at 100% 0, #000 60%, transparent 75%);
+}
+
+/* Segmented control */
+.seg {
+    display: inline-flex;
+    padding: 4px;
+    gap: 6px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.seg .opt {
+    border: 0;
+    background: transparent;
+    height: 40px;
+    padding: 0 14px;
+}
+
+.seg .opt[data-selected="true"] {
+    background: #4f46e5;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px -12px rgba(79, 70, 229, .45);
+}
+
+/* Labels & fields */
+.label {
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+    font-size: .95rem;
+}
+
+.field-help {
+    font-size: .8rem;
+    color: #64748b;
+    margin-top: 6px;
+}
+
+.inline-field {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.suffix {
+    color: #64748b;
+    font-size: .9rem;
+}
+
+/* Advanced options */
+.adv summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 0;
+    font-weight: 600;
+    color: #334155;
+}
+
+.adv-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 6px;
+}
+
+/* CTA: center toàn bộ cụm như bạn yêu cầu */
+.landing-actions {
+    margin-top: 18px;
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    justify-content: center !important;
+}
+
+/* =========================
+   Mobile tweaks
+   ========================= */
+@media (max-width:680px) {
     .num-pill {
         height: 40px;
         min-width: 40px;
     }
 
-    /* mục tiêu chạm dễ hơn */
     .pager .btnGroup {
         gap: .5rem;
     }
 
     .pager button {
-        height: 44px;
+        height: 46px;
         padding: 0 12px;
     }
 
-    /* target >= 44px */
+    .chip {
+        height: 34px;
+        font-size: .85rem;
+    }
+
+    #btn-start {
+        height: 46px;
+    }
+
+    .opt {
+        height: 40px;
+    }
 }
