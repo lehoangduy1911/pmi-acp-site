@@ -54,10 +54,22 @@ const config: Config = {
     [
       require.resolve('@docusaurus/plugin-client-redirects'),
       {
-        redirects: [{ from: '/docs/pmi-acp/start-here', to: '/start-here' }],
+        redirects: [
+          // có sẵn
+          { from: '/docs/pmi-acp/start-here', to: '/start-here' },
+
+          // ✅ tạo route cho /mock và biến thể, cả phía /en
+          { from: '/mock', to: '/mock/index.html' },
+          { from: '/mock/index', to: '/mock/index.html' },
+
+          { from: '/en/mock', to: '/mock/index.html' },
+          { from: '/en/mock/index', to: '/mock/index.html' },
+          { from: '/en/mock/index.html', to: '/mock/index.html' },
+        ],
       },
     ],
   ],
+
 
   // ✅ Local search
   themes: [
