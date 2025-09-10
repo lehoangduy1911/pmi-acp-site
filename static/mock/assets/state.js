@@ -1,5 +1,5 @@
-import { STORAGE_KEY, DEFAULT_MIN_PER_Q } from './constants.js';
-import { $, debounce } from './utils.js';
+import { STORAGE_KEY, DEFAULT_MIN_PER_Q } from './constants.js?v=2025-09-10-3';
+import { $, debounce } from './utils.js?v=2025-09-10-3';
 
 export const state = {
     stage: 'landing', lang: 'VI',

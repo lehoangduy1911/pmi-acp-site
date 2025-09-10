@@ -1,8 +1,8 @@
-import { TPL } from './templates.js';
-import { $, $$, shuffleArray, fmtHMS, hold, toast, diffClass, shortTopic } from './utils.js';
-import { LABELS, PAGE_SIZE } from './constants.js';
-import { state, resetState, saveState, saveStateDebounced } from './state.js';
-import { renderResults } from './results.js';
+import { TPL } from './templates.js?v=2025-09-10-3';
+import { $, $$, shuffleArray, fmtHMS, hold, toast, diffClass, shortTopic } from './utils.js?v=2025-09-10-3';
+import { LABELS, PAGE_SIZE } from './constants.js?v=2025-09-10-3';
+import { state, resetState, saveState, saveStateDebounced } from './state.js?v=2025-09-10-3';
+import { renderResults } from './results.js?v=2025-09-10-3';
 
 /* ------------ Helpers (local) ------------ */
 function diffLabel(d) {

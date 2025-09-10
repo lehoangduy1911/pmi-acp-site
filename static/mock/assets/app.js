@@ -1,4 +1,4 @@
-import { renderLanding } from './landing.js';
+import { renderLanding } from './landing.js?v=2025-09-10-3';
 
 // Micro-interaction: ripple
 document.addEventListener('click', (e) => {

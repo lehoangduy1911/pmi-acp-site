@@ -1,8 +1,8 @@
 // static/mock/assets/landing.js
-import { TPL } from './templates.js';
-import { $, $$, hold, toast } from './utils.js';
-import { startExam } from './exam.js';
-import { state, resetState, saveState } from './state.js';
+import { TPL } from './templates.js?v=2025-09-10-3';
+import { $, $$, hold, toast } from './utils.js?v=2025-09-10-3';
+import { startExam } from './exam.js?v=2025-09-10-3';
+import { state, resetState, saveState } from './state.js?v=2025-09-10-3';
 
 function firstSel(...sels) {
     for (const s of sels) {
