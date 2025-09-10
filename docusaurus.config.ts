@@ -12,8 +12,8 @@ const config: Config = {
   organizationName: 'lehoangduy1911',
   projectName: 'pmi-acp-site',
 
-  // ✅ Thả lỏng broken links để không gãy build với anchor ngoài route
-  onBrokenLinks: 'warn',
+  // ✅ Thả lỏng kiểm tra link để cho phép href tới file tĩnh
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
@@ -49,27 +49,17 @@ const config: Config = {
     ],
   ],
 
-  // ✅ Redirects: chỉ 1 rule, không /en
+  // ✅ Redirects: chỉ giữ rule hợp lệ, KHÔNG trỏ tới /mock
   plugins: [
     [
       require.resolve('@docusaurus/plugin-client-redirects'),
       {
         redirects: [
-          // có sẵn
           { from: '/docs/pmi-acp/start-here', to: '/start-here' },
-
-          // ✅ tạo route cho /mock và biến thể, cả phía /en
-          { from: '/mock', to: '/mock/index.html' },
-          { from: '/mock/index', to: '/mock/index.html' },
-
-          { from: '/en/mock', to: '/mock/index.html' },
-          { from: '/en/mock/index', to: '/mock/index.html' },
-          { from: '/en/mock/index.html', to: '/mock/index.html' },
         ],
       },
     ],
   ],
-
 
   // ✅ Local search
   themes: [

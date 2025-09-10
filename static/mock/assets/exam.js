@@ -5,7 +5,6 @@ import { state, resetState, saveState, saveStateDebounced } from './state.js';
 import { renderResults } from './results.js';
 
 /* ------------ Helpers (local) ------------ */
-// Chuẩn hoá label độ khó để hiển thị
 function diffLabel(d) {
     const s = String(d || '').trim().toLowerCase();
     if (['very hard', 'very-hard', 'vhard', 'hardest', 'expert'].includes(s)) return 'VERY HARD';
@@ -15,12 +14,16 @@ function diffLabel(d) {
     return (String(d || 'N/A')).toUpperCase();
 }
 
-// ---- Start exam (fetch, shuffle, state) ----
+/* ---- Start exam (fetch, shuffle, state) ---- */
 export async function startExam({ questionCount, lang, minPerQ, bonusMin, shuffle, shuffleAns }) {
-    const all = await fetch('Questions.json?v=' + Date.now()).then(r => {
+    // ✅ Tạo URL tuyệt đối tới Questions.json dựa trên vị trí module này
+    const QUESTIONS_URL = new URL('../Questions.json', import.meta.url).href + '?v=' + Date.now();
+
+    const all = await fetch(QUESTIONS_URL).then(r => {
         if (!r.ok) throw new Error('Không tải được Questions.json (' + r.status + ').');
         return r.json();
     });
+
     let pool = Array.isArray(all) ? all.slice() : [];
     if (!pool.length) throw new Error('Questions.json rỗng hoặc sai định dạng.');
 
@@ -64,7 +67,7 @@ function materializeQuestion(q, shuffleAns) {
     };
 }
 
-// ---- Render exam screen ----
+/* ---- Render exam screen ---- */
 export function renderExam() {
     const app = $('#app');
     app.innerHTML = TPL.exam;
@@ -123,7 +126,7 @@ export function renderQuestionList() {
         const text = document.createElement('div'); text.className = 'font-medium'; text.textContent = state.lang === 'VI' ? q.questionVI : q.questionEN;
         title.append(num, text);
 
-        // ==== Chips: domain rút gọn + heat-map difficulty + flag ====
+        // Chips: domain rút gọn + heat-map difficulty + flag
         const right = document.createElement('div'); right.className = 'flex items-center gap-2 flex-wrap';
 
         const topic = document.createElement('span');
@@ -146,7 +149,7 @@ export function renderQuestionList() {
         right.append(topic, diff, flagBtn);
         head.append(title, right);
 
-        // ==== Options ====
+        // Options
         const opts = document.createElement('div'); opts.className = 'mt-3 grid grid-cols-1 gap-2';
         q._opts.forEach((opt, i) => {
             const wrapLabel = document.createElement('label'); wrapLabel.className = 'block';
@@ -170,7 +173,7 @@ export function renderQuestionList() {
     updatePageIndicator();
 }
 
-// Navigator + overlay
+/* Navigator + overlay */
 export function openOverlay() { $('#overlay').classList.remove('hidden'); renderNavigator(false); }
 export function closeOverlay() { $('#overlay').classList.add('hidden'); }
 export function renderNavigator(onlyUnanswered) {
@@ -186,7 +189,7 @@ export function renderNavigator(onlyUnanswered) {
     });
 }
 
-// Navigation, hotkeys
+/* Navigation, hotkeys */
 export function jumpTo(i, smooth = true) {
     i = Math.max(0, Math.min(state.questionCount - 1, i));
     const targetPage = Math.floor(i / PAGE_SIZE);
@@ -216,7 +219,7 @@ export function onKey(e) {
     }
 }
 
-// Progress + timer
+/* Progress + timer */
 export function updateProgressUi() {
     const total = Number(state.questionCount) || 0;
     const answered = Object.keys(state.answers).filter(k => state.answers[k] !== null && state.answers[k] !== undefined).length;
@@ -248,7 +251,7 @@ export function startTimer() {
 export function updateTimerUi() { $('#timer').textContent = fmtHMS(state.timeLeftSec); }
 export function autoSubmitOnTimeout() { submitExam(false); alert('⏰ Hết giờ! Bài thi đã được nộp tự động.'); }
 
-// Submit + grade
+/* Submit + grade */
 export function submitExamConfirm() {
     const unanswered = state.questionCount - Object.keys(state.answers).length;
     const msg = unanswered > 0 ? `Còn ${unanswered} câu chưa trả lời. Bạn chắc chắn muốn nộp bài?` : 'Bạn chắc chắn muốn nộp bài?';
@@ -272,9 +275,7 @@ function grade() {
         const topic = q.topic || 'Unknown';
         if (!summary.topics[topic]) summary.topics[topic] = { correct: 0, wrong: 0, empty: 0, total: 0 };
         summary.topics[topic].total++;
-        if (isEmpty) summary.topics[topic].empty++;
-        else if (isCorrect) summary.topics[topic].correct++;
-        else summary.topics[topic].wrong++;
+        if (isEmpty) summary.topics[topic].empty++; else if (isCorrect) summary.topics[topic].correct++; else summary.topics[topic].wrong++;
         details.push({ idx, chosenIndex: isEmpty ? null : Number(a), correctIndex: Number(q._correctIndex), isCorrect, isEmpty });
     });
     return { summary, details };
