@@ -86,7 +86,7 @@ const config: Config = {
       items: [
         { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
-        { to: '/mock/', label: 'Mock 50/120', position: 'left' },
+        { to: '/mock/index.html', label: 'Mock 50/120', position: 'left' }, // ✅ trỏ trực tiếp tĩnh
         { to: '/blog', label: 'Blog', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/about', label: 'About', position: 'left' },
