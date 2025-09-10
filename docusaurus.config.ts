@@ -89,7 +89,7 @@ const config: Config = {
         { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
         // ✅ Link tuyệt đối + mở tab mới để tránh SPA
-        { href: 'https://vnoptimus.vercel.app/mock/index.html', label: 'Mock 50/120', position: 'left', target: '_blank' },
+        { to: '/mock', label: 'Mock 50/120', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
         { to: '/about', label: 'About', position: 'left' },

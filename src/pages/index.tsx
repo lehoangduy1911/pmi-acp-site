@@ -5,12 +5,6 @@ import clsx from 'clsx';
 import styles from './index.module.css';
 
 export default function Home() {
-  // Helper: ép hard navigation (không đi qua SPA)
-  const goMock = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    window.location.assign('/mock/index.html');
-  };
-
   return (
     <Layout
       title="VNOptimus — Học & Luyện thi PMI-ACP"
@@ -44,15 +38,14 @@ export default function Home() {
               Kế hoạch học
             </Link>
 
-            {/* ✅ Link tới mock: <a> thường + ép hard reload */}
-            <a
+            {/* ✅ Mock: dùng route nội bộ /mock để SPA không báo broken links */}
+            <Link
               className={clsx('button', 'button--outline', 'button--lg')}
-              href="/mock/index.html"
-              onClick={goMock}
+              to="/mock"
               aria-label="Mở trang thi thử PMI-ACP (client-side)"
             >
               Mock 50/120 →
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -162,10 +155,10 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  {/* ✅ Ép hard navigation */}
-                  <a href="/mock/index.html" onClick={goMock} className="button button--sm button--link">
+                  {/* ✅ Link nội bộ /mock (SPA sẽ vào trang redirect rồi chuyển sang file tĩnh) */}
+                  <Link to="/mock" className="button button--sm button--link">
                     Thi thử →
-                  </a>
+                  </Link>
                 </div>
               </li>
             </ol>
