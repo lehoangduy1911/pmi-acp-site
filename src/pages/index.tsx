@@ -73,7 +73,7 @@ export default function Home() {
 
               {/* Card 2 */}
               <Link
-                to="/docs/pmi-acp/module-01/lesson-01"
+                to="/docs/pmi-acp/domains/domain-mindset"
                 className={styles.card + ' ' + styles.cardLink}
                 aria-label="Bài ngắn, trọng tâm — Vào học ngay"
               >
@@ -136,7 +136,7 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Học nhanh</h4>
                   <p>Vào các bài trọng tâm của Module 01.</p>
-                  <Link to="/docs/pmi-acp/module-01/lesson-01" className="button button--sm button--link">
+                  <Link to="/docs/pmi-acp/domains/domain-mindset" className="button button--sm button--link">
                     Lesson 01 →
                   </Link>
                 </div>

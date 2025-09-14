@@ -1,0 +1,58 @@
+---
+id: domain-delivery
+title: Delivery — Domain hub (VI/EN)
+sidebar_label: Delivery
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DomainQuiz from '@site/src/components/DomainQuiz';
+
+# Delivery
+
+<Tabs>
+  <TabItem value="vi" label="VI">
+
+## Must‑know (5–7)
+- Dòng chảy ổn định; WIP limits; nhịp bền vững.
+- Built‑in quality: TDD, Pairing, Code Review, DoD.
+- Hiển thị rủi ro, impediments; quản trị kỹ thuật nợ.
+- Quan sát luồng: CFD, cycle time, lead time.
+- Liên tục hoá: CI/CD, small batch, trunk-based.
+
+
+## 5 bẫy đề
+1) Batch lớn, chờ đợi nhiều.  
+2) Đẩy chất lượng về cuối.  
+3) Không đo cycle/lead time.  
+4) Ẩn rủi ro, nợ kỹ thuật.  
+5) Over-commit vượt năng lực.
+
+
+## Luyện 10 câu (rationale ngắn)
+<DomainQuiz domain="Delivery" lang="vi" count={10} />
+
+  </TabItem>
+  <TabItem value="en" label="EN">
+
+## Must‑know (5–7)
+- Stable flow; WIP limits; sustainable pace.
+- Built‑in quality: TDD, pairing, reviews, DoD.
+- Visible risks/impediments; manage technical debt.
+- Visualize flow: CFD, cycle time, lead time.
+- Continuity: CI/CD, small batches, trunk-based.
+
+
+## 5 pitfalls
+1) Large batches & queues.  
+2) Deferring quality.  
+3) No cycle/lead metrics.  
+4) Hidden risks/debt.  
+5) Over-commitment.
+
+
+## 10 practice (with rationales)
+<DomainQuiz domain="Delivery" lang="en" count={10} />
+
+  </TabItem>
+</Tabs>

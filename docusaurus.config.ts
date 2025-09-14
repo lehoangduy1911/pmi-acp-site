@@ -70,6 +70,38 @@ const config: Config = {
     ],
   ],
 
+  // ✅ Redirect URL cũ của Module 01 → trang mới trong ACP Blueprint 2025
+  // (Giữ nguyên mọi link cũ không 404 trong lúc bạn chưa kịp sửa)
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          // lesson-01 → Mindset (bắt cả 2 biến thể có/không /docs và có/không dấu / cuối)
+          {
+            from: [
+              '/docs/pmi-acp/module-01/lesson-01',
+              '/docs/pmi-acp/module-01/lesson-01/',
+              '/pmi-acp/module-01/lesson-01',
+              '/pmi-acp/module-01/lesson-01/',
+            ],
+            to: '/docs/pmi-acp/domains/domain-mindset',
+          },
+          // lesson-02 → Delivery
+          {
+            from: [
+              '/docs/pmi-acp/module-01/lesson-02',
+              '/docs/pmi-acp/module-01/lesson-02/',
+              '/pmi-acp/module-01/lesson-02',
+              '/pmi-acp/module-01/lesson-02/',
+            ],
+            to: '/docs/pmi-acp/domains/domain-delivery',
+          },
+        ],
+      },
+    ],
+  ],
+
   // ✅ Scripts: dùng bản outbound-links; analytics.js luôn bật để track CTA
   scripts: isProd
     ? [
@@ -117,6 +149,7 @@ const config: Config = {
         {
           title: 'Học nhanh',
           items: [
+            // Link này vẫn trỏ về bài cũ để demo redirect an toàn.
             { label: 'Module 01', to: '/docs/pmi-acp/module-01/lesson-01' },
             { label: 'Kế hoạch Tuần 1', to: '/docs/pmi-acp/plan/week-1' },
           ],
