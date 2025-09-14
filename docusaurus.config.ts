@@ -71,38 +71,25 @@ const config: Config = {
   ],
 
   // ✅ Redirect URL cũ của Module 01 → trang mới trong ACP Blueprint 2025
-  // (Giữ nguyên mọi link cũ không 404 trong lúc bạn chưa kịp sửa)
+  // Giữ duy nhất 1 biến thể cho mỗi "from" (không kèm dấu "/" cuối) để tránh EEXIST.
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // lesson-01 → Mindset (bắt cả 2 biến thể có/không /docs và có/không dấu / cuối)
-          {
-            from: [
-              '/docs/pmi-acp/module-01/lesson-01',
-              '/docs/pmi-acp/module-01/lesson-01/',
-              '/pmi-acp/module-01/lesson-01',
-              '/pmi-acp/module-01/lesson-01/',
-            ],
-            to: '/docs/pmi-acp/domains/domain-mindset',
-          },
+          // lesson-01 → Mindset
+          { from: '/docs/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/domain-mindset' },
+          { from: '/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/domain-mindset' },
+
           // lesson-02 → Delivery
-          {
-            from: [
-              '/docs/pmi-acp/module-01/lesson-02',
-              '/docs/pmi-acp/module-01/lesson-02/',
-              '/pmi-acp/module-01/lesson-02',
-              '/pmi-acp/module-01/lesson-02/',
-            ],
-            to: '/docs/pmi-acp/domains/domain-delivery',
-          },
+          { from: '/docs/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/domain-delivery' },
+          { from: '/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/domain-delivery' },
         ],
       },
     ],
   ],
 
-  // ✅ Scripts: dùng bản outbound-links; analytics.js luôn bật để track CTA
+  // ✅ Scripts: outbound-links; analytics.js luôn bật để track CTA
   scripts: isProd
     ? [
       {
@@ -123,7 +110,6 @@ const config: Config = {
       items: [
         { to: '/start-here', label: 'Start Here', position: 'left' },
         { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
-        // ✅ Link tuyệt đối + mở tab mới để tránh SPA
         { to: '/mock', label: 'Mock 50/120', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         { to: '/faq', label: 'FAQ', position: 'left' },
@@ -149,7 +135,7 @@ const config: Config = {
         {
           title: 'Học nhanh',
           items: [
-            // Link này vẫn trỏ về bài cũ để demo redirect an toàn.
+            // Bạn có thể đổi sang 'Blueprint 2025' sau khi test redirect xong.
             { label: 'Module 01', to: '/docs/pmi-acp/module-01/lesson-01' },
             { label: 'Kế hoạch Tuần 1', to: '/docs/pmi-acp/plan/week-1' },
           ],
