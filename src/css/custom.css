@@ -1,34 +1,58 @@
+/* =========================================================
+   VNOPTIMUS — CUSTOM THEME
+   - Brand xanh lá (light + dark)
+   - Hero gradient
+   - Typography & layout width
+   - CTA buttons, card utils
+   - Breadcrumbs a11y
+   ========================================================= */
+
+/* ===================== BRAND (LIGHT) ===================== */
 :root {
-  /* thương hiệu */
-  --ifm-color-primary: #2563eb;
-  /* blue-600 */
-  --ifm-color-primary-dark: #1d4ed8;
-  /* blue-700 */
-  --ifm-color-primary-darker: #1e40af;
-  /* blue-800 */
-  --ifm-color-primary-light: #3b82f6;
-  /* blue-500 */
+  /* --- Brand --- */
+  --ifm-color-primary: #22c55e;
+  /* green-500 */
+  --ifm-color-primary-dark: #16a34a;
+  /* green-600 */
+  --ifm-color-primary-darker: #166534;
+  /* green-800 (tăng tương phản) */
+  --ifm-color-primary-light: #4ade80;
+  /* green-400 */
   --ifm-link-color: var(--ifm-color-primary);
 
-  /* typography */
+  /* --- Typography --- */
   --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --ifm-heading-font-family: "Space Grotesk", Inter, system-ui, sans-serif;
   --ifm-font-size-base: 16px;
   --ifm-line-height-base: 1.7;
 
-  /* bố cục */
+  /* --- Layout width --- */
   --ifm-container-width: 1200px;
   --ifm-container-width-xl: 1320px;
 }
 
+/* ====================== BRAND (DARK) ====================== */
 html[data-theme='dark'] {
-  --ifm-color-primary: #60a5fa;
-  /* nhẹ hơn trong dark */
+  /* Xanh sáng hơn để nổi trên nền tối */
+  --ifm-color-primary: #34d399;
+  /* green-400 */
+  --ifm-color-primary-dark: #22c55e;
+  /* green-500 */
+  --ifm-color-primary-darker: #16a34a;
+  /* green-600 */
+  --ifm-color-primary-light: #86efac;
+  /* green-300 */
 }
 
-/* ===== Hero ===== */
+/* ======================= HERO AREA ======================= */
 .hero--primary {
-  background: linear-gradient(180deg, #1d4ed8 0%, #2563eb 100%);
+  /* Light */
+  background: linear-gradient(180deg, #16a34a 0%, #22c55e 100%);
+}
+
+html[data-theme='dark'] .hero--primary {
+  /* Dark: đậm hơn ở đầu, chuyển về xanh ngọc tươi */
+  background: linear-gradient(180deg, #065f46 0%, #10b981 100%);
 }
 
 .hero__title {
@@ -40,26 +64,26 @@ html[data-theme='dark'] {
   opacity: .95;
 }
 
-/* ===== Docs body width ===== */
+/* ======================= DOCS WIDTH ====================== */
 .docItemContainer .theme-doc-markdown {
   max-width: 760px;
   /* tăng khả năng đọc */
   margin: 0 auto;
 }
 
-/* Admonition bo tròn */
+/* ===================== ADMONITION UI ===================== */
 .theme-admonition {
   border-radius: 12px;
 }
 
-/* ===== CTA buttons ===== */
+/* ======================= CTA BUTTONS ===================== */
 .button--primary.button {
   border-radius: 10px;
   padding: 0.7rem 1.1rem;
   font-weight: 600;
 }
 
-/* ===== Card utilities (homepage/MDX) ===== */
+/* ===================== CARD UTILITIES ==================== */
 .vno-card-grid {
   display: grid;
   gap: 1rem;
@@ -79,16 +103,8 @@ html[data-theme='dark'] {
   box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
 }
 
-/* (Tuỳ chọn) Hero gradient khác cho dark */
-html[data-theme='dark'] .hero--primary {
-  background: linear-gradient(180deg,
-      color-mix(in oklab, var(--ifm-color-primary) 92%, black) 0%,
-      var(--ifm-color-primary) 100%);
-}
-
-/* =========================================================
-   Breadcrumbs – rõ ràng, thân thiện mobile & a11y
-   ========================================================= */
+/* ======================= BREADCRUMBS ===================== */
+/* Rõ ràng, thân thiện mobile & a11y */
 .breadcrumbs {
   flex-wrap: wrap;
   /* Cho phép xuống dòng trên mobile */
@@ -115,8 +131,10 @@ html[data-theme='dark'] .hero--primary {
 /* Focus ring cho keyboard users */
 .breadcrumbs__link:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--ifm-background-color),
-    0 0 0 4px color-mix(in oklab, var(--ifm-color-primary) 70%, white);
+  box-shadow:
+    0 0 0 2px var(--ifm-background-color),
+    0 0 0 4px rgba(34, 197, 94, .5);
+  /* xanh lá nhạt */
 }
 
 /* Mục hiện tại đậm & màu primary */

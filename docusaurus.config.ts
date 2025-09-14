@@ -104,40 +104,63 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     docs: { sidebar: { hideable: true, autoCollapseCategories: true } },
+
+    // ==================== NAVBAR (đã gom gọn) ====================
     navbar: {
       title: 'VNOptimus',
       logo: { alt: 'VNOptimus', src: 'img/logo.svg' },
       items: [
+        // Trái: 4 mục chính
         { to: '/start-here', label: 'Start Here', position: 'left' },
-        { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
-        { to: '/mock', label: 'Mock 50/120', position: 'left' },
+        { to: '/docs/pmi-acp/blueprint-2025', label: 'Blueprint 2025', position: 'left' },
+        { to: '/mock', label: 'Luyện đề', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
-        { to: '/faq', label: 'FAQ', position: 'left' },
-        { to: '/about', label: 'About', position: 'left' },
+
+        // Phải: ngôn ngữ + More (gom link phụ)
         { type: 'localeDropdown', position: 'right' },
-        { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
-        { to: '/contact', label: 'Contact', position: 'left' },
+        {
+          type: 'dropdown',
+          label: 'More',
+          position: 'right',
+          items: [
+            { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học' },
+            { to: '/faq', label: 'FAQ' },
+            { to: '/about', label: 'About' },
+            { to: '/contact', label: 'Contact' },
+            { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub' },
+          ],
+        },
       ],
     },
+
     announcementBar: {
       id: 'welcome',
       content:
-        '🎉 Chào mừng đến VNOptimus — <a href="/start-here">Start Here</a>, <a href="/docs/pmi-acp/plan/week-1">Kế hoạch học</a>, hoặc xem <a href="/about">About</a>.',
-      backgroundColor: '#eef2ff',
-      textColor: '#111827',
+        '🎯 Bạn mới? Bắt đầu tại <a href="/start-here">Start Here</a>. Xem lộ trình <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a>.',
+      backgroundColor: '#ecfdf5', // green-50
+      textColor: '#064e3b',       // green-900
       isCloseable: true,
     },
+
     colorMode: { respectPrefersColorScheme: true },
+
+    // ==================== FOOTER (đồng bộ navbar) ====================
     footer: {
       style: 'dark',
       links: [
-        { title: 'Docs', items: [{ label: 'Start Here', to: '/start-here' }] },
         {
-          title: 'Học nhanh',
+          title: 'Học',
           items: [
-            // Bạn có thể đổi sang 'Blueprint 2025' sau khi test redirect xong.
-            { label: 'Module 01', to: '/docs/pmi-acp/module-01/lesson-01' },
-            { label: 'Kế hoạch Tuần 1', to: '/docs/pmi-acp/plan/week-1' },
+            { label: 'Start Here', to: '/start-here' },
+            { label: 'Blueprint 2025', to: '/docs/pmi-acp/blueprint-2025' },
+            { label: 'Kế hoạch học', to: '/docs/pmi-acp/plan/week-1' },
+          ],
+        },
+        {
+          title: 'Luyện tập',
+          items: [
+            { label: 'Luyện đề (Mock 50/120)', to: '/mock' },
+            { label: 'FAQ', to: '/faq' },
           ],
         },
         {
@@ -152,6 +175,7 @@ const config: Config = {
       ],
       copyright: `© ${new Date().getFullYear()} VNOptimus`,
     },
+
     tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
     prism: { theme: prismThemes.github, darkTheme: prismThemes.dracula },
   } satisfies Preset.ThemeConfig,

@@ -1,10 +1,23 @@
 /* =========================
    Base reset + variables
+   (Brand: Green)
    ========================= */
 :root {
     color-scheme: light;
     --pager-h: 64px;
     --container-pad-x: clamp(12px, 3vw, 20px);
+
+    /* Tailwind-like Green scale */
+    --g-50: #f0fdf4;
+    --g-100: #dcfce7;
+    --g-200: #bbf7d0;
+    --g-300: #86efac;
+    --g-400: #4ade80;
+    --g-500: #22c55e;
+    --g-600: #16a34a;
+    --g-700: #15803d;
+    --g-800: #166534;
+    --g-900: #14532d;
 }
 
 * {
@@ -31,7 +44,7 @@ body {
 }
 
 :focus-visible {
-    outline: 2px solid #6366f1;
+    outline: 2px solid var(--g-500);
     outline-offset: 2px;
 }
 
@@ -114,8 +127,6 @@ body {
     min-width: 110px;
 }
 
-/* Trang ← → */
-
 /* =========================
    Toolbar (exam)
    ========================= */
@@ -168,7 +179,7 @@ body {
 
 .toolbar .progressbar .bar-fg {
     height: 100%;
-    background: #4f46e5;
+    background: var(--g-500);
 }
 
 /* =========================
@@ -200,7 +211,7 @@ input[type="number"] {
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #6366f1;
+    border-color: var(--g-500);
 }
 
 button,
@@ -229,8 +240,8 @@ button:active,
 }
 
 .btn-primary {
-    background: #4f46e5;
-    border-color: #4f46e5;
+    background: var(--g-500);
+    border-color: var(--g-500);
     color: #fff;
 }
 
@@ -242,8 +253,8 @@ button:active,
 
 .btn-outline {
     background: #fff;
-    border-color: #c7d2fe;
-    color: #3730a3;
+    border-color: var(--g-200);
+    color: var(--g-800);
 }
 
 .btn-lg {
@@ -261,7 +272,8 @@ button:active,
     width: 0;
     height: 0;
     border-radius: 9999px;
-    background: rgba(99, 102, 241, .25);
+    background: rgba(34, 197, 94, .25);
+    /* green */
     transform: translate(-50%, -50%);
     animation: ripple .6s ease-out forwards;
 }
@@ -348,9 +360,9 @@ button:active,
 }
 
 .chip-timer {
-    background: #4f46e5;
+    background: var(--g-500);
     color: #fff;
-    border-color: #4f46e5;
+    border-color: var(--g-500);
 }
 
 .chip-warn {
@@ -435,7 +447,7 @@ button:active,
 }
 
 .opt:hover {
-    border-color: #c7d2fe;
+    border-color: var(--g-200);
 }
 
 .opt:active {
@@ -443,10 +455,10 @@ button:active,
 }
 
 .opt[data-selected="true"] {
-    background: #4f46e5;
+    background: var(--g-500);
     color: #fff;
-    border-color: #4f46e5;
-    box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
+    border-color: var(--g-500);
+    box-shadow: 0 10px 20px -10px rgba(34, 197, 94, .45);
 }
 
 /* =========================
@@ -536,8 +548,8 @@ article[data-card] {
     gap: 10px;
     padding: 26px;
     background:
-        radial-gradient(1200px 400px at -10% -20%, #eef2ff 8%, transparent 60%),
-        radial-gradient(900px 360px at 120% 120%, #ecfeff 8%, transparent 60%),
+        radial-gradient(1200px 400px at -10% -20%, var(--g-50) 8%, transparent 60%),
+        radial-gradient(900px 360px at 120% 120%, var(--g-100) 8%, transparent 60%),
         #ffffff;
 }
 
@@ -568,7 +580,7 @@ article[data-card] {
 .hero-art {
     min-height: 140px;
     border-radius: 14px;
-    background: linear-gradient(135deg, #eef2ff, #e0e7ff 40%, #c7d2fe 100%);
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5 40%, #a7f3d0 100%);
     mask-image: radial-gradient(120% 120% at 100% 0, #000 60%, transparent 75%);
 }
 
@@ -590,10 +602,10 @@ article[data-card] {
 }
 
 .seg .opt[data-selected="true"] {
-    background: #4f46e5;
+    background: var(--g-500);
     color: #fff;
     border-radius: 10px;
-    box-shadow: 0 10px 20px -12px rgba(79, 70, 229, .45);
+    box-shadow: 0 10px 20px -12px rgba(34, 197, 94, .45);
 }
 
 /* Labels & fields */
