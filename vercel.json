@@ -1,5 +1,27 @@
 {
     "trailingSlash": false,
+    "redirects": [
+        {
+            "source": "/docs/pmi-acp/module-01/lesson-01",
+            "destination": "/docs/pmi-acp/domains/domain-mindset",
+            "permanent": true
+        },
+        {
+            "source": "/docs/pmi-acp/module-01/lesson-02",
+            "destination": "/docs/pmi-acp/domains/domain-delivery",
+            "permanent": true
+        },
+        {
+            "source": "/pmi-acp/module-01/lesson-01",
+            "destination": "/docs/pmi-acp/domains/domain-mindset",
+            "permanent": true
+        },
+        {
+            "source": "/pmi-acp/module-01/lesson-02",
+            "destination": "/docs/pmi-acp/domains/domain-delivery",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
             "source": "/mock",
@@ -12,7 +34,7 @@
     ],
     "headers": [
         {
-            "source": "/mock/assets(.*)/(.*)",
+            "source": "/mock/assets/(.*)",
             "headers": [
                 {
                     "key": "Cache-Control",

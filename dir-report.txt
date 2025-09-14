@@ -1,0 +1,151 @@
+# Directory Structure Report
+- Generated at: 2025-09-12 21:08:05
+- Root: /Users/duyle/pmi-acp-site
+- Max depth: 8
+- Excludes: node_modules, .git, .docusaurus, .next, .vercel, build, dist, __pycache__, .DS_Store, *.log, *.map
+- Include hidden: False
+- Git: feat/mock-mobile-ui-polish @ 4e23b64 (clean)
+
+.
+├── blog/
+│   ├── 2025-09-08-cach-dung-site-lo-trinh-6-tuan.mdx
+│   ├── 2025-09-08-pmi-acp-blueprint-2025.mdx
+│   ├── authors.yml
+│   └── tags.yml
+├── docs/
+│   ├── pmi-acp/
+│   │   ├── module-01/
+│   │   │   ├── _category_.json
+│   │   │   ├── agile-principles.mdx
+│   │   │   └── agile-vs-scrum-kanban.mdx
+│   │   ├── plan/
+│   │   │   ├── week-1.mdx
+│   │   │   ├── week-2.mdx
+│   │   │   ├── week-3.mdx
+│   │   │   ├── week-4.mdx
+│   │   │   ├── week-5.mdx
+│   │   │   └── week-6.mdx
+│   │   └── _category_.json
+│   ├── tutorial-basics/
+│   │   ├── _category_.json
+│   │   ├── congratulations.md
+│   │   ├── create-a-blog-post.md
+│   │   ├── create-a-document.md
+│   │   ├── create-a-page.md
+│   │   ├── deploy-your-site.md
+│   │   └── markdown-features.mdx
+│   ├── tutorial-extras/
+│   │   ├── img/
+│   │   │   ├── docsVersionDropdown.png
+│   │   │   └── localeDropdown.png
+│   │   ├── _category_.json
+│   │   ├── manage-docs-versions.md
+│   │   └── translate-your-site.md
+│   └── intro.md
+├── i18n/
+│   └── en/
+│       ├── docusaurus-plugin-content-docs/
+│       │   └── current/
+│       │       └── pmi-acp/
+│       │           ├── module-01/
+│       │           │   ├── _category_.json
+│       │           │   ├── agile-principles.mdx
+│       │           │   └── agile-vs-scrum-kanban.mdx
+│       │           ├── plan/
+│       │           │   ├── week-1.mdx
+│       │           │   ├── week-2.mdx
+│       │           │   ├── week-3.mdx
+│       │           │   ├── week-4.mdx
+│       │           │   ├── week-5.mdx
+│       │           │   └── week-6.mdx
+│       │           └── _category_.json
+│       └── docusaurus-plugin-content-pages/
+│           ├── index.tsx
+│           └── start-here.md
+├── scripts/
+│   ├── copy-mock.js
+│   ├── git-commit.js
+│   ├── git-push.js
+│   └── release-mock-assets.js
+├── src/
+│   ├── components/
+│   │   ├── HomepageFeatures/
+│   │   │   ├── index.tsx
+│   │   │   └── styles.module.css
+│   │   ├── ContactForm.tsx
+│   │   ├── StartHereChecklist.tsx
+│   │   ├── StudyChecklist.tsx
+│   │   └── Subscribe.tsx
+│   ├── css/
+│   │   └── custom.css
+│   └── pages/
+│       ├── mock/
+│       │   └── index.tsx
+│       ├── about.mdx
+│       ├── contact.mdx
+│       ├── faq.mdx
+│       ├── index.module.css
+│       ├── index.tsx
+│       ├── markdown-page.md
+│       ├── mock.tsx
+│       └── start-here.mdx
+├── static/
+│   ├── img/
+│   │   ├── about-avatar.jpg
+│   │   ├── docusaurus-social-card.jpg
+│   │   ├── docusaurus.png
+│   │   ├── favicon.ico
+│   │   ├── logo.svg
+│   │   ├── undraw_docusaurus_mountain.svg
+│   │   ├── undraw_docusaurus_react.svg
+│   │   └── undraw_docusaurus_tree.svg
+│   ├── js/
+│   │   └── analytics.js
+│   └── mock/
+│       ├── assets/
+│       │   ├── app.js
+│       │   ├── constants.js
+│       │   ├── exam.js
+│       │   ├── landing.js
+│       │   ├── results.js
+│       │   ├── state.js
+│       │   ├── styles.css
+│       │   ├── templates.js
+│       │   └── utils.js
+│       ├── assets-2025-09-10-4/
+│       │   ├── app.js
+│       │   ├── constants.js
+│       │   ├── exam.js
+│       │   ├── landing.js
+│       │   ├── results.js
+│       │   ├── state.js
+│       │   ├── styles.css
+│       │   ├── templates.js
+│       │   └── utils.js
+│       ├── assets-2025-09-xx-y/
+│       │   ├── app.js
+│       │   ├── constants.js
+│       │   ├── exam.js
+│       │   ├── landing.js
+│       │   ├── results.js
+│       │   ├── state.js
+│       │   ├── styles.css
+│       │   ├── templates.js
+│       │   └── utils.js
+│       ├── index.html
+│       └── Questions.json
+├── 191191
+├── 191191.pub
+├── docusaurus.config.ts
+├── package-lock.json
+├── package.json
+├── README.md
+├── sidebars.ts
+├── Terminal Saved Output.txt
+├── tsconfig.json
+└── vercel.json
+
+## Summary
+- Directories: 30
+- Files: 107
+- Total size: 4.14 MB
