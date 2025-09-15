@@ -20,7 +20,9 @@
     "git:commit:empty": "node scripts/git-commit.js --empty",
     "git:push": "node scripts/git-push.js",
     "git:push:empty": "node scripts/git-push.js --empty",
-    "mock:release": "node scripts/release-mock-assets.js"
+    "mock:release": "node scripts/release-mock-assets.js",
+    "gen:lessons": "node scripts/gen-lessons.mjs",
+    "gen:lessons:force": "node scripts/gen-lessons.mjs --force"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.1",
