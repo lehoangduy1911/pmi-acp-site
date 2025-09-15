@@ -5,6 +5,11 @@ title: "Tuần 6 – Tổng ôn + 2 mock 120 câu"
 
 import Subscribe from '@site/src/components/Subscribe';
 import StudyChecklist from '@site/src/components/StudyChecklist';
+import Pill from '@site/src/components/Pill';
+import CtaQuickLinks from '@site/src/components/CtaQuickLinks';
+
+{/* ======= CTA nhanh: Blueprint + 4 Domain (brand green) ======= */}
+<CtaQuickLinks />
 
 <StudyChecklist
   storageKey="week-6"
@@ -20,14 +25,17 @@ import StudyChecklist from '@site/src/components/StudyChecklist';
   ]}
 />
 
+- Ngày 36–37: Tổng ôn có hệ thống → mở **[Domain hub: Mindset](/docs/pmi-acp/domains/domain-mindset)** · **[Product](/docs/pmi-acp/domains/domain-product)** · **[Delivery](/docs/pmi-acp/domains/domain-delivery)**
+- Ngày 38 & 41: Thi thử **120 câu** theo điều kiện phòng thi (tham chiếu **[Blueprint 2025](/docs/pmi-acp/blueprint-2025)**)
+- Ngày 39–40: Phân tích sai, vá lỗ hổng, drill tốc độ theo **Top 3 Topic yếu**
+- Ngày 42: Chốt chiến lược làm bài & checklist **ngày thi**
 
-- Ngày 36–42: Tổng ôn có hệ thống, 2 lần **mock 120 câu** theo điều kiện phòng thi, phân tích sai sót, khoanh vùng khoảng trống, chốt chiến lược làm bài và checklist ngày thi.
-
-## Định hướng tuần
-Tuần 6 là nước rút: **ôn theo chủ đề → thi thử đủ điều kiện → phân tích sai → bù lỗ hổng → thi thử lại**. Mục tiêu là **ổn định điểm** và **vững chiến lược**.
+## Tuần 6 – Định hướng
+Tuần 6 là nước rút: **ôn theo chủ đề → thi thử đủ điều kiện → phân tích sai → bù lỗ hổng → thi thử lại**.  
+Ôn bám **[Blueprint 2025](/docs/pmi-acp/blueprint-2025)**: <Pill tone="primary">Mindset 28%</Pill> · <Pill tone="secondary">Leadership 25%</Pill> · <Pill tone="success">Product 19%</Pill> · <Pill tone="warning">Delivery 28%</Pill>.
 
 :::tip Nhịp học gợi ý
-Mỗi ngày 2 phiên Pomodoro kép (2 × 50’) và 1 phiên review 30’. Giữ nhịp đều hơn là bùng nổ ngắn hạn.
+Mỗi ngày 2 phiên Pomodoro kép (2 × 50’) + 1 phiên review 30’. Giữ nhịp đều hơn là bùng nổ ngắn hạn.
 :::
 
 ---
@@ -39,12 +47,6 @@ Mỗi ngày 2 phiên Pomodoro kép (2 × 50’) và 1 phiên review 30’. Giữ
 - Tạo **cheat sheet 1 trang** cho bẫy thường gặp (Mindset, DoR/DoD, WSJF, CFD, Little’s Law, Retro, Expedite).
 - Lập **Error Log** cấu trúc (mẫu phía dưới).
 **Đầu ra:** mindmap + cheat sheet + bảng Error Log rỗng.
-
-**Mẫu Error Log (CSV, copy vào Excel/Google Sheets):**
-```csv
-Date,Mock,QuestionID,Topic,YourAnswer,Correct,WhyWrong,ActionToFix,Due,Status
-2025-09-__,M1,ID-___,Value/Kanban,A,C,Nhầm WIP vs throughput,Đọc lại CFD + làm 3 câu tương tự,2025-09-__,Open
-```
 
 ---
 
@@ -65,18 +67,6 @@ Date,Mock,QuestionID,Topic,YourAnswer,Correct,WhyWrong,ActionToFix,Due,Status
 - **Pacing**: 90’ đầu đạt ~60 câu, 60’ tiếp đạt ~40 câu, 30’ cuối rà soát.
 - Kỹ thuật: đánh dấu câu chưa chắc; loại trừ 2 phương án; không để trống.
 **Sau khi thi:** chấm điểm, điền Error Log (ít nhất 15 mục), gắn Topic.
-
-**Bảng tổng hợp điểm (Markdown, copy vào note):**
-```md
-### Kết quả Mock 1
-- Điểm: __ / 120  (Tỉ lệ: __%)
-- Thời gian còn lại: __ phút
-- Phân bổ sai theo Topic: Mindset __, Value __, Kanban/Flow __, Quality/XP __, Planning __, Risk __, Scaling __, Governance __
-- 3 Insight chính: 
-  1) ...
-  2) ...
-  3) ...
-```
 
 ---
 
@@ -132,86 +122,6 @@ Date,Mock,QuestionID,Topic,YourAnswer,Correct,WhyWrong,ActionToFix,Due,Status
 - [ ] Kỹ thuật làm bài: đánh dấu, loại trừ, pacing 90–60–30.  
 - [ ] Tâm lý: thở sâu 4–7–8, tạm bỏ câu mơ hồ, quay lại sau.  
 - [ ] Mục tiêu điểm tối thiểu và khoảng an toàn.
-
----
-
-## Bộ 12 câu “pre-flight”
-*(Độ dài đáp án tương đương, văn phong đồng đều. Dùng để khởi động trước Mock 1/2.)*
-
-1) Khi phải chọn giữa tuân thủ thủ tục và tối ưu trải nghiệm người dùng, hướng phù hợp hơn là:  
-A. Ưu tiên giá trị người dùng và minh bạch điều chỉnh cần thiết  
-B. Giữ đúng toàn bộ thủ tục để đảm bảo tính nhất quán  
-C. Đợi đủ tài liệu rồi mới thay đổi cách tiếp cận  
-D. Chuyển trách nhiệm cho nhóm kiểm thử để quyết định
-
-2) Khi chìa khóa là đo **kết quả**, cặp chỉ số nên ưu tiên là:  
-A. Số màn hình được triển khai và số giờ làm việc  
-B. Tỉ lệ kích hoạt tính năng và tỉ lệ giữ chân người dùng  
-C. Số tài liệu biên bản và số cuộc họp trong tuần  
-D. Tổng số story hoàn tất và tổng số bug được ghi nhận
-
-3) Để cải thiện **flow**, hành động phù hợp trước tiên là:  
-A. Tăng thêm nhiều việc đang làm để tận dụng thời gian  
-B. Mở rộng số lượng cột trên bảng để linh hoạt hơn  
-C. Giảm WIP, ưu tiên giải phóng việc gần xong và xử lý nghẽn  
-D. Hoãn review để dồn qua cuối kỳ cho đỡ gián đoạn
-
-4) Với **retrospective**, cách biến insight thành kết quả là:  
-A. Ghi nhận nhiều ý kiến và để đó cho sprint sau  
-B. Tạo thật nhiều action để mọi người chia nhau làm  
-C. Giao toàn bộ cho Scrum Master để tổng hợp sau  
-D. Chọn 1–2 action có owner, deadline và metric theo dõi
-
-5) Khi lập kế hoạch phát hành linh hoạt, phương án hợp đồng phù hợp hơn là:  
-A. Time & Materials có trần hoặc fixed-price theo iteration, phạm vi linh hoạt  
-B. Fixed-scope khóa chặt hạng mục và cấm thay đổi trong suốt hợp đồng  
-C. Cost-plus không trần và ít yêu cầu minh bạch chi phí  
-D. Đấu thầu theo giá thấp nhất và chốt mọi chi tiết ngay từ đầu
-
-6) Khi muốn tăng tần suất phát hành **an toàn**, bộ kỹ thuật nền tảng gồm:  
-A. Loại bỏ kiểm thử tự động để tiết kiệm thời gian ngắn hạn  
-B. Trunk-based nhẹ, feature flags và ưu tiên kiểm thử quan trọng  
-C. Gom tất cả thay đổi vào một bản phát hành lớn theo quý  
-D. Tăng số bước phê duyệt thủ công để siết chặt quy trình
-
-7) Để **story** sẵn sàng kéo vào kỳ làm việc tiếp theo, cần:  
-A. Mô tả ngắn gọn, không cần tiêu chí chấp nhận  
-B. Kích thước thật lớn để tối ưu hoá nỗ lực lập kế hoạch  
-C. Tiêu chí chấp nhận rõ ràng, kích thước nhỏ và có thể kiểm thử  
-D. Phụ thuộc nhiều nhóm để tận dụng năng lực chuyên sâu
-
-8) Khi stakeholder bận không tham dự buổi xem xét, cách xử lý thực tế là:  
-A. Hủy kỳ làm việc và chờ đủ người tham gia  
-B. Quay video demo ngắn, gửi kèm điểm chính và hẹn lịch sớm nhất  
-C. Chuyển toàn bộ sang tài liệu chi tiết dạng sách  
-D. Đợi đến lần xem xét sau để tránh phát sinh thêm việc
-
-9) Khi số liệu cho thấy hạng mục khẩn cấp xuất hiện, lựa chọn phù hợp là:  
-A. Đưa vào hàng chờ chung như các hạng mục tiêu chuẩn  
-B. Mở một luồng riêng không giới hạn để đẩy thật nhanh  
-C. Gắn nhãn Expedite với giới hạn số lượng và truyền thông tác động  
-D. Chờ cuối kỳ rồi xử lý để không ảnh hưởng tiến độ
-
-10) Để tránh **nợ kỹ thuật** tích tụ, chính sách chất lượng phù hợp là:  
-A. Chỉ kiểm tra bằng tay ở cuối mỗi chu kỳ làm việc  
-B. Bổ sung DoD có kiểm thử và kiểm tra phi chức năng tối thiểu  
-C. Giao toàn bộ phần kiểm thử cho nhóm chuyên trách độc lập  
-D. Bỏ tiêu chí chất lượng để tăng tốc độ trước mắt
-
-11) Khi đánh giá **giá trị** để ưu tiên backlog, cách tiếp cận hợp lý là:  
-A. Chọn hạng mục dễ làm để tăng số lượng hoàn tất  
-B. Ưu tiên theo người có tiếng nói lớn nhất trong nhóm  
-C. Dựa vào tác động mong muốn và chi phí trì hoãn theo thời gian  
-D. Xếp thứ tự theo ngày tạo ra từng hạng mục cho khách quan
-
-12) Trong một buổi **ops review**, nội dung nên tập trung là:  
-A. Kể chi tiết mọi nhiệm vụ và mọi nhật ký hệ thống  
-B. Trình bày thật nhiều biểu đồ để thể hiện đủ khía cạnh  
-C. Ba đến năm chỉ số then chốt, hành động rõ và người chịu trách nhiệm  
-D. Trì hoãn cuộc họp định kỳ khi lịch làm việc bận rộn
-
-**Đáp án:**  
-1) A · 2) B · 3) C · 4) D · 5) A · 6) B · 7) C · 8) B · 9) C · 10) B · 11) C · 12) C
 
 ---
 

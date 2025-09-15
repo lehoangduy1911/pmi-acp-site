@@ -1,9 +1,15 @@
 ---
 id: week-3
 title: Tuần 3 — XP/Quality, Problem-Solving, Scaling, Flow, Governance (Ngày 15–21)
-description: Lịch học theo ngày + mini-mock 12 câu
+description: Lịch học theo ngày bám sát ECO 2024+ (4 domain)
 ---
+
 import StudyChecklist from '@site/src/components/StudyChecklist';
+import Subscribe from '@site/src/components/Subscribe';
+import CtaQuickLinks from '@site/src/components/CtaQuickLinks';
+
+{/* ======= CTA nhanh: Blueprint + 4 Domain (brand green) ======= */}
+<CtaQuickLinks />
 
 <StudyChecklist
   storageKey="week-3"
@@ -15,98 +21,72 @@ import StudyChecklist from '@site/src/components/StudyChecklist';
     { id: 'w3-18', label: 'Ngày 18: Scaling – Scrum of Scrums, cadence tích hợp, phụ thuộc' },
     { id: 'w3-19', label: 'Ngày 19: Kanban & Flow – WIP policies, classes of service, Little’s Law' },
     { id: 'w3-20', label: 'Ngày 20: Governance/Contract – T&M-NTE vs Fixed; Agile EVM nhẹ' },
-    { id: 'w3-21', label: 'Ngày 21: Ôn tích hợp + Mini-mock 12 câu' },
+    { id: 'w3-21', label: 'Ngày 21: Ôn tích hợp (sẽ thêm mock sau)' },
   ]}
 />
 
-> **Định hướng tuần:** đi sâu kỹ thuật chất lượng, phát hiện–giải quyết vấn đề, mở rộng đa nhóm, tối ưu dòng chảy, và governance/hợp đồng kiểu Agile.
-
-## Ngày 15 — Kỹ thuật XP (TDD, Pair, CI/CD, Refactor)
-- **Mục tiêu:** hiểu “chất lượng bẩm sinh”.
-- **Làm gì:** sơ đồ vòng lặp TDD; checklist PR/pairing; pipeline CI/CD mẫu.
-- **Đầu ra:** Definition of Ready kỹ thuật (testable, small, independent).
-
-## Ngày 16 — Quality: DoD, Acceptance Criteria, BDD (Gherkin)
-- **Mục tiêu:** viết AC rõ & kịch bản BDD.
-- **Làm gì:** 3 user story → mỗi story 3–5 scenario Gherkin.
-- **Đầu ra:** DoD có kiểm thử & tiêu chí phi chức năng.
-
-## Ngày 17 — Problem Detection & Resolution (5 Whys, Fishbone, Andon, Retro)
-- **Mục tiêu:** quy trình hóa phát hiện sớm và học tập.
-- **Làm gì:** chọn 1 sự cố → 5 Whys + fishbone; template Retro (Start/Stop/Continue).
-- **Đầu ra:** 2 hành động cải tiến có owner & deadline.
-
-## Ngày 18 — Scaling & Phối hợp đa nhóm (SoS, Integration, Dependency mgmt)
-- **Mục tiêu:** giảm xung đột phụ thuộc.
-- **Làm gì:** thiết kế nhịp **Scrum of Scrums**, board phụ thuộc, “integration cadence”.
-- **Đầu ra:** lịch đồng bộ + policies “Definition of Integration”.
-
-## Ngày 19 — Kanban & Dòng chảy (WIP, Policies, Classes of Service, Little’s Law)
-- **Mục tiêu:** dùng số liệu để trơn dòng.
-- **Làm gì:** đặt WIP limit theo dữ liệu; mô tả classes of service (Standard, Expedite, Fixed-date, Intangible).
-- **Đầu ra:** Kanban board + chính sách vào/ra cột.
-
-## Ngày 20 — Governance/Contract & Agile EVM nhẹ
-- **Mục tiêu:** cân bằng minh bạch chi phí-tiến độ với linh hoạt phạm vi.
-- **Làm gì:** so sánh T&M-NTE vs Fixed-scope; bảng Agile EVM (PV/EV/AC, CPI/SPI).
-- **Đầu ra:** báo cáo tháng 1 trang (burnup + CPI/SPI + risk).
-
-## Ngày 21 — Ôn tích hợp + Mini-mock Tuần 3
-- **Mục tiêu:** nối “kỹ thuật chất lượng ↔ phát hiện vấn đề ↔ scaling ↔ flow ↔ governance”.
-- **Đầu ra:** **Mini-mock 12 câu** và kế hoạch tuần 4 theo gap.
+> **Định hướng tuần:** đi sâu **kỹ thuật chất lượng (XP)**, **phát hiện–giải quyết vấn đề**, **mở rộng đa nhóm**, **tối ưu dòng chảy**, và **governance/hợp đồng** theo tinh thần ECO 2024+.  
+> Gợi ý: tham chiếu **domain hub** phù hợp mỗi ngày (đã ghi dưới tiêu đề).
 
 ---
 
-### Mini-mock Tuần 3 (12 câu)
+## Ngày 15 — Kỹ thuật XP (TDD, Pair, CI/CD, Refactor) · _Delivery_
+**Mục tiêu:** hiểu “chất lượng bẩm sinh”.  
+**Mở trước khi học:** **[Domain: Delivery](/docs/pmi-acp/domains/domain-delivery)**  
+**Làm gì:** sơ đồ vòng lặp TDD; checklist PR/pairing; pipeline CI/CD mẫu.  
+**Đầu ra:** Definition of Ready kỹ thuật (testable, small, independent).
 
-1) Lợi ích cốt lõi của TDD:  
-A. Code nhanh hơn  B. Ít cần QA  C. Thiết kế tốt & feedback sớm  D. Bỏ tài liệu
+---
 
-2) Pair programming nên dùng khi:  
-A. Task vặt  B. Vấn đề phức tạp/rủi ro cao  C. Cuối sprint  D. Để theo dõi nhân viên
+## Ngày 16 — Quality: DoD, Acceptance Criteria, BDD (Gherkin) · _Delivery/Product_
+**Mục tiêu:** viết AC rõ & kịch bản BDD.  
+**Mở trước khi học:** **[Domain: Delivery](/docs/pmi-acp/domains/domain-delivery)** và **[Domain: Product](/docs/pmi-acp/domains/domain-product)**  
+**Làm gì:** 3 user story → mỗi story 3–5 scenario Gherkin.  
+**Đầu ra:** DoD có kiểm thử & tiêu chí phi chức năng (NFR).
 
-3) Cặp BDD đúng vai trò:  
-A. Dev viết hết  B. PO/Tester/Dev đồng sáng tác scenario  C. Chỉ QA  D. Copy spec cũ
+---
 
-4) 5 Whys dùng để:  
-A. Truy lỗi cá nhân  B. Tìm nguyên nhân gốc  C. Ước lượng  D. Chốt phạm vi
+## Ngày 17 — Problem Detection & Resolution (5 Whys, Fishbone, Retro) · _Delivery_
+**Mục tiêu:** quy trình hóa phát hiện sớm và học tập.  
+**Mở trước khi học:** **[Domain: Delivery](/docs/pmi-acp/domains/domain-delivery)**  
+**Làm gì:** chọn 1 sự cố → 5 Whys + fishbone; template Retro (Start/Stop/Continue).  
+**Đầu ra:** 2 hành động cải tiến có owner & deadline.
 
-5) Nhiều team, tích hợp khó. Làm gì trước?  
-A. Thêm rule  B. “Scrum of Scrums” + nhịp tích hợp thường xuyên  C. Tăng story size  D. Dời demo
+---
 
-6) Little’s Law: WIP=20, throughput=5 item/tuần. Cycle time ≈ ?  
-A. 2 tuần  B. 3 tuần  C. 4 tuần  D. 5 tuần
+## Ngày 18 — Scaling & Phối hợp đa nhóm (SoS, Integration cadence, Dependencies) · _Leadership/Delivery_
+**Mục tiêu:** giảm xung đột phụ thuộc.  
+**Mở trước khi học:** **[Domain: Leadership](/docs/pmi-acp/domains/domain-leadership)**  
+**Làm gì:** thiết kế nhịp **Scrum of Scrums**, board phụ thuộc, “integration cadence”.  
+**Đầu ra:** lịch đồng bộ + policies “Definition of Integration”.
 
-7) Hạng mục “expedite” trong Kanban:  
-A. Luồng riêng, giới hạn số lượng, đi nhanh  B. Hàng chờ  C. Không giới hạn  D. Để cuối tuần
+---
 
-8) Khi WIP limit bị vượt thường xuyên:  
-A. Tăng limit  B. Giữ nguyên  C. Điều tra nguyên nhân, giảm WIP & cải thiện policies  D. Thêm việc nhỏ
+## Ngày 19 — Kanban & Dòng chảy (WIP, Policies, Classes of Service, Little’s Law) · _Delivery_
+**Mục tiêu:** dùng số liệu để trơn dòng.  
+**Mở trước khi học:** **[Domain: Delivery](/docs/pmi-acp/domains/domain-delivery)**  
+**Làm gì:** đặt WIP limit theo dữ liệu; mô tả classes of service (Standard, Expedite, Fixed-date, Intangible).  
+**Đầu ra:** Kanban board + chính sách vào/ra cột.
 
-9) Agile EVM: PV=50, EV=40, AC=45. Đúng nhất:  
-A. `CPI>1, SPI>1`  
-B. `CPI<1, SPI<1` (trễ & vượt chi)  
-C. `CPI>1, SPI<1`  
-D. `CPI<1, SPI>1`
+---
 
-10) Hợp đồng phù hợp Agile:  
-A. Fixed-scope cố định mọi thứ  B. T&M có trần (NTE) hoặc fixed-price theo iteration, scope linh hoạt  C. Cost-plus không trần  D. Đấu thầu thấp nhất
+## Ngày 20 — Governance/Contract & Agile EVM nhẹ · _Leadership_
+**Mục tiêu:** cân bằng minh bạch chi phí-tiến độ với linh hoạt phạm vi.  
+**Mở trước khi học:** **[Domain: Leadership](/docs/pmi-acp/domains/domain-leadership)**  
+**Làm gì:** so sánh T&M-NTE vs Fixed-scope; bảng Agile EVM (PV/EV/AC, CPI/SPI).  
+**Đầu ra:** báo cáo tháng 1 trang (burnup + CPI/SPI + risk).
 
-11) Yêu cầu tuân thủ xuất hiện giữa iteration:  
-A. Bỏ qua  B. Thêm DoD/Definition of Compliance tối thiểu & giải quyết sớm  C. Dừng dự án  D. Giao pháp lý tự làm
+---
 
-12) Retro ra 8 action, sprint sau chẳng ai làm. Tốt nhất:  
-A. Bỏ retro  B. Giao hết cho Scrum Master  C. Chọn 1–2 action có owner & đo tác động  D. Tạo thêm biểu mẫu
+## Ngày 21 — Ôn tích hợp (sẽ thêm mock sau)
+**Mục tiêu:** nối “kỹ thuật chất lượng ↔ phát hiện vấn đề ↔ scaling ↔ flow ↔ governance”.  
+**Làm gì:** review nhanh note 6 ngày trước, đóng gap; ôn lại **bẫy đề** trong các domain hub.  
+**Đầu ra:** danh sách **Top 5 khoảng trống** + kế hoạch Week 4.
 
-**Đáp án & giải thích nhanh:**  
-1) C. 2) B. 3) B. 4) B. 5) B. 6) C (20/5=4).  
-7) A. 8) C. 9) B (`CPI=40/45<1`, `SPI=40/50<1`). 10) B. 11) B. 12) C.
+---
 
-
-
-import Subscribe from '@site/src/components/Subscribe';
-
-{/* --- nội dung tuần 3 của bạn --- */}
+{/* Bỏ toàn bộ phần mini-mock/câu hỏi tự check tại chỗ; mock sẽ bổ sung ở trang riêng.
+    Giữ nguyên 308 redirect trên Vercel (không cần đổi gì trong trang tuần). */}
 
 ## Nhận email nhắc học tuần 3
 <Subscribe source="week-3" />
