@@ -4,24 +4,303 @@ title: "Iterative vs Incremental"
 sidebar_label: "Iterative vs Incremental"
 slug: "/pmi-acp/domains/mindset/iterative-vs-incremental"
 sidebar_position: 2
-description: "WIP — Bài viết \"Iterative vs Incremental\"."
-tags: ["article"]
+description: "Agile core patterns: Iterative (refine the whole) vs Incremental (add usable parts), and how Scrum blends both each Sprint."
+tags: ["agile", "iterative", "incremental", "scrum", "kanban", "mvp", "mindset"]
+image: "/img/iterative-vs-incremental.png"
 ---
-
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import StudyChecklist from '@site/src/components/StudyChecklist';
+import CtaQuickLinks from '@site/src/components/CtaQuickLinks';
+import MiniMockAuto from '@site/src/components/MiniMockAuto';
 
 <Tabs groupId="lang">
 
 <TabItem value="vi" label="VI" default>
-    <h2>Tóm tắt (VI)</h2>
-<p>Đây là khung bài <strong>Iterative vs Incremental</strong> (tiếng Việt).</p>
+
+{/* ======= CTA nhanh: Blueprint + 4 Domain (brand green) ======= */}
+<CtaQuickLinks />
+
+{/* ==== Checklist học nhanh (VI) ==== */}
+<StudyChecklist
+  storageKey="iterative-vs-incremental-vi"
+  title="Checklist ôn nhanh – Iterative vs Incremental (VI)"
+  items={[
+    { id: 'vi-01', label: 'Nêu định nghĩa Iterative và Incremental bằng 1 câu' },
+    { id: 'vi-02', label: 'Ví dụ: thiết kế xe hơi (Iterative) vs lắp ráp theo cụm (Incremental)' },
+    { id: 'vi-03', label: 'Giải thích cách Scrum kết hợp cả hai trong mỗi Sprint' },
+    { id: 'vi-04', label: 'Nhận diện rào cản khi chuyển từ Waterfall sang Agile' },
+  ]}
+/>
+
+<img src="/img/iterative-vs-incremental.png" alt="Sơ đồ: Iterative (tinh chỉnh toàn thể) vs Incremental (thêm từng lát giá trị) trong Agile/Scrum" />
+
+<h2>Tóm tắt (VI)</h2>
+<p><strong>Iterative</strong> = <em>lặp &amp; tinh chỉnh toàn thể</em> (đi từ thô → tinh). <strong>Incremental</strong> = <em>gia tăng giá trị theo phần</em> (thêm từng mảnh hoàn chỉnh, dùng được). <strong>Agile</strong> kết hợp cả hai: <em>mỗi Sprint</em> bàn giao <strong>một increment dùng được</strong> và <strong>đồng thời</strong> <em>tinh chỉnh</em> các phần đã có dựa trên phản hồi.</p>
+
+<h2>1) Phân biệt nhanh</h2>
+
+<h3>Iterative Development (Phát triển lặp lại)</h3>
+<ul>
+  <li><strong>Khái niệm:</strong> Làm việc trên <em>toàn bộ sản phẩm</em> ở mức độ thô, rồi <strong>lặp lại để tinh chỉnh</strong> đến khi đạt chất lượng mong muốn.</li>
+  <li><strong>Ẩn dụ:</strong> <em>Nhà điêu khắc</em> gọt giũa cùng một bức tượng qua nhiều lượt.</li>
+  <li><strong>Ví dụ:</strong> Thiết kế xe hơi: vòng 1 tạo mô hình đất sét tổng thể; vòng 2 tinh đường nét thân xe; vòng 3 bổ sung nội thất… <em>toàn bộ xe</em> được <strong>cải thiện dần</strong>.</li>
+  <li><strong>Key:</strong> Tập trung <em>refinement</em>, tăng <strong>độ chi tiết &amp; chất lượng</strong> qua từng vòng lặp.</li>
+</ul>
+
+<h3>Incremental Development (Phát triển gia tăng)</h3>
+<ul>
+  <li><strong>Khái niệm:</strong> Xây sản phẩm <strong>theo từng phần hoàn chỉnh</strong> (increment). Mỗi phần <strong>dùng được</strong> và <strong>tăng giá trị</strong> so với trước.</li>
+  <li><strong>Ẩn dụ:</strong> <em>Xây nhà</em> theo từng khối: nền → tường một phòng → mái phòng đó…</li>
+  <li><strong>Ví dụ:</strong> Lắp ráp xe hơi theo cụm: increment 1 = khung gầm + động cơ chạy được; increment 2 = thân vỏ hoàn chỉnh; increment 3 = nội thất đầy đủ… <em>mỗi increment đều “xong” ở phạm vi của nó</em>.</li>
+  <li><strong>Key:</strong> Tập trung <em>delivery</em> <strong>từng phần dùng được</strong>, nối tiếp nhau tạo thành tổng thể.</li>
+</ul>
+
+{/* ==== Liên kết nội bộ quan trọng (VI) ==== */}
+<h3>🔗 Liên kết nội bộ</h3>
+
+| Chủ đề | Liên kết |
+|---|---|
+| What Is Agile | [Agile là gì?](/docs/pmi-acp/domains/mindset/what-is-agile) |
+| Blueprint & trọng số | [Blueprint 2025](/docs/pmi-acp/blueprint-2025) |
+| Mindset (hub) | [Mindset](/docs/pmi-acp/domains/mindset) |
+| Leadership (hub) | [Leadership](/docs/pmi-acp/domains/leadership) |
+| Product (hub) | [Product](/docs/pmi-acp/domains/product) |
+| Delivery (hub) | [Delivery](/docs/pmi-acp/domains/delivery) |
+| Mini-mock | [Làm bài Mock](/mock) |
+
+<h2>2) Sự kết hợp: Iterative + Incremental trong Agile</h2>
+<p><strong>Agile</strong> (Scrum/Kanban) không chọn 1 trong 2, mà <strong>kết hợp</strong> để vừa <em>ra giá trị sớm</em> (incremental) vừa <em>nâng chất lượng liên tục</em> (iterative).</p>
+<ul>
+  <li><strong>Sprint 1 (Increment 1):</strong> Đăng nhập + xem số dư (dùng được).</li>
+  <li><strong>Sprint 2 (Increment 2):</strong> Thêm chuyển tiền (mảnh giá trị mới).</li>
+  <li><strong>Refinement lặp lại:</strong> dựa trên feedback, cải thiện UI đăng nhập, tối ưu hiệu năng…</li>
+</ul>
+
+<h2>2.1) Khi nào ưu tiên Iterative / Incremental?</h2>
+
+<h3>Ưu tiên Iterative khi…</h3>
+<ul>
+  <li>Thiết kế/kiến trúc tổng thể còn mơ hồ, cần <strong>định hình toàn cục</strong> trước.</li>
+  <li>Cần <strong>nâng dần chất lượng/độ chi tiết</strong> qua nhiều vòng feedback.</li>
+  <li>Bài toán R&amp;D/UX cần <strong>thử-sai nhanh</strong> trên toàn bức tranh.</li>
+</ul>
+
+<h3>Ưu tiên Incremental khi…</h3>
+<ul>
+  <li>Mục tiêu là <strong>time-to-value sớm</strong>: cắt <strong>những lát giá trị</strong> bàn giao được ngay.</li>
+  <li>Hệ thống cho phép <strong>độc lập hoá tính năng/module</strong> để release từng phần.</li>
+  <li>Cần <strong>đo lường tác động</strong> theo từng tính năng (A/B, event, funnel…).</li>
+</ul>
+
+<h3>Kết hợp trong Scrum</h3>
+<ul>
+  <li>Mỗi <strong>Sprint</strong> bàn giao <strong>increment dùng được</strong> (Incremental), đồng thời <strong>refine</strong> phần đã có (Iterative).</li>
+</ul>
+
+<h2>3) So sánh với truyền thống &amp; rào cản chuyển đổi</h2>
+
+<h3>Bảng so sánh</h3>
+
+| Đặc trưng | Traditional (Waterfall) | Incremental | Iterative | Agile (Iterative & Incremental) |
+|---|---|---|---|---|
+| Yêu cầu | Cố định sớm | Cố định sớm, giao theo phần | Tiến hoá theo thời gian | Tiến hoá &amp; thích nghi liên tục |
+| Giao hàng | Một lần cuối kỳ | Nhiều đợt, mỗi phần dùng được | Một lần cuối kỳ, nhưng chất lượng tinh dần | Thường xuyên, nhỏ, dùng được |
+| Phản hồi | Cuối dự án | Theo từng increment | Theo mỗi vòng lặp | Liên tục trong suốt dự án |
+
+<h3>Rào cản khi áp dụng Agile</h3>
+<ul>
+  <li><strong>Hợp đồng giá cố định:</strong> xung đột với tính linh hoạt → cân nhắc T&amp;M, milestone/value-based.</li>
+  <li><strong>Thiếu tham gia của stakeholder:</strong> Agile đòi hỏi <em>feedback thường xuyên</em>, không chỉ duyệt cuối kỳ.</li>
+  <li><strong>Nặng tài liệu upfront:</strong> chuyển sang nguyên tắc <em>Working product over documentation</em> (tài liệu “vừa đủ”).</li>
+  <li><strong>Cấu trúc đội silo:</strong> cần <strong>đội đa chức năng, tự tổ chức</strong> để rút ngắn vòng phản hồi.</li>
+</ul>
+
+<h2>4) FAQ (VI)</h2>
+
+<h3>Phát triển gia tăng có giống Agile không?</h3>
+<ul>
+  <li><strong>Không.</strong> Gia tăng là <em>một phần</em> của Agile. Agile mạnh vì <strong>kết hợp</strong> gia tăng <em>và</em> lặp lại.</li>
+</ul>
+
+<h3>Một dự án chỉ lặp lại hoặc chỉ gia tăng được không?</h3>
+<ul>
+  <li><strong>Có.</strong> CAD/CAM cũ có thể thuần <em>iterative</em>; xây dựng lớn có thể thuần <em>incremental</em>. Nhưng <strong>phần mềm</strong> hiếm khi chỉ dùng một cách.</li>
+</ul>
+
+<h3>MVP liên quan gì đến Incremental?</h3>
+<ul>
+  <li><strong>MVP</strong> thường là <strong>increment đầu tiên</strong>: phiên bản đơn giản nhất tạo <strong>giá trị cốt lõi</strong> để nhận phản hồi nhanh.</li>
+</ul>
+<MiniMockAuto
+  storageKey="mm-iterative-incremental"
+  title="Mini-mock – Iterative vs Incremental"
+  count={5}
+  seed="iterative-vs-incremental"
+  includesText={["iterative","incremental","iteration","increment","gia tăng","lặp"]}
+  completeChecklistKeys={["iterative-vs-incremental-vi","iterative-vs-incremental-en"]}
+/>
+
+<hr />
+
+<p><strong>Bước tiếp theo:</strong> Quay lại <a href="/docs/pmi-acp/domains/mindset/what-is-agile">Agile là gì?</a> • Xem <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a> • Vào <a href="/docs/pmi-acp/domains/mindset">Mindset hub</a> • Làm <a href="/mock">Mini-mock</a>.</p>
+
 </TabItem>
 
 <TabItem value="en" label="EN">
-    <h2>Summary (EN)</h2>
-<p>This is the <strong>Iterative vs Incremental</strong> skeleton (English).</p>
+
+{/* ======= CTA: Blueprint + 4 Domains ======= */}
+<CtaQuickLinks />
+
+{/* ==== Checklist (EN) ==== */}
+<StudyChecklist
+  storageKey="iterative-vs-incremental-en"
+  title="Quick Self-Check – Iterative vs Incremental (EN)"
+  items={[
+    { id: 'en-01', label: 'State one-sentence definitions for Iterative and Incremental' },
+    { id: 'en-02', label: 'Recall car examples: sculpting (Iterative) vs assembling modules (Incremental)' },
+    { id: 'en-03', label: 'Explain how Scrum combines both within a Sprint' },
+    { id: 'en-04', label: 'List barriers when shifting from Waterfall to Agile' },
+  ]}
+/>
+
+<img src="/img/iterative-vs-incremental.png" alt="Diagram: Iterative (refine whole) vs Incremental (add usable slices) in Agile/Scrum" />
+
+<h2>Summary (EN)</h2>
+<p><strong>Iterative</strong> = <em>refine the whole</em> (coarse → detailed over cycles). <strong>Incremental</strong> = <em>add usable parts</em> (each piece is complete and valuable). <strong>Agile</strong> blends both: each <em>Sprint</em> ships a <strong>usable increment</strong> while <strong>iteratively</strong> refining what already exists via feedback.</p>
+
+<h2>1) Quick contrast</h2>
+
+<h3>Iterative Development</h3>
+<ul>
+  <li><strong>Concept:</strong> Work on the <em>entire product</em> in rough form, then <strong>repeat to refine</strong> until done.</li>
+  <li><strong>Analogy:</strong> A <em>sculptor</em> shaping the same statue through multiple passes.</li>
+  <li><strong>Example:</strong> Car design: iteration 1 rough clay model; iteration 2 refine body lines; iteration 3 add interior details—<em>the whole car</em> gets <strong>better each pass</strong>.</li>
+  <li><strong>Key:</strong> Focus on <em>refinement</em>, increasing <strong>detail &amp; quality</strong> each iteration.</li>
+</ul>
+
+<h3>Incremental Development</h3>
+<ul>
+  <li><strong>Concept:</strong> Build the product <strong>piece by piece</strong>. Each <strong>increment</strong> is <strong>complete &amp; usable</strong>.</li>
+  <li><strong>Analogy:</strong> <em>House-building</em> by finished sections: foundation → one room’s walls → that room’s roof…</li>
+  <li><strong>Example:</strong> Car assembly by modules: increment 1 = running chassis + engine; increment 2 = complete body shell; increment 3 = finished interior—<em>each increment is done</em> in its scope.</li>
+  <li><strong>Key:</strong> Emphasis on <em>delivery</em> of <strong>usable value slices</strong>.</li>
+</ul>
+
+{/* ==== Internal links (EN) ==== */}
+<h3>🔗 Internal links</h3>
+
+| Topic | Link |
+|---|---|
+| What Is Agile | [What Is Agile?](/docs/pmi-acp/domains/mindset/what-is-agile) |
+| Blueprint & weights | [Blueprint 2025](/docs/pmi-acp/blueprint-2025) |
+| Mindset hub | [Mindset](/docs/pmi-acp/domains/mindset) |
+| Leadership hub | [Leadership](/docs/pmi-acp/domains/leadership) |
+| Product hub | [Product](/docs/pmi-acp/domains/product) |
+| Delivery hub | [Delivery](/docs/pmi-acp/domains/delivery) |
+| Mini-mock | [Take the Mock](/mock) |
+
+<h2>2) The synergy: Iterative + Incremental in Agile</h2>
+<p><strong>Agile</strong> combines both so you <em>ship value early</em> (incremental) and <em>improve quality continuously</em> (iterative).</p>
+<ul>
+  <li><strong>Sprint 1 (Increment 1):</strong> Login + balance (usable).</li>
+  <li><strong>Sprint 2 (Increment 2):</strong> Add money transfer (new value).</li>
+  <li><strong>Iterative refinement:</strong> Improve the login UI and performance based on feedback.</li>
+</ul>
+
+<h2>2.1) When to favor Iterative vs Incremental?</h2>
+
+<h3>Prefer Iterative when…</h3>
+<ul>
+  <li>The overall design/architecture is fuzzy; you must <strong>shape the whole</strong> first.</li>
+  <li>You need to <strong>improve quality/detail</strong> over multiple feedback cycles.</li>
+  <li>R&amp;D/UX work requires <strong>rapid trial-and-refinement</strong> at a system level.</li>
+</ul>
+
+<h3>Prefer Incremental when…</h3>
+<ul>
+  <li>You aim for <strong>early time-to-value</strong>: ship <strong>value slices</strong> that users can use now.</li>
+  <li>The system allows <strong>feature/module independence</strong> to release in parts.</li>
+  <li>You want to <strong>measure impact</strong> feature by feature (A/B, events, funnels).</li>
+</ul>
+
+<h3>Blend in Scrum</h3>
+<ul>
+  <li>Each <strong>Sprint</strong> ships a <strong>usable increment</strong> (Incremental) while <strong>refining</strong> existing work (Iterative).</li>
+</ul>
+
+<h2>3) Comparison vs traditional &amp; adoption barriers</h2>
+
+<h3>Comparison table</h3>
+
+| Characteristic | Traditional (Waterfall) | Incremental | Iterative | Agile (Iterative & Incremental) |
+|---|---|---|---|---|
+| Requirements | Fixed upfront | Upfront, delivered in parts | Evolve over time | Evolve &amp; adapt continuously |
+| Delivery | One big at the end | Incremental deliveries | One big, refined over time | Frequent, small, usable deliveries |
+| Feedback | End of project | Per increment | Per iteration | Continuous throughout |
+
+<h3>Barriers to adopting Agile</h3>
+<ul>
+  <li><strong>Fixed-price contracts:</strong> conflict with flexibility → consider T&amp;M or value/milestone models.</li>
+  <li><strong>Lack of active stakeholders:</strong> Agile needs <em>frequent feedback</em>, not just end-of-project review.</li>
+  <li><strong>Documentation obsession:</strong> shift to <em>working product over documentation</em> (with “just enough” docs).</li>
+  <li><strong>Team silos:</strong> move toward <strong>cross-functional, self-managing teams</strong> to shorten feedback loops.</li>
+</ul>
+
+<h2>4) FAQ (EN)</h2>
+
+<h3>Is Incremental the same as Agile?</h3>
+<ul>
+  <li><strong>No.</strong> Incremental is a <em>component</em> of Agile. Agile’s strength is the <strong>blend</strong> of incremental and iterative.</li>
+</ul>
+
+<h3>Can a project be only Iterative or only Incremental?</h3>
+<ul>
+  <li><strong>Yes.</strong> Some CAD/CAM work is purely <em>iterative</em>; some construction is purely <em>incremental</em>. Software rarely benefits from a single approach.</li>
+</ul>
+
+<h3>What’s the relationship between MVP and Incremental?</h3>
+<ul>
+  <li>An <strong>MVP</strong> is often the <strong>first increment</strong>—the simplest version that delivers core value to gather real feedback.</li>
+</ul>
+<MiniMockAuto
+  storageKey="mm-iterative-incremental"
+  title="Mini-mock – Iterative vs Incremental"
+  count={5}
+  seed="iterative-vs-incremental"
+  includesText={["iterative","incremental","iteration","increment","gia tăng","lặp"]}
+  completeChecklistKeys={["iterative-vs-incremental-vi","iterative-vs-incremental-en"]}
+/>
+
+<hr />
+
+<p><strong>Next steps:</strong> Go back to <a href="/docs/pmi-acp/domains/mindset/what-is-agile">What Is Agile?</a> • See <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a> • Jump to <a href="/docs/pmi-acp/domains/mindset">Mindset hub</a> • Try the <a href="/mock">Mini-mock</a>.</p>
+
 </TabItem>
 </Tabs>
 
+{/* FAQ schema for rich results (EN) */}
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type":"Question",
+      "name":"Is Incremental the same as Agile?",
+      "acceptedAnswer":{"@type":"Answer","text":"No. Incremental is a component of Agile. Agile’s strength is blending incremental and iterative."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can a project be only Iterative or only Incremental?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes, but software projects rarely benefit from a single approach; Agile combines both for better outcomes."}
+    },
+    {
+      "@type":"Question",
+      "name":"What’s the relationship between MVP and Incremental?",
+      "acceptedAnswer":{"@type":"Answer","text":"An MVP is often the first increment—the simplest version that delivers core value to collect real feedback."}
+    }
+  ]
+})}
+</script>
