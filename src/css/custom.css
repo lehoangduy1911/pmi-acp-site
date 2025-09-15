@@ -90,12 +90,9 @@ html[data-theme='dark'] .hero--primary {
    ========================================================= */
 .breadcrumbs {
   flex-wrap: wrap;
-  /* Cho phép xuống dòng trên mobile */
   gap: .25rem .5rem;
   margin-bottom: .25rem;
-  /* Khít phần tiêu đề tài liệu */
   font-size: .9rem;
-  /* Nhỏ hơn heading một chút */
 }
 
 .breadcrumbs__link {
@@ -105,20 +102,17 @@ html[data-theme='dark'] .hero--primary {
   transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
 }
 
-/* Hover có nền nhẹ với item không active */
 .breadcrumbs__item:not(.breadcrumbs__item--active) .breadcrumbs__link:hover {
   text-decoration: none;
   background: var(--ifm-color-emphasis-200);
 }
 
-/* Focus ring cho keyboard users */
 .breadcrumbs__link:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--ifm-background-color),
     0 0 0 4px color-mix(in oklab, var(--ifm-color-primary) 70%, white);
 }
 
-/* Mục hiện tại đậm & màu primary */
 .breadcrumbs__item--active .breadcrumbs__link {
   color: var(--ifm-color-primary);
   font-weight: 600;
@@ -126,19 +120,16 @@ html[data-theme='dark'] .hero--primary {
   cursor: default;
 }
 
-/* Dấu phân cách mờ nhẹ để tăng tương phản text */
 .breadcrumbs__item .breadcrumbs__separator {
   opacity: .5;
 }
 
-/* Tối ưu thêm cho màn hình hẹp */
 @media (max-width: 600px) {
   .breadcrumbs {
     font-size: .9rem;
     line-height: 1.5;
   }
 }
-
 
 /* ==== Brand Green (Light/Dark) ==== */
 :root {
@@ -232,7 +223,6 @@ html[data-theme='dark'] .hero--primary {
   color: var(--brand-on-green);
 }
 
-/* Focus ring a11y */
 .button--brand:focus-visible,
 .button--brand-ghost:focus-visible {
   outline: 3px solid color-mix(in oklab, var(--brand-green-600), white 30%);
@@ -249,4 +239,272 @@ html[data-theme='dark'] .hero--primary {
   border-radius: 999px;
   font-weight: 600;
   white-space: nowrap;
+}
+
+/* ===== Mini-mock wizard UI ===== */
+.mm-wizard .mm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: .25rem
+}
+
+.mm-wizard .mm-title {
+  margin: 0;
+  font-size: 1.1rem
+}
+
+.mm-wizard .mm-score {
+  font-size: .95rem
+}
+
+.mm-steps {
+  display: flex;
+  gap: .35rem;
+  flex-wrap: wrap;
+  margin: .25rem 0 .5rem
+}
+
+.mm-step {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  cursor: pointer;
+}
+
+.mm-step.is-current {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ifm-color-primary) 25%, transparent)
+}
+
+.mm-step.is-answered {
+  background: var(--ifm-color-emphasis-200)
+}
+
+.mm-step.is-correct {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #2e7d32
+}
+
+.mm-step.is-wrong {
+  background: #c62828;
+  color: #fff;
+  border-color: #c62828
+}
+
+.mm-toolbar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: .25rem 0 .75rem
+}
+
+.mm-toolbar .mm-progress {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-200);
+  overflow: hidden
+}
+
+.mm-toolbar .mm-progress__bar {
+  height: 100%;
+  background: var(--ifm-color-primary);
+  transition: width .3s
+}
+
+.mm-q {
+  padding: 1rem 1.1rem
+}
+
+.mm-q__head {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  margin-bottom: .5rem
+}
+
+.mm-q__text {
+  font-weight: 600;
+  line-height: 1.55
+}
+
+.mm-options {
+  margin: .25rem 0;
+  padding: 0;
+  border: 0
+}
+
+.mm-option {
+  display: flex;
+  gap: .6rem;
+  align-items: flex-start;
+  padding: .7rem .75rem;
+  margin-top: .55rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, background .15s
+}
+
+.mm-option:hover {
+  border-color: var(--ifm-color-primary)
+}
+
+.mm-option.is-selected {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ifm-color-primary) 25%, transparent)
+}
+
+.mm-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--ifm-color-emphasis-200);
+  font-weight: 700
+}
+
+.mm-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none
+}
+
+.mm-option__text {
+  flex: 1 1 auto
+}
+
+.mm-option.is-correct {
+  border-color: #2e7d32;
+  background: color-mix(in srgb, #2e7d32 10%, transparent)
+}
+
+.mm-option.is-correct .mm-letter {
+  background: #2e7d32;
+  color: #fff
+}
+
+.mm-option.is-wrong {
+  border-color: #c62828;
+  background: color-mix(in srgb, #c62828 10%, transparent)
+}
+
+.mm-option.is-wrong .mm-letter {
+  background: #c62828;
+  color: #fff
+}
+
+.mm-state {
+  font-weight: 700;
+  margin-left: .25rem
+}
+
+.mm-state--ok {
+  color: #2e7d32
+}
+
+.mm-state--no {
+  color: #c62828
+}
+
+.mm-explain {
+  margin-top: .6rem
+}
+
+.mm-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-top: .75rem
+}
+
+/* ===== Sticky VI/EN toggle cho <Tabs groupId="lang"> ===== */
+:root {
+  --lang-tabs-offset: 8px;
+}
+
+/* khoảng cách dưới navbar */
+
+/* 2 NHÁNH: khớp cả DOM cũ & DOM mới */
+.tabs-container.lang-tabs .tabs,
+.tabs.lang-tabs {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height, 60px) + var(--lang-tabs-offset));
+  z-index: 102;
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  width: max-content;
+  padding: 4px;
+  margin: 0 0 12px 0;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .06);
+}
+
+/* Segmented-control look */
+.tabs-container.lang-tabs .tabs .tabs__item,
+.tabs.lang-tabs .tabs__item {
+  border-radius: 999px;
+  padding: 8px 16px;
+  margin: 0 2px;
+  line-height: 1;
+  transition: background .15s, color .15s, transform .15s;
+}
+
+.tabs-container.lang-tabs .tabs .tabs__item:hover,
+.tabs.lang-tabs .tabs__item:hover {
+  transform: translateY(-1px);
+}
+
+.tabs-container.lang-tabs .tabs .tabs__item--active,
+.tabs.lang-tabs .tabs__item--active {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-color-white);
+}
+
+/* Mobile friendly */
+@media (max-width: 996px) {
+
+  .tabs-container.lang-tabs .tabs,
+  .tabs.lang-tabs {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 6px;
+    border-radius: 12px;
+    /* bo nhẹ hơn cho mobile */
+  }
+
+  .tabs-container.lang-tabs .tabs .tabs__item,
+  .tabs.lang-tabs .tabs__item {
+    padding: 10px 16px;
+    font-size: .95rem;
+  }
+}
+
+/* iOS safe area */
+@supports(padding:max(0px)) {
+
+  .tabs-container.lang-tabs .tabs,
+  .tabs.lang-tabs {
+    padding-left: max(6px, env(safe-area-inset-left));
+    padding-right: max(6px, env(safe-area-inset-right));
+  }
+}
+
+/* Tránh sticky che tiêu đề khi nhảy anchor/Mục lục */
+.theme-doc-markdown h2[id],
+.theme-doc-markdown h3[id],
+.theme-doc-markdown h4[id] {
+  scroll-margin-top: calc(var(--ifm-navbar-height, 60px) + 56px);
 }
