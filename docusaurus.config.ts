@@ -10,6 +10,7 @@ const config: Config = {
   tagline: 'Dạy lại những gì đã học',
   favicon: 'img/favicon.ico',
   future: { v4: true },
+
   url: 'https://vnoptimus.vercel.app',
   baseUrl: '/',
   organizationName: 'lehoangduy1911',
@@ -22,7 +23,10 @@ const config: Config = {
   i18n: {
     defaultLocale: 'vi',
     locales: ['vi', 'en'],
-    localeConfigs: { vi: { label: 'Tiếng Việt' }, en: { label: 'English' } },
+    localeConfigs: {
+      vi: { label: 'Tiếng Việt' },
+      en: { label: 'English' },
+    },
   },
 
   stylesheets: [
@@ -34,10 +38,12 @@ const config: Config = {
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          routeBasePath: 'docs',               // explicit cho rõ ràng
+          sidebarPath: require.resolve('./sidebars.ts'),
           editUrl: 'https://github.com/lehoangduy1911/pmi-acp-site/tree/main/',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          numberPrefixParser: true,            // ✅ giữ thứ tự theo tiền tố số
         },
         blog: {
           showReadingTime: true,
@@ -71,17 +77,14 @@ const config: Config = {
   ],
 
   // ✅ Redirect URL cũ của Module 01 → trang mới trong ACP Blueprint 2025
-  // Giữ duy nhất 1 biến thể cho mỗi "from" (không kèm dấu "/" cuối) để tránh EEXIST.
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // lesson-01 → Mindset
           { from: '/docs/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/domain-mindset' },
           { from: '/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/domain-mindset' },
 
-          // lesson-02 → Delivery
           { from: '/docs/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/domain-delivery' },
           { from: '/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/domain-delivery' },
         ],
@@ -103,22 +106,42 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
-    docs: { sidebar: { hideable: true, autoCollapseCategories: true } },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
+
+    // =================== NAVBAR (đã làm gọn như hình) ===================
     navbar: {
       title: 'VNOptimus',
       logo: { alt: 'VNOptimus', src: 'img/logo.svg' },
       items: [
+        // Trái: 4 mục chính
         { to: '/start-here', label: 'Start Here', position: 'left' },
-        { to: '/docs/pmi-acp/plan/week-1', label: 'Kế hoạch học', position: 'left' },
-        { to: '/mock', label: 'Mock 50/120', position: 'left' },
+        { to: '/docs/pmi-acp/blueprint-2025', label: 'Blueprint 2025', position: 'left' },
+        { to: '/mock', label: 'Luyện đề', position: 'left' },            // (Mock 50/120)
         { to: '/blog', label: 'Blog', position: 'left' },
-        { to: '/faq', label: 'FAQ', position: 'left' },
-        { to: '/about', label: 'About', position: 'left' },
+
+        // Phải: ngôn ngữ + search + More (gom mục phụ)
         { type: 'localeDropdown', position: 'right' },
-        { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub', position: 'right' },
-        { to: '/contact', label: 'Contact', position: 'left' },
+        { type: 'search', position: 'right' },
+        {
+          type: 'dropdown',
+          label: 'More',
+          position: 'right',
+          items: [
+            { to: '/faq', label: 'FAQ' },
+            { to: '/about', label: 'About' },
+            { to: '/contact', label: 'Contact' },
+            { href: 'https://github.com/lehoangduy1911/pmi-acp-site', label: 'GitHub' },
+          ],
+        },
       ],
     },
+    // ===================================================================
+
     announcementBar: {
       id: 'welcome',
       content:
@@ -135,7 +158,7 @@ const config: Config = {
         {
           title: 'Học nhanh',
           items: [
-            // Bạn có thể đổi sang 'Blueprint 2025' sau khi test redirect xong.
+            // có thể đổi sang 'Blueprint 2025' sau khi test redirect xong
             { label: 'Module 01', to: '/docs/pmi-acp/module-01/lesson-01' },
             { label: 'Kế hoạch Tuần 1', to: '/docs/pmi-acp/plan/week-1' },
           ],
