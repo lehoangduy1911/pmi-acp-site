@@ -51,7 +51,6 @@ const config: Config = {
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
-        // ✅ dùng require.resolve để chắc chắn bundle đúng file CSS
         theme: { customCss: require.resolve('./src/css/custom.css') },
       } satisfies Preset.Options,
     ],
@@ -70,6 +69,10 @@ const config: Config = {
         blogRouteBasePath: '/blog',
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
+
+        // ✅ Bản plugin hiện tại yêu cầu boolean: tắt phím tắt để tránh crash
+        searchBarShortcut: false,
+        searchBarShortcutHint: false,
       },
     ],
   ],
@@ -101,9 +104,7 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
-    docs: {
-      sidebar: { hideable: true, autoCollapseCategories: true },
-    },
+    docs: { sidebar: { hideable: true, autoCollapseCategories: true } },
 
     navbar: {
       title: 'VNOptimus',

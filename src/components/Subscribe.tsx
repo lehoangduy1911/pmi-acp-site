@@ -1,24 +1,86 @@
 import React, { useState, useId } from "react";
 
-/** CẤU HÌNH: chọn 1 trong 2 chế độ gửi dữ liệu */
-const ENDPOINT_MODE: "n8n" | "formspree" = "n8n";
-// 1) Nếu dùng n8n (khuyên dùng – free, chủ động dữ liệu):
-const N8N_WEBHOOK_URL = "https://YOUR-N8N-HOST/webhook/subscribe";
-// 2) Nếu dùng Formspree (siêu nhanh):
+/** Chọn 1 trong 3 (mặc định: formsubmit) */
+const ENDPOINT_MODE: "n8n" | "formspree" | "formsubmit" = "formsubmit";
+
+// n8n (nếu sau này dùng)
+const N8N_WEBHOOK_URL = "https://YOUR-N8N/webhook/subscribe";
+// Formspree (nếu sau này dùng)
 const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID";
 
-type Props = { source?: string }; // ví dụ: "docs:start-here" | "blog:hello-world"
+/** FormSubmit
+ *  - AJAX trả JSON (thường cần Origin/Referer hợp lệ).
+ *  - Non-AJAX trả HTML, nhưng vẫn gửi email (ít lỗi hơn, hợp dev/local).
+ */
+const FORMSUBMIT_AJAX = "https://formsubmit.co/ajax/lehoangduy1911@gmail.com";
+const FORMSUBMIT_HTML = "https://formsubmit.co/lehoangduy1911@gmail.com";
+
+type Props = { source?: string };
 
 export default function Subscribe({ source = "unknown" }: Props) {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
     const [msg, setMsg] = useState("");
-    const [hp, setHp] = useState(""); // honeypot chống bot
+    const [hp, setHp] = useState("");
     const inputId = useId();
 
     const validateEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
     const emailValid = validateEmail(email);
+
+    async function sendViaFormsubmit() {
+        // --- Thử AJAX trước ---
+        const fd = new FormData();
+        fd.append("email", email);
+        fd.append("name", name);
+        fd.append("source", source);
+        fd.append("origin", typeof window !== "undefined" ? window.location.href : "");
+        fd.append("ts", new Date().toISOString());
+        fd.append("_subject", "New PMI-ACP subscribe");
+        fd.append("_template", "table");
+        fd.append("_captcha", "false");
+        fd.append("_replyto", email);
+
+        try {
+            const res = await fetch(FORMSUBMIT_AJAX, {
+                method: "POST",
+                body: fd,
+                headers: { Accept: "application/json" },
+            });
+            const data = await res.json().catch(() => ({} as any));
+            // success của FormSubmit là "true" (string)
+            if (res.ok && String((data as any)?.success) === "true") {
+                return { ok: true as const, mode: "ajax" as const };
+            }
+            const reason = (data as any)?.message || "AJAX not allowed";
+            console.warn("[FormSubmit][AJAX] failed:", reason);
+            throw new Error(reason);
+        } catch {
+            // --- Fallback sang endpoint HTML: fire-and-forget cho local ---
+            const body = new URLSearchParams({
+                email,
+                name,
+                source,
+                origin: typeof window !== "undefined" ? window.location.href : "",
+                ts: new Date().toISOString(),
+                _subject: "New PMI-ACP subscribe",
+                _template: "table",
+                _captcha: "false",
+                _replyto: email,
+            });
+
+            await fetch(FORMSUBMIT_HTML, {
+                method: "POST",
+                // ⚠️ no-cors -> response "opaque" (không đọc được status), nhưng server vẫn nhận POST
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body,
+            });
+
+            // Xem như thành công (server sẽ gửi mail nếu đã confirm unlock)
+            return { ok: true as const, mode: "html-no-cors" as const };
+        }
+    }
 
     async function onSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -26,24 +88,20 @@ export default function Subscribe({ source = "unknown" }: Props) {
             setMsg("Email không hợp lệ");
             return;
         }
-        if (hp) return; // bot điền honeypot → bỏ qua
+        if (hp) return; // honeypot
+
         setStatus("loading");
         setMsg("");
+
         try {
             if (ENDPOINT_MODE === "n8n") {
                 const res = await fetch(N8N_WEBHOOK_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        email,
-                        name,
-                        source,
-                        list: "pmi-acp",
-                        ts: new Date().toISOString(),
-                    }),
+                    body: JSON.stringify({ email, name, source, list: "pmi-acp", ts: new Date().toISOString() }),
                 });
                 if (!res.ok) throw new Error("n8n error");
-            } else {
+            } else if (ENDPOINT_MODE === "formspree") {
                 const fd = new FormData();
                 fd.append("email", email);
                 fd.append("name", name);
@@ -53,15 +111,24 @@ export default function Subscribe({ source = "unknown" }: Props) {
                     body: fd,
                     headers: { Accept: "application/json" },
                 });
-                if (!res.ok) throw new Error("formspree error");
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok || (data && data.ok === false))
+                    throw new Error(data?.errors?.[0]?.message || "formspree error");
+            } else {
+                const r = await sendViaFormsubmit();
+                console.log("[FormSubmit] sent via:", r.mode);
             }
+
             setStatus("ok");
-            setMsg("Đăng ký thành công! Kiểm tra email xác nhận (nếu có).");
+            setMsg(
+                "Đã gửi đăng ký."
+            );
             setEmail("");
             setName("");
-        } catch {
+        } catch (err: any) {
+            console.error(err);
             setStatus("error");
-            setMsg("Có lỗi xảy ra. Vui lòng thử lại sau.");
+            setMsg(err?.message || "Có lỗi xảy ra. Vui lòng thử lại sau.");
         }
     }
 
@@ -82,6 +149,7 @@ export default function Subscribe({ source = "unknown" }: Props) {
             <div style={{ display: "flex", gap: 8 }}>
                 <input
                     id={`${inputId}-email`}
+                    name="email"
                     type="email"
                     required
                     placeholder="you@example.com"
@@ -108,6 +176,7 @@ export default function Subscribe({ source = "unknown" }: Props) {
             </div>
 
             <input
+                name="name"
                 type="text"
                 placeholder="Tên (tuỳ chọn)"
                 value={name}
@@ -120,7 +189,7 @@ export default function Subscribe({ source = "unknown" }: Props) {
                 }}
             />
 
-            {/* Honeypot ẩn cho bot */}
+            {/* Honeypot ẩn */}
             <input
                 type="text"
                 value={hp}
