@@ -70,7 +70,7 @@ const config: Config = {
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
 
-        // ✅ Bản plugin hiện tại yêu cầu boolean: tắt phím tắt để tránh crash
+        // tránh crash do phím tắt
         searchBarShortcut: false,
         searchBarShortcutHint: false,
       },
@@ -114,7 +114,10 @@ const config: Config = {
         { to: '/docs/pmi-acp/blueprint-2025', label: 'Blueprint 2025', position: 'left' },
         { to: '/mock', label: 'Luyện đề', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
-        { type: 'localeDropdown', position: 'right' },
+
+        // 👇 vẫn khai báo i18n nhưng ẩn bằng CSS
+        { type: 'localeDropdown', position: 'right', className: 'localeToggleHidden' },
+
         { type: 'search', position: 'right' },
         {
           type: 'dropdown',

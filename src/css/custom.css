@@ -1,4 +1,24 @@
 /* =========================
+   Hide locale toggle (navbar + mobile)
+   - Giữ i18n chạy ngầm, chỉ ẩn nút
+   ========================= */
+.localeToggleHidden {
+  display: none !important;
+}
+
+.navbar__items .localeToggleHidden,
+.menu__list .localeToggleHidden {
+  display: none !important;
+}
+
+/* (Phòng hờ) Nếu Docusaurus gắn class mặc định cho locale dropdown */
+.navbar__item--locale-dropdown,
+.menu__list .navbar__item--locale-dropdown {
+  display: none !important;
+}
+
+
+/* =========================
    Brand + globals
    ========================= */
 :root {
@@ -115,10 +135,9 @@ html[data-theme='dark'] .hero--primary {
   padding: 16px;
   background: var(--ifm-background-surface-color);
   transition: transform .15s ease, box-shadow .15s ease;
-
-  /* đảm bảo phần actions luôn nằm cùng 1 hàng đáy */
   display: flex;
   flex-direction: column;
+  /* actions luôn ở đáy */
 }
 
 .vno-card:hover {
@@ -126,13 +145,8 @@ html[data-theme='dark'] .hero--primary {
   box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
 }
 
-.vno-card__body {
-  /* nội dung trên */
-}
-
 .vno-card__actions {
   margin-top: auto;
-  /* đẩy cụm nút xuống đáy card */
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
@@ -153,7 +167,7 @@ html[data-theme='dark'] .hero--primary {
   color: var(--ifm-color-emphasis-700);
   border-radius: 6px;
   padding: 2px 6px;
-  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+  transition: background-color .15s, color .15s, box-shadow .15s;
 }
 
 .breadcrumbs__item:not(.breadcrumbs__item--active) .breadcrumbs__link:hover {
@@ -201,9 +215,8 @@ html[data-theme='dark'] .hero--primary {
   border: 1px solid color-mix(in oklab, var(--brand-green-700), black 10%);
   box-shadow: 0 2px 12px rgba(0, 0, 0, .07);
   margin-bottom: 1rem;
-
-  /* 💡 chữ trắng trên nền xanh */
   color: var(--brand-on-green);
+  /* chữ trắng */
 }
 
 .cta-quick a {
@@ -234,7 +247,6 @@ html[data-theme='dark'] .hero--primary {
   background: linear-gradient(135deg, var(--brand-green-600), var(--brand-green-700));
   border: 1px solid color-mix(in oklab, var(--brand-green-900), white 6%);
   color: #fff;
-  /* luôn trắng */
   box-shadow:
     0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent),
     0 0 0 1px color-mix(in oklab, var(--brand-green-700) 30%, transparent) inset;
@@ -270,7 +282,6 @@ html[data-theme='dark'] .hero--primary {
   color: #fff;
 }
 
-/* mobile: gọn hơn một chút */
 @media (max-width: 996px) {
   .cta-quick .cta-download {
     padding: .8rem 1.05rem;
@@ -281,7 +292,6 @@ html[data-theme='dark'] .hero--primary {
     font-weight: 700;
   }
 }
-
 
 /* ==== Brand Buttons ==== */
 .button--brand {
@@ -297,7 +307,6 @@ html[data-theme='dark'] .hero--primary {
   padding-inline: .9rem;
 }
 
-/* Ghost đứng trên nền xanh → chữ luôn trắng */
 .button--brand-ghost {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, .55);
@@ -320,14 +329,11 @@ html[data-theme='dark'] .hero--primary {
   outline-offset: 2px;
 }
 
-/* Badge trên nền xanh */
-/* Badge bên phải trong thanh CTA – thu nhỏ lại */
+/* Badge trên nền xanh (CTA) */
 .cta-quick .pill-badge {
   font-size: .85rem;
-  /* nhỏ hơn */
   line-height: 1.1;
   padding: .25rem .6rem;
-  /* ít đệm hơn */
   border-radius: 999px;
   background: color-mix(in oklab, #ffffff 10%, transparent 90%);
   color: #ffffff;
@@ -335,14 +341,12 @@ html[data-theme='dark'] .hero--primary {
   opacity: .95;
 }
 
-/* Mobile: gọn thêm một chút */
 @media (max-width: 996px) {
   .cta-quick .pill-badge {
     font-size: .8rem;
     padding: .22rem .5rem;
   }
 }
-
 
 /* =========================
    Mini-mock wizard UI
@@ -549,11 +553,8 @@ html[data-theme='dark'] .hero--primary {
   padding: 4px;
   margin: 0 0 12px 0;
   box-shadow: 0 8px 18px rgba(0, 0, 0, .06);
-
-  /* dock về bên phải để không che nội dung */
   margin-left: auto;
   margin-right: 0;
-
   -webkit-backdrop-filter: saturate(160%) blur(6px);
   backdrop-filter: saturate(160%) blur(6px);
 }
