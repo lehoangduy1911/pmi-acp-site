@@ -1,11 +1,11 @@
 import React, { useState, useId } from "react";
 
-/** Mặc định dùng formsubmit */
+/** Giữ FormSubmit làm mặc định */
 const ENDPOINT_MODE: "n8n" | "formspree" | "formsubmit" = "formsubmit";
 
-// n8n (nếu dùng sau này)
+// n8n (để dành)
 const N8N_WEBHOOK_URL = "https://YOUR-N8N/webhook/subscribe";
-// Formspree (nếu dùng sau này)
+// Formspree (để dành)
 const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID";
 
 /** FormSubmit endpoints */
@@ -17,6 +17,38 @@ type Props = { source?: string };
 const IS_BROWSER = typeof window !== "undefined";
 const isLocalhost =
     IS_BROWSER && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+
+/** ✅ Production-safe: submit qua form + iframe ẩn (không CORS, chạy cả /docs lẫn /pages) */
+function postViaHiddenForm(url: string, fields: Record<string, string>) {
+    if (!IS_BROWSER) return;
+
+    const iframeName = `fs_iframe_${Date.now()}`;
+    const iframe = document.createElement("iframe");
+    iframe.name = iframeName;
+    iframe.style.display = "none";
+
+    const form = document.createElement("form");
+    form.action = url;
+    form.method = "POST";
+    form.target = iframeName;
+    form.style.display = "none";
+
+    for (const [k, v] of Object.entries(fields)) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = k;
+        input.value = v ?? "";
+        form.appendChild(input);
+    }
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(() => {
+        try { form.remove(); iframe.remove(); } catch { }
+    }, 3000);
+}
 
 export default function Subscribe({ source = "unknown" }: Props) {
     const [email, setEmail] = useState("");
@@ -42,35 +74,37 @@ export default function Subscribe({ source = "unknown" }: Props) {
             _replyto: email,
         };
 
-        // 🧪 Local: thử AJAX trước để có JSON; fail -> no-cors HTML
-        if (isLocalhost) {
-            const fd = new FormData();
-            Object.entries(common).forEach(([k, v]) => fd.append(k, v));
-            try {
-                const res = await fetch(FORMSUBMIT_AJAX, {
-                    method: "POST",
-                    body: fd,
-                    headers: { Accept: "application/json" },
-                });
-                const data = await res.json().catch(() => ({} as any));
-                if (res.ok && String((data as any)?.success) === "true") {
-                    return { ok: true as const, mode: "ajax" as const };
-                }
-                throw new Error((data as any)?.message || "AJAX not allowed");
-            } catch {
-                // rơi xuống no-cors bên dưới
-            }
+        // 🌐 Production: luôn dùng hidden form (ổn định trên mọi trang)
+        if (!isLocalhost) {
+            postViaHiddenForm(FORMSUBMIT_HTML, common);
+            return { ok: true as const, mode: "html-hidden-form" as const };
         }
 
-        // 🌐 Production (và fallback cho local): luôn POST no-cors tới HTML endpoint
-        const body = new URLSearchParams(common);
-        await fetch(FORMSUBMIT_HTML, {
-            method: "POST",
-            mode: "no-cors", // fire-and-forget, tránh CORS/preflight trên mọi trang (docs/pages)
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body,
-        });
-        return { ok: true as const, mode: "html-no-cors" as const };
+        // 🧪 Local: thử AJAX -> nếu fail fallback HTML no-cors
+        const fd = new FormData();
+        Object.entries(common).forEach(([k, v]) => fd.append(k, v));
+
+        try {
+            const res = await fetch(FORMSUBMIT_AJAX, {
+                method: "POST",
+                body: fd,
+                headers: { Accept: "application/json" },
+            });
+            const data = await res.json().catch(() => ({} as any));
+            if (res.ok && String((data as any)?.success) === "true") {
+                return { ok: true as const, mode: "ajax" as const };
+            }
+            throw new Error((data as any)?.message || "AJAX not allowed");
+        } catch {
+            const body = new URLSearchParams(common);
+            await fetch(FORMSUBMIT_HTML, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body,
+            });
+            return { ok: true as const, mode: "html-no-cors" as const };
+        }
     }
 
     async function onSubmit(e: React.FormEvent) {
