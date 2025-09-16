@@ -5,6 +5,22 @@
     color-scheme: light;
     --pager-h: 64px;
     --container-pad-x: clamp(12px, 3vw, 20px);
+
+    /* Brand Green palette */
+    --brand-green-50: #ecfdf5;
+    --brand-green-100: #d1fae5;
+    --brand-green-200: #a7f3d0;
+    --brand-green-500: #22c55e;
+    --brand-green-600: #16a34a;
+    /* primary */
+    --brand-green-700: #15803d;
+    /* hover/darker */
+    --brand-green-800: #166534;
+    /* dark surface */
+    --brand-green-900: #14532d;
+
+    --on-brand: #ffffff;
+    /* text on any brand green surface */
 }
 
 * {
@@ -30,8 +46,9 @@ body {
     line-height: 1.5;
 }
 
+/* Focus ring → brand green */
 :focus-visible {
-    outline: 2px solid #6366f1;
+    outline: 2px solid var(--brand-green-600);
     outline-offset: 2px;
 }
 
@@ -114,8 +131,6 @@ body {
     min-width: 110px;
 }
 
-/* Trang ← → */
-
 /* =========================
    Toolbar (exam)
    ========================= */
@@ -158,7 +173,7 @@ body {
     justify-content: flex-end;
 }
 
-/* Progress */
+/* Progress → brand green */
 .toolbar .progressbar .bar-bg {
     height: 6px;
     background: #e5e7eb;
@@ -168,7 +183,7 @@ body {
 
 .toolbar .progressbar .bar-fg {
     height: 100%;
-    background: #4f46e5;
+    background: var(--brand-green-600);
 }
 
 /* =========================
@@ -200,9 +215,10 @@ input[type="number"] {
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #6366f1;
+    border-color: var(--brand-green-600);
 }
 
+/* Buttons */
 button,
 .btn-anim {
     position: relative;
@@ -228,12 +244,19 @@ button:active,
     transform: translateY(1px) scale(.98);
 }
 
+/* Primary → brand green + white text */
 .btn-primary {
-    background: #4f46e5;
-    border-color: #4f46e5;
-    color: #fff;
+    background: var(--brand-green-600);
+    border-color: var(--brand-green-600);
+    color: var(--on-brand);
 }
 
+.btn-primary:hover {
+    background: var(--brand-green-700);
+    border-color: var(--brand-green-700);
+}
+
+/* Ghost / Outline */
 .btn-ghost {
     background: #fff;
     border-color: #e5e7eb;
@@ -242,8 +265,13 @@ button:active,
 
 .btn-outline {
     background: #fff;
-    border-color: #c7d2fe;
-    color: #3730a3;
+    border-color: var(--brand-green-200);
+    color: var(--brand-green-800);
+}
+
+.btn-outline:hover {
+    border-color: var(--brand-green-600);
+    color: var(--brand-green-800);
 }
 
 .btn-lg {
@@ -252,7 +280,7 @@ button:active,
     font-size: 1rem;
 }
 
-/* Ripple */
+/* Ripple → brand green */
 .ripple {
     position: absolute;
     pointer-events: none;
@@ -261,7 +289,8 @@ button:active,
     width: 0;
     height: 0;
     border-radius: 9999px;
-    background: rgba(99, 102, 241, .25);
+    background: rgba(22, 163, 74, .25);
+    /* #16a34a */
     transform: translate(-50%, -50%);
     animation: ripple .6s ease-out forwards;
 }
@@ -313,12 +342,6 @@ button:active,
     color: #334155;
 }
 
-.chip-emerald {
-    background: #ecfdf5;
-    color: #065f46;
-    border-color: #a7f3d0;
-}
-
 .chip-rose {
     background: #fef2f2;
     color: #991b1b;
@@ -337,6 +360,14 @@ button:active,
     border-color: #fdba74;
 }
 
+/* Brand chip → nền xanh lá & chữ trắng */
+.chip-emerald,
+.chip-timer {
+    background: var(--brand-green-600);
+    color: var(--on-brand);
+    border-color: var(--brand-green-600);
+}
+
 .chip-topic {
     max-width: min(46vw, 260px);
     overflow: hidden;
@@ -345,18 +376,6 @@ button:active,
 
 .chip-flag {
     cursor: pointer;
-}
-
-.chip-timer {
-    background: #4f46e5;
-    color: #fff;
-    border-color: #4f46e5;
-}
-
-.chip-warn {
-    background: #fff7ed;
-    color: #9a3412;
-    border-color: #fdba74;
 }
 
 .badge {
@@ -368,9 +387,10 @@ button:active,
     font-weight: 500;
 }
 
+/* Badge brand → nền xanh lá & chữ trắng */
 .badge-emerald {
-    background: #ecfdf5;
-    color: #065f46;
+    background: var(--brand-green-600);
+    color: var(--on-brand);
 }
 
 .badge-rose {
@@ -383,6 +403,7 @@ button:active,
     color: #374151;
 }
 
+/* Pills */
 .num-pill {
     display: flex;
     align-items: center;
@@ -401,9 +422,10 @@ button:active,
     color: #64748b;
 }
 
+/* Answered → brand green + white text */
 .num-answered {
-    background: #d1fae5;
-    color: #065f46;
+    background: var(--brand-green-600);
+    color: var(--on-brand);
 }
 
 .num-flag {
@@ -435,18 +457,19 @@ button:active,
 }
 
 .opt:hover {
-    border-color: #c7d2fe;
+    border-color: var(--brand-green-200);
 }
 
 .opt:active {
     transform: translateY(1px);
 }
 
+/* Selected → brand green + white text */
 .opt[data-selected="true"] {
-    background: #4f46e5;
-    color: #fff;
-    border-color: #4f46e5;
-    box-shadow: 0 10px 20px -10px rgba(79, 70, 229, .45);
+    background: var(--brand-green-600);
+    color: var(--on-brand);
+    border-color: var(--brand-green-600);
+    box-shadow: 0 10px 20px -10px rgba(22, 163, 74, .45);
 }
 
 /* =========================
@@ -536,8 +559,8 @@ article[data-card] {
     gap: 10px;
     padding: 26px;
     background:
-        radial-gradient(1200px 400px at -10% -20%, #eef2ff 8%, transparent 60%),
-        radial-gradient(900px 360px at 120% 120%, #ecfeff 8%, transparent 60%),
+        radial-gradient(1200px 400px at -10% -20%, #e8fff1 8%, transparent 60%),
+        radial-gradient(900px 360px at 120% 120%, #ecfff5 8%, transparent 60%),
         #ffffff;
 }
 
@@ -565,10 +588,11 @@ article[data-card] {
     gap: 8px;
 }
 
+/* Hero art → xanh lá */
 .hero-art {
     min-height: 140px;
     border-radius: 14px;
-    background: linear-gradient(135deg, #eef2ff, #e0e7ff 40%, #c7d2fe 100%);
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0 40%, #86efac 100%);
     mask-image: radial-gradient(120% 120% at 100% 0, #000 60%, transparent 75%);
 }
 
@@ -589,11 +613,12 @@ article[data-card] {
     padding: 0 14px;
 }
 
+/* Selected → brand green + white text */
 .seg .opt[data-selected="true"] {
-    background: #4f46e5;
-    color: #fff;
+    background: var(--brand-green-600);
+    color: var(--on-brand);
     border-radius: 10px;
-    box-shadow: 0 10px 20px -12px rgba(79, 70, 229, .45);
+    box-shadow: 0 10px 20px -12px rgba(22, 163, 74, .45);
 }
 
 /* Labels & fields */
@@ -637,7 +662,7 @@ article[data-card] {
     padding-bottom: 6px;
 }
 
-/* CTA: center toàn bộ cụm như bạn yêu cầu */
+/* CTA: center */
 .landing-actions {
     margin-top: 18px;
     display: flex;
