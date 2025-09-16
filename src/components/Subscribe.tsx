@@ -1,14 +1,14 @@
 import React, { useState, useId } from "react";
 
-/** Endpoint mode (giữ FormSubmit) */
+/** Mặc định dùng formsubmit */
 const ENDPOINT_MODE: "n8n" | "formspree" | "formsubmit" = "formsubmit";
 
-// n8n (nếu sau này dùng)
+// n8n (nếu dùng sau này)
 const N8N_WEBHOOK_URL = "https://YOUR-N8N/webhook/subscribe";
-// Formspree (nếu sau này dùng)
+// Formspree (nếu dùng sau này)
 const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID";
 
-/** FormSubmit */
+/** FormSubmit endpoints */
 const FORMSUBMIT_AJAX = "https://formsubmit.co/ajax/lehoangduy1911@gmail.com";
 const FORMSUBMIT_HTML = "https://formsubmit.co/lehoangduy1911@gmail.com";
 
@@ -18,58 +18,19 @@ const IS_BROWSER = typeof window !== "undefined";
 const isLocalhost =
     IS_BROWSER && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
 
-/** Post an HTML form via a hidden iframe (CORS-proof, best for production) */
-function postViaHiddenForm(url: string, fields: Record<string, string>) {
-    if (!IS_BROWSER) return;
-
-    const iframeName = `fs_iframe_${Date.now()}`;
-    const iframe = document.createElement("iframe");
-    iframe.name = iframeName;
-    iframe.style.display = "none";
-
-    const form = document.createElement("form");
-    form.action = url;
-    form.method = "POST";
-    form.target = iframeName;
-    form.style.display = "none";
-
-    Object.entries(fields).forEach(([k, v]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = k;
-        input.value = v ?? "";
-        form.appendChild(input);
-    });
-
-    document.body.appendChild(iframe);
-    document.body.appendChild(form);
-    form.submit();
-
-    // dọn dẹp sau 3s
-    setTimeout(() => {
-        try {
-            form.remove();
-            iframe.remove();
-        } catch { }
-    }, 3000);
-}
-
 export default function Subscribe({ source = "unknown" }: Props) {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
-    const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">(
-        "idle"
-    );
+    const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
     const [msg, setMsg] = useState("");
     const [hp, setHp] = useState("");
     const inputId = useId();
 
-    const validateEmail = (v: string) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+    const validateEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
     const emailValid = validateEmail(email);
 
     async function sendViaFormsubmit() {
-        const common = {
+        const common: Record<string, string> = {
             email,
             name,
             source,
@@ -81,45 +42,40 @@ export default function Subscribe({ source = "unknown" }: Props) {
             _replyto: email,
         };
 
-        // ✅ Production: dùng form ẩn (ổn định nhất trên Vercel)
-        if (!isLocalhost) {
-            postViaHiddenForm(FORMSUBMIT_HTML, common);
-            return { ok: true as const, mode: "html-hidden-form" as const };
-        }
-
-        // 🧪 Local dev: thử AJAX trước, fail thì fallback no-cors
-        const fd = new FormData();
-        Object.entries(common).forEach(([k, v]) => fd.append(k, v));
-
-        try {
-            const res = await fetch(FORMSUBMIT_AJAX, {
-                method: "POST",
-                body: fd,
-                headers: { Accept: "application/json" },
-            });
-            const data = await res.json().catch(() => ({} as any));
-            if (res.ok && String((data as any)?.success) === "true") {
-                return { ok: true as const, mode: "ajax" as const };
+        // 🧪 Local: thử AJAX trước để có JSON; fail -> no-cors HTML
+        if (isLocalhost) {
+            const fd = new FormData();
+            Object.entries(common).forEach(([k, v]) => fd.append(k, v));
+            try {
+                const res = await fetch(FORMSUBMIT_AJAX, {
+                    method: "POST",
+                    body: fd,
+                    headers: { Accept: "application/json" },
+                });
+                const data = await res.json().catch(() => ({} as any));
+                if (res.ok && String((data as any)?.success) === "true") {
+                    return { ok: true as const, mode: "ajax" as const };
+                }
+                throw new Error((data as any)?.message || "AJAX not allowed");
+            } catch {
+                // rơi xuống no-cors bên dưới
             }
-            throw new Error((data as any)?.message || "AJAX not allowed");
-        } catch {
-            const body = new URLSearchParams(common);
-            await fetch(FORMSUBMIT_HTML, {
-                method: "POST",
-                mode: "no-cors", // fire-and-forget cho local
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body,
-            });
-            return { ok: true as const, mode: "html-no-cors" as const };
         }
+
+        // 🌐 Production (và fallback cho local): luôn POST no-cors tới HTML endpoint
+        const body = new URLSearchParams(common);
+        await fetch(FORMSUBMIT_HTML, {
+            method: "POST",
+            mode: "no-cors", // fire-and-forget, tránh CORS/preflight trên mọi trang (docs/pages)
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body,
+        });
+        return { ok: true as const, mode: "html-no-cors" as const };
     }
 
     async function onSubmit(e: React.FormEvent) {
         e.preventDefault();
-        if (!emailValid) {
-            setMsg("Email không hợp lệ");
-            return;
-        }
+        if (!emailValid) { setMsg("Email không hợp lệ"); return; }
         if (hp) return; // honeypot
 
         setStatus("loading");
@@ -130,39 +86,23 @@ export default function Subscribe({ source = "unknown" }: Props) {
                 const res = await fetch(N8N_WEBHOOK_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        email,
-                        name,
-                        source,
-                        list: "pmi-acp",
-                        ts: new Date().toISOString(),
-                    }),
+                    body: JSON.stringify({ email, name, source, list: "pmi-acp", ts: new Date().toISOString() }),
                 });
                 if (!res.ok) throw new Error("n8n error");
             } else if (ENDPOINT_MODE === "formspree") {
                 const fd = new FormData();
-                fd.append("email", email);
-                fd.append("name", name);
-                fd.append("source", source);
-                const res = await fetch(FORMSPREE_URL, {
-                    method: "POST",
-                    body: fd,
-                    headers: { Accept: "application/json" },
-                });
+                fd.append("email", email); fd.append("name", name); fd.append("source", source);
+                const res = await fetch(FORMSPREE_URL, { method: "POST", body: fd, headers: { Accept: "application/json" } });
                 const data = await res.json().catch(() => ({}));
-                if (!res.ok || (data && data.ok === false))
-                    throw new Error(data?.errors?.[0]?.message || "formspree error");
+                if (!res.ok || (data && data.ok === false)) throw new Error(data?.errors?.[0]?.message || "formspree error");
             } else {
                 const r = await sendViaFormsubmit();
                 console.log("[FormSubmit] sent via:", r.mode);
             }
 
             setStatus("ok");
-            setMsg(
-                "Đã gửi đăng ký. Nếu đây là lần đầu, hãy mở hộp thư lehoangduy1911@gmail.com để 'Confirm' FormSubmit (một lần duy nhất)."
-            );
-            setEmail("");
-            setName("");
+            setMsg("Đã gửi đăng ký. Nếu đây là lần đầu, hãy mở hộp thư lehoangduy1911@gmail.com để 'Confirm' FormSubmit (một lần duy nhất).");
+            setEmail(""); setName("");
         } catch (err: any) {
             console.error(err);
             setStatus("error");
@@ -172,21 +112,14 @@ export default function Subscribe({ source = "unknown" }: Props) {
 
     if (status === "ok") {
         return (
-            <div
-                className="alert alert--success"
-                role="status"
-                style={{ marginTop: 16 }}
-            >
+            <div className="alert alert--success" role="status" style={{ marginTop: 16 }}>
                 <strong>Đã đăng ký.</strong> {msg}
             </div>
         );
     }
 
     return (
-        <form
-            onSubmit={onSubmit}
-            style={{ marginTop: 16, display: "grid", gap: 8, maxWidth: 520 }}
-        >
+        <form onSubmit={onSubmit} style={{ marginTop: 16, display: "grid", gap: 8, maxWidth: 520 }}>
             <label htmlFor={`${inputId}-email`} style={{ fontWeight: 600 }}>
                 Nhận email nhắc học (miễn phí)
             </label>
@@ -202,12 +135,7 @@ export default function Subscribe({ source = "unknown" }: Props) {
                     onChange={(e) => setEmail(e.target.value)}
                     aria-label="Email"
                     className="input"
-                    style={{
-                        flex: 1,
-                        padding: "10px 12px",
-                        borderRadius: 8,
-                        border: "1px solid var(--ifm-color-emphasis-300)",
-                    }}
+                    style={{ flex: 1, padding: "10px 12px", borderRadius: 8, border: "1px solid var(--ifm-color-emphasis-300)" }}
                 />
                 <button
                     type="submit"
@@ -227,11 +155,7 @@ export default function Subscribe({ source = "unknown" }: Props) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="input"
-                style={{
-                    padding: "10px 12px",
-                    borderRadius: 8,
-                    border: "1px solid var(--ifm-color-emphasis-300)",
-                }}
+                style={{ padding: "10px 12px", borderRadius: 8, border: "1px solid var(--ifm-color-emphasis-300)" }}
             />
 
             {/* Honeypot ẩn */}
@@ -241,31 +165,17 @@ export default function Subscribe({ source = "unknown" }: Props) {
                 onChange={(e) => setHp(e.target.value)}
                 tabIndex={-1}
                 autoComplete="off"
-                style={{
-                    position: "absolute",
-                    left: "-10000px",
-                    top: "auto",
-                    width: 1,
-                    height: 1,
-                    overflow: "hidden",
-                }}
+                style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}
                 aria-hidden="true"
             />
 
             {msg && (
-                <div
-                    className={`alert ${status === "error" ? "alert--danger" : "alert--info"
-                        }`}
-                    role="status"
-                    aria-live="polite"
-                >
+                <div className={`alert ${status === "error" ? "alert--danger" : "alert--info"}`} role="status" aria-live="polite">
                     {msg}
                 </div>
             )}
 
-            <small style={{ opacity: 0.8 }}>
-                Không spam. Bạn có thể huỷ đăng ký bất cứ lúc nào.
-            </small>
+            <small style={{ opacity: 0.8 }}>Không spam. Bạn có thể huỷ đăng ký bất cứ lúc nào.</small>
         </form>
     );
 }
