@@ -233,7 +233,8 @@ html[data-theme='dark'] .hero--primary {
   border-radius: 16px;
   background: linear-gradient(135deg, var(--brand-green-600), var(--brand-green-700));
   border: 1px solid color-mix(in oklab, var(--brand-green-900), white 6%);
-  color: #fff; /* luôn trắng */
+  color: #fff;
+  /* luôn trắng */
   box-shadow:
     0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent),
     0 0 0 1px color-mix(in oklab, var(--brand-green-700) 30%, transparent) inset;
@@ -265,7 +266,7 @@ html[data-theme='dark'] .hero--primary {
   line-height: 1;
   padding: .2rem .5rem;
   border-radius: 999px;
-  background: rgba(255,255,255,.16);
+  background: rgba(255, 255, 255, .16);
   color: #fff;
 }
 
@@ -275,7 +276,10 @@ html[data-theme='dark'] .hero--primary {
     padding: .8rem 1.05rem;
     border-radius: 14px;
   }
-  .cta-download__text { font-weight: 700; }
+
+  .cta-download__text {
+    font-weight: 700;
+  }
 }
 
 
@@ -319,13 +323,15 @@ html[data-theme='dark'] .hero--primary {
 /* Badge trên nền xanh */
 /* Badge bên phải trong thanh CTA – thu nhỏ lại */
 .cta-quick .pill-badge {
-  font-size: .85rem;      /* nhỏ hơn */
+  font-size: .85rem;
+  /* nhỏ hơn */
   line-height: 1.1;
-  padding: .25rem .6rem;  /* ít đệm hơn */
+  padding: .25rem .6rem;
+  /* ít đệm hơn */
   border-radius: 999px;
   background: color-mix(in oklab, #ffffff 10%, transparent 90%);
   color: #ffffff;
-  border: 1px solid rgba(255,255,255,.45);
+  border: 1px solid rgba(255, 255, 255, .45);
   opacity: .95;
 }
 
@@ -611,4 +617,10 @@ html[data-theme='dark'] .hero--primary {
 /* 🌟 Utility: ép chữ trắng khi thành phần nằm trên nền xanh */
 .on-green {
   color: #ffffff !important;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-lightest);
 }
