@@ -1,19 +1,20 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type OptionKey = 'A' | 'B' | 'C' | 'D';
 
 export type Option = { key: OptionKey; text: string };
 export type Question = {
     id: string;
-    question: string;              // EN question (shown when doing the test)
-    options: Option[];             // EN options
+    question: string;              // EN question (Markdown OK)
+    options: Option[];             // EN options (Markdown OK)
     correct: OptionKey;
-    explanation?: string;          // EN explanation
-    // VI is shown ONLY after submit
+    explanation?: string;          // EN explanation (Markdown OK)
     vi?: {
-        question?: string;
-        options?: { A?: string; B?: string; C?: string; D?: string };
-        explanation?: string;
+        question?: string;         // VI question (Markdown OK)
+        options?: { A?: string; B?: string; C?: string; D?: string }; // Markdown OK
+        explanation?: string;      // VI explanation (Markdown OK)
     };
 };
 
@@ -33,6 +34,29 @@ type Props = {
     /** Hiện tiếng Việt chỉ sau submit */
     showVIOnSubmit?: boolean;
 };
+
+/** Helper render Markdown – KHÔNG truyền className vào ReactMarkdown (v9 đã bỏ) */
+function MarkdownText({
+    children,
+    inline = false,
+    className,
+}: { children?: string; inline?: boolean; className?: string }) {
+    const components: any = {
+        // mở link trong tab mới
+        a: (props: any) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+    };
+    if (inline) {
+        // tránh sinh <p> block-level trong label
+        components.p = (props: any) => <span {...props} />;
+    }
+    const node = (
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+            {children || ''}
+        </ReactMarkdown>
+    );
+    // cần class để style -> bọc bên ngoài
+    return className ? <div className={className}>{node}</div> : node;
+}
 
 function completeChecklist(storageKey: string) {
     try {
@@ -203,7 +227,9 @@ export default function MiniMock({
             <article key={current.id} className="mm-q card">
                 <div className="mm-q__head">
                     <span className="badge badge--secondary">Q{index + 1}/{total}</span>
-                    <div className="mm-q__text">{current.question}</div>
+                    <div className="mm-q__text">
+                        <MarkdownText>{current.question}</MarkdownText>
+                    </div>
                 </div>
 
                 <fieldset className="mm-options" role="radiogroup" aria-label={`Question ${index + 1}`}>
@@ -232,7 +258,9 @@ export default function MiniMock({
                                     className="mm-radio"
                                 />
                                 <span className="mm-letter">{opt.key}</span>
-                                <span className="mm-option__text">{opt.text}</span>
+                                <span className="mm-option__text">
+                                    <MarkdownText inline>{opt.text}</MarkdownText>
+                                </span>
                                 {showCorrect && <span className="mm-state mm-state--ok">✓</span>}
                                 {showWrong && <span className="mm-state mm-state--no">✕</span>}
                             </label>
@@ -247,22 +275,40 @@ export default function MiniMock({
                             {answers[current.id] === current.correct
                                 ? `✅ ${L.correct}.`
                                 : `❌ ${L.incorrect}. ${L.correct}: ${current.correct}.`}
-                            {current.explanation ? <> — <strong>{L.why}:</strong> {current.explanation}</> : null}
                         </p>
+
+                        {current.explanation && (
+                            <div className="margin-top--xs">
+                                <strong>{L.why}:</strong>{' '}
+                                <MarkdownText inline>{current.explanation}</MarkdownText>
+                            </div>
+                        )}
 
                         {showVIOnSubmit && (current.vi?.explanation || current.vi?.question) && (
                             <div className="mm-vi">
                                 <hr />
-                                <p><em>Giải thích (VI):</em> {current.vi?.explanation ?? ''}</p>
+                                {current.vi?.explanation && (
+                                    <p>
+                                        <em>Giải thích (VI):</em>{' '}
+                                        <MarkdownText inline>{current.vi.explanation}</MarkdownText>
+                                    </p>
+                                )}
                                 {current.vi?.question && (
                                     <details>
                                         <summary>Xem bản dịch câu hỏi (VI)</summary>
-                                        <div className="margin-top--xs">{current.vi.question}</div>
+                                        <div className="margin-top--xs">
+                                            <MarkdownText>{current.vi.question}</MarkdownText>
+                                        </div>
                                         {current.vi?.options && (
                                             <ul className="margin-top--xs">
                                                 {(['A', 'B', 'C', 'D'] as OptionKey[]).map((k) => {
                                                     const t = (current.vi!.options as any)[k];
-                                                    return t ? <li key={k}><strong>{k}.</strong> {t}</li> : null;
+                                                    return t ? (
+                                                        <li key={k}>
+                                                            <strong>{k}.</strong>{' '}
+                                                            <MarkdownText inline>{t}</MarkdownText>
+                                                        </li>
+                                                    ) : null;
                                                 })}
                                             </ul>
                                         )}
