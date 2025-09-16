@@ -1,3 +1,6 @@
+/* =========================
+   Brand + globals
+   ========================= */
 :root {
   /* thương hiệu → dùng dải brand-green */
   --ifm-color-primary: var(--brand-green-600);
@@ -15,6 +18,26 @@
   /* bố cục */
   --ifm-container-width: 1200px;
   --ifm-container-width-xl: 1320px;
+
+  /* Brand green scale */
+  --brand-green-50: #ecfdf5;
+  --brand-green-100: #d1fae5;
+  --brand-green-200: #a7f3d0;
+  --brand-green-500: #22c55e;
+  /* dùng cho primary-light */
+  --brand-green-600: #16a34a;
+  /* primary */
+  --brand-green-700: #15803d;
+  /* hover */
+  --brand-green-800: #166534;
+  /* dark bg tone */
+  --brand-green-900: #14532d;
+
+  /* ⛳️ Chữ trên mọi nền xanh → luôn TRẮNG */
+  --brand-on-green: #ffffff;
+
+  /* Sticky VI/EN offset */
+  --lang-tabs-offset: 8px;
 }
 
 html[data-theme='dark'] {
@@ -23,11 +46,31 @@ html[data-theme='dark'] {
   --ifm-color-primary-dark: var(--brand-green-700);
   --ifm-color-primary-darker: var(--brand-green-800);
   --ifm-color-primary-light: var(--brand-green-500);
+
+  /* brand scale cho dark */
+  --brand-green-50: #0b1f14;
+  --brand-green-100: #0f2a1a;
+  --brand-green-200: #134024;
+  --brand-green-500: #22c55e;
+  --brand-green-600: #22c55e;
+  /* sáng hơn cho dark */
+  --brand-green-700: #16a34a;
+  --brand-green-800: #14532d;
+  --brand-green-900: #0b1f14;
+
+  /* vẫn giữ chữ trắng trên nền xanh */
+  --brand-on-green: #ffffff;
 }
 
 /* ===== Hero ===== */
 .hero--primary {
   background: linear-gradient(180deg, var(--brand-green-700) 0%, var(--brand-green-600) 100%);
+}
+
+html[data-theme='dark'] .hero--primary {
+  background: linear-gradient(180deg,
+      color-mix(in oklab, var(--brand-green-600) 92%, black) 0%,
+      var(--brand-green-600) 100%);
 }
 
 .hero__title {
@@ -57,7 +100,9 @@ html[data-theme='dark'] {
   font-weight: 600;
 }
 
-/* ===== Card utilities (homepage/MDX) ===== */
+/* =========================
+   Card utilities (homepage/MDX)
+   ========================= */
 .vno-card-grid {
   display: grid;
   gap: 1rem;
@@ -70,6 +115,10 @@ html[data-theme='dark'] {
   padding: 16px;
   background: var(--ifm-background-surface-color);
   transition: transform .15s ease, box-shadow .15s ease;
+
+  /* đảm bảo phần actions luôn nằm cùng 1 hàng đáy */
+  display: flex;
+  flex-direction: column;
 }
 
 .vno-card:hover {
@@ -77,15 +126,21 @@ html[data-theme='dark'] {
   box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
 }
 
-/* Hero gradient cho dark (mix với đen để giữ chiều sâu) */
-html[data-theme='dark'] .hero--primary {
-  background: linear-gradient(180deg,
-      color-mix(in oklab, var(--brand-green-600) 92%, black) 0%,
-      var(--brand-green-600) 100%);
+.vno-card__body {
+  /* nội dung trên */
+}
+
+.vno-card__actions {
+  margin-top: auto;
+  /* đẩy cụm nút xuống đáy card */
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /* =========================================================
-   Breadcrumbs – rõ ràng, thân thiện mobile & a11y
+   Breadcrumbs – thân thiện mobile & a11y
    ========================================================= */
 .breadcrumbs {
   flex-wrap: wrap;
@@ -130,41 +185,9 @@ html[data-theme='dark'] .hero--primary {
   }
 }
 
-/* ==== Brand Green (Light/Dark) ==== */
-:root {
-  --brand-green-50: #ecfdf5;
-  --brand-green-100: #d1fae5;
-  --brand-green-200: #a7f3d0;
-  --brand-green-500: #22c55e;
-  /* dùng cho primary-light */
-  --brand-green-600: #16a34a;
-  /* primary */
-  --brand-green-700: #15803d;
-  /* hover */
-  --brand-green-800: #166534;
-  /* dark bg tone */
-  --brand-green-900: #14532d;
-
-  /* ⛳️ Text trên mọi nền xanh → luôn trắng */
-  --brand-on-green: #ffffff;
-}
-
-[data-theme='dark'] {
-  --brand-green-50: #0b1f14;
-  --brand-green-100: #0f2a1a;
-  --brand-green-200: #134024;
-  --brand-green-500: #22c55e;
-  --brand-green-600: #22c55e;
-  /* sáng hơn trong dark */
-  --brand-green-700: #16a34a;
-  --brand-green-800: #14532d;
-  --brand-green-900: #0b1f14;
-
-  /* ⛳️ giữ trắng ở dark mode */
-  --brand-on-green: #ffffff;
-}
-
-/* ==== CTA Quick Links (nền xanh) ==== */
+/* =========================
+   CTA Quick Links (nền xanh)
+   ========================= */
 .cta-quick {
   display: flex;
   align-items: center;
@@ -201,6 +224,61 @@ html[data-theme='dark'] .hero--primary {
   gap: .5rem;
 }
 
+/* ===== ECO primary download button ===== */
+.cta-quick .cta-download {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .9rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--brand-green-600), var(--brand-green-700));
+  border: 1px solid color-mix(in oklab, var(--brand-green-900), white 6%);
+  color: #fff; /* luôn trắng */
+  box-shadow:
+    0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--brand-green-700) 30%, transparent) inset;
+  transform: translateZ(0);
+}
+
+.cta-quick .cta-download:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 32px color-mix(in oklab, var(--brand-green-700) 34%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--brand-green-600) 40%, transparent) inset;
+}
+
+.cta-download__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: #fff;
+  opacity: .95;
+  flex: 0 0 auto;
+}
+
+.cta-download__text {
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.cta-download__meta {
+  font-size: .8rem;
+  line-height: 1;
+  padding: .2rem .5rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.16);
+  color: #fff;
+}
+
+/* mobile: gọn hơn một chút */
+@media (max-width: 996px) {
+  .cta-quick .cta-download {
+    padding: .8rem 1.05rem;
+    border-radius: 14px;
+  }
+  .cta-download__text { font-weight: 700; }
+}
+
+
 /* ==== Brand Buttons ==== */
 .button--brand {
   --ifm-button-background-color: var(--brand-green-600);
@@ -215,7 +293,7 @@ html[data-theme='dark'] .hero--primary {
   padding-inline: .9rem;
 }
 
-/* Ghost khi đứng trên nền xanh vẫn hiển thị chữ trắng */
+/* Ghost đứng trên nền xanh → chữ luôn trắng */
 .button--brand-ghost {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, .55);
@@ -238,19 +316,31 @@ html[data-theme='dark'] .hero--primary {
   outline-offset: 2px;
 }
 
-/* Badge on the right (trên nền xanh → chữ trắng) */
-.pill-badge {
-  margin-left: auto;
+/* Badge trên nền xanh */
+/* Badge bên phải trong thanh CTA – thu nhỏ lại */
+.cta-quick .pill-badge {
+  font-size: .85rem;      /* nhỏ hơn */
+  line-height: 1.1;
+  padding: .25rem .6rem;  /* ít đệm hơn */
+  border-radius: 999px;
   background: color-mix(in oklab, #ffffff 10%, transparent 90%);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, .55);
-  padding: .3rem .6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,.45);
+  opacity: .95;
 }
 
-/* ===== Mini-mock wizard UI ===== */
+/* Mobile: gọn thêm một chút */
+@media (max-width: 996px) {
+  .cta-quick .pill-badge {
+    font-size: .8rem;
+    padding: .22rem .5rem;
+  }
+}
+
+
+/* =========================
+   Mini-mock wizard UI
+   ========================= */
 .mm-wizard .mm-header {
   display: flex;
   justify-content: space-between;
@@ -437,14 +527,10 @@ html[data-theme='dark'] .hero--primary {
   margin-top: .75rem;
 }
 
-/* ===== Sticky VI/EN toggle cho <Tabs groupId="lang"> ===== */
-:root {
-  --lang-tabs-offset: 8px;
-}
-
-/* khoảng cách dưới navbar */
-
-/* 2 NHÁNH: khớp cả DOM cũ & DOM mới, và DOCK VỀ BÊN PHẢI */
+/* =========================
+   Sticky VI/EN toggle cho <Tabs groupId="lang">
+   (2 nhánh: DOM cũ & DOM mới)
+   ========================= */
 .tabs-container.lang-tabs .tabs,
 .tabs.lang-tabs {
   position: sticky;
@@ -457,14 +543,16 @@ html[data-theme='dark'] .hero--primary {
   padding: 4px;
   margin: 0 0 12px 0;
   box-shadow: 0 8px 18px rgba(0, 0, 0, .06);
+
+  /* dock về bên phải để không che nội dung */
   margin-left: auto;
   margin-right: 0;
-  /* dock phải */
+
   -webkit-backdrop-filter: saturate(160%) blur(6px);
   backdrop-filter: saturate(160%) blur(6px);
 }
 
-/* Segmented-control look */
+/* Segmented look */
 .tabs-container.lang-tabs .tabs .tabs__item,
 .tabs.lang-tabs .tabs__item {
   border-radius: 999px;
