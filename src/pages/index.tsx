@@ -1,4 +1,3 @@
-// src/pages/index.tsx
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -9,7 +8,7 @@ export default function Home() {
   return (
     <Layout
       title="VNOptimus — Học & Luyện thi PMI-ACP"
-      description="Lộ trình 6 tuần, bài học ngắn, checklist và thi thử PMI-ACP. Song ngữ vi/en."
+      description="Lộ trình 6 tuần, bài học ngắn, checklist và thi thử PMI-ACP."
     >
       {/* Skip link for accessibility */}
       <a href="#main-content" className={styles.skipLink}>Bỏ qua nội dung</a>
@@ -17,14 +16,14 @@ export default function Home() {
       {/* HERO */}
       <header className={clsx('hero', 'hero--primary', styles.hero)}>
         <div className="container">
-          <h1 className="hero__title">Học & Luyện thi PMI-ACP</h1>
-          <p className="hero__subtitle">
-            Lộ trình 6 tuần • Bài học ngắn • Checklist hàng ngày • Song ngữ vi/en
+          <h1 className={clsx('hero__title', styles.heroTitle)}>Học & Luyện thi PMI-ACP</h1>
+          <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
+            Lộ trình 6 tuần • Bài học ngắn • Checklist hàng ngày
           </p>
 
           <div className={styles.ctaGroup} role="group" aria-label="Hero actions">
             <Link
-              className={clsx('button', 'button--secondary', 'button--lg')}
+              className={clsx('button', 'button--lg', styles.heroBtn)}
               to="/start-here"
               aria-label="Start Here PMI-ACP"
             >
@@ -39,9 +38,9 @@ export default function Home() {
               Kế hoạch học
             </Link>
 
-            {/* ✅ Chuyển mượt trong SPA về route nội bộ /mock */}
+            {/* Chuyển mượt trong SPA về route nội bộ /mock */}
             <Link
-              className={clsx('button', 'button--outline', 'button--lg')}
+              className={clsx('button', 'button--lg', styles.ghostButton)}
               to="/mock"
               aria-label="Mở trang thi thử PMI-ACP (client-side)"
             >
@@ -60,7 +59,7 @@ export default function Home() {
               {/* Card 1 */}
               <Link
                 to="/docs/pmi-acp/plan/week-1"
-                className={styles.card + ' ' + styles.cardLink}
+                className={clsx(styles.card, styles.cardLink)}
                 aria-label="Lộ trình 6 tuần — Xem Tuần 1"
               >
                 <div className={styles.cardIcon}>📅</div>
@@ -74,7 +73,7 @@ export default function Home() {
               {/* Card 2 */}
               <Link
                 to="/docs/pmi-acp/domains/domain-mindset"
-                className={styles.card + ' ' + styles.cardLink}
+                className={clsx(styles.card, styles.cardLink)}
                 aria-label="Bài ngắn, trọng tâm — Vào học ngay"
               >
                 <div className={styles.cardIcon}>⚡️</div>
@@ -88,7 +87,7 @@ export default function Home() {
               {/* Card 3 */}
               <Link
                 to="/docs/pmi-acp/plan/week-2"
-                className={styles.card + ' ' + styles.cardLink}
+                className={clsx(styles.card, styles.cardLink)}
                 aria-label="Checklist luyện đề — Bắt đầu checklist"
               >
                 <div className={styles.cardIcon}>✅</div>
@@ -99,18 +98,18 @@ export default function Home() {
                 <span className={styles.cardCta}>Bắt đầu checklist →</span>
               </Link>
 
-              {/* Card 4 */}
+              {/* Card 4 (đã bỏ song ngữ, thay bằng blog) */}
               <Link
-                to="/start-here"
-                className={styles.card + ' ' + styles.cardLink}
-                aria-label="Song ngữ vi/en — Cách dùng song ngữ"
+                to="/blog"
+                className={clsx(styles.card, styles.cardLink)}
+                aria-label="Blog & mẹo ôn thi"
               >
-                <div className={styles.cardIcon}>🌐</div>
-                <h3 className={styles.cardTitle}>Song ngữ vi/en</h3>
+                <div className={styles.cardIcon}>📝</div>
+                <h3 className={styles.cardTitle}>Blog & mẹo ôn thi</h3>
                 <p className={styles.cardDesc}>
-                  Toggle chuyển ngữ ở mọi trang giúp bạn quen thuật ngữ tiếng Anh trước kỳ thi.
+                  Tổng hợp kinh nghiệm, mẹo làm bài và cập nhật mới để bạn học thông minh hơn.
                 </p>
-                <span className={styles.cardCta}>Cách dùng song ngữ →</span>
+                <span className={styles.cardCta}>Đọc blog →</span>
               </Link>
             </div>
           </div>
@@ -156,7 +155,6 @@ export default function Home() {
                 <div className={styles.stepBody}>
                   <h4>Thi thử</h4>
                   <p>Tổng ôn & 2 mock 120 câu trước khi thi thật.</p>
-                  {/* Route nội bộ /mock */}
                   <Link to="/mock" className="button button--sm button--link">
                     Thi thử →
                   </Link>

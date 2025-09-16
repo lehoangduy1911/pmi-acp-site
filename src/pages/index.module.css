@@ -1,6 +1,50 @@
 /* HERO */
 .hero {
   padding: 4rem 0;
+  /* đảm bảo text trên nền xanh (primary) là trắng */
+  color: #fff;
+}
+
+.heroTitle,
+.heroSubtitle {
+  color: #fff;
+}
+
+/* Nút chính trong hero: nền xanh, chữ trắng rõ ràng */
+.heroBtn {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .2);
+}
+
+.heroBtn:hover {
+  filter: brightness(1.05);
+}
+
+/* Nút phụ (alt) trong hero: viền trắng, chữ trắng, hover có nền nhạt */
+.altButton {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .65);
+  background: transparent;
+}
+
+.altButton:hover {
+  background: color-mix(in oklab, #ffffff 12%, transparent);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Nút ghost viền trắng, chữ trắng */
+.ghostButton {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .65);
+  background: transparent;
+}
+
+.ghostButton:hover {
+  background: color-mix(in oklab, #ffffff 12%, transparent);
+  border-color: #fff;
+  color: #fff;
 }
 
 @media (max-width: 996px) {
@@ -9,22 +53,12 @@
   }
 }
 
-/* CTA group + ALT BUTTON (rõ trên dark hero) */
+/* CTA group */
 .ctaGroup {
   display: flex;
   gap: .75rem;
   flex-wrap: wrap;
   margin-top: 1.25rem;
-}
-
-.altButton {
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background: transparent;
-}
-
-.altButton:hover {
-  background: color-mix(in oklab, var(--ifm-color-primary) 12%, transparent);
-  border-color: var(--ifm-color-primary);
 }
 
 /* SECTIONS */
@@ -49,7 +83,6 @@
   gap: 16px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
-  /* đảm bảo các item kéo giãn đều chiều cao hàng */
 }
 
 @media (max-width:1200px) {
@@ -67,11 +100,8 @@
 /* CARD = flex column để CTA xuống đáy */
 .card {
   display: flex;
-  /* NEW */
   flex-direction: column;
-  /* NEW */
   height: 100%;
-  /* NEW: kéo giãn hết item */
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 14px;
   padding: 16px;
@@ -119,9 +149,7 @@
 
 /* CTA xanh – đẩy xuống đáy card */
 .cardCta {
-  /* NEW */
   margin-top: auto;
-  /* đẩy CTA xuống đáy -> các dòng xanh thẳng hàng */
   color: var(--ifm-color-primary);
   font-weight: 600;
 }
@@ -129,8 +157,6 @@
 .cardLink:hover .cardCta {
   text-decoration: underline;
 }
-
-/* NEW */
 
 /* STEPS */
 .steps {
@@ -164,6 +190,7 @@
   border-radius: 50%;
   background: var(--ifm-color-primary);
   color: #fff;
+  /* chữ trắng trên nền xanh */
   font-weight: 700;
 }
 
@@ -196,7 +223,9 @@
   .card,
   .card:hover,
   .altButton,
-  .altButton:hover {
+  .altButton:hover,
+  .ghostButton,
+  .ghostButton:hover {
     transition: none;
     transform: none;
     box-shadow: none;
