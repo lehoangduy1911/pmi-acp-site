@@ -22,6 +22,7 @@ type Props = {
     title?: string;
     /** luôn dùng EN để làm bài */
     count?: number;
+    /** Nếu truyền seed => chọn câu hỏi deterministic. Không truyền => random & share giữa EN/VI */
     seed?: string;
     topics?: string[];
     difficulties?: string[];
@@ -34,6 +35,7 @@ type Props = {
     completeChecklistKeys?: string[];
 };
 
+/* ---------------- Utils ---------------- */
 function xmur3(str: string) {
     let h = 1779033703 ^ str.length;
     for (let i = 0; i < str.length; i++) {
@@ -44,26 +46,65 @@ function xmur3(str: string) {
         h = Math.imul(h ^ (h >>> 16), 2246822507);
         h = Math.imul(h ^ (h >>> 13), 3266489909);
         return (h ^= h >>> 16) >>> 0;
-    }
+    };
 }
 function mulberry32(a: number) {
     return function () {
-        var t = a += 0x6D2B79F5;
+        let t = (a += 0x6D2B79F5);
         t = Math.imul(t ^ (t >>> 15), t | 1);
         t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
         return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    }
+    };
 }
-function seededSample<T>(arr: T[], n: number, seed: string): T[] {
-    const seedFn = mulberry32(xmur3(seed)());
+function seededShuffle<T>(arr: T[], seed: string): T[] {
+    const rnd = mulberry32(xmur3(seed)());
     const copy = arr.slice();
     for (let i = copy.length - 1; i > 0; i--) {
-        const j = Math.floor(seedFn() * (i + 1));
+        const j = Math.floor(rnd() * (i + 1));
         [copy[i], copy[j]] = [copy[j], copy[i]];
     }
-    return copy.slice(0, Math.max(0, Math.min(n, copy.length)));
+    return copy;
+}
+function cryptoShuffle<T>(arr: T[]): T[] {
+    const copy = arr.slice();
+    const hasCrypto = typeof window !== 'undefined' && !!(window.crypto && window.crypto.getRandomValues);
+    for (let i = copy.length - 1; i > 0; i--) {
+        let j: number;
+        if (hasCrypto) {
+            const u = new Uint32Array(1);
+            window.crypto!.getRandomValues(u);
+            j = u[0] % (i + 1);
+        } else {
+            j = Math.floor(Math.random() * (i + 1));
+        }
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+function pickFirstNIds(arr: BankQuestion[], n: number): string[] {
+    const k = Math.max(0, Math.min(n, arr.length));
+    return arr.slice(0, k).map((q) => q.id);
+}
+function stableArr(a?: string[]) {
+    return (a || []).slice().map(String).sort();
+}
+function stableKey(obj: any): string {
+    const keyObj = {
+        src: String(obj.src || ''),
+        count: Number(obj.count || 0),
+        topics: stableArr(obj.topics),
+        difficulties: stableArr(obj.difficulties),
+        includeIds: stableArr(obj.includeIds),
+        excludeIds: stableArr(obj.excludeIds),
+        includesText: stableArr(obj.includesText),
+        hasInlineBank: !!obj.hasInlineBank,
+    };
+    const s = JSON.stringify(keyObj);
+    const h = xmur3(s)();
+    return `mm-auto:set:${h.toString(16)}`;
 }
 
+/* --------------- Normalizer --------------- */
 function normalize(q: BankQuestion): RenderQuestion {
     return {
         id: q.id,
@@ -86,7 +127,7 @@ export default function MiniMockAuto({
     storageKey,
     title = 'Mini-mock',
     count = 5,
-    seed = storageKey,
+    seed,
     topics,
     difficulties,
     includeIds,
@@ -99,6 +140,7 @@ export default function MiniMockAuto({
     const [dataset, setDataset] = React.useState<BankQuestion[] | null>(bank || null);
     const isBrowser = typeof window !== 'undefined';
 
+    // Load bank (ưu tiên local import)
     React.useEffect(() => {
         if (bank) return;
         (async () => {
@@ -108,7 +150,7 @@ export default function MiniMockAuto({
                 const local = (await import(/* @vite-ignore */ '@site/static/mock/Questions.json')).default;
                 setDataset(local as BankQuestion[]);
                 return;
-            } catch { }
+            } catch { /* fallback fetch */ }
             if (!isBrowser) return;
             try {
                 const res = await fetch(src);
@@ -120,6 +162,7 @@ export default function MiniMockAuto({
         })();
     }, [bank, src, isBrowser]);
 
+    // Bộ lọc
     const filtered = React.useMemo(() => {
         if (!dataset) return [];
         return dataset.filter((q) => {
@@ -127,21 +170,91 @@ export default function MiniMockAuto({
             if (excludeIds && excludeIds.length && excludeIds.includes(q.id)) return false;
             if (topics && topics.length && (!q.topic || !topics.includes(q.topic))) return false;
             if (difficulties && difficulties.length && (!q.difficulty || !difficulties.includes(String(q.difficulty)))) return false;
+
+            // Bắt buộc đủ EN để làm bài
             const fieldsOK = q.questionEN && q.aEN && q.bEN && q.cEN && q.dEN;
             if (!fieldsOK) return false;
+
             if (includesText && includesText.length) {
                 const hay = `${q.questionEN || ''} ${q.questionVI || ''}`.toLowerCase();
-                const ok = includesText.some(s => hay.includes(String(s).toLowerCase()));
+                const ok = includesText.some((s) => hay.includes(String(s).toLowerCase()));
                 if (!ok) return false;
             }
             return true;
         });
     }, [dataset, topics, difficulties, includeIds, excludeIds, includesText]);
 
+    // Key dùng chung giữa EN/VI
+    const selectionSharedKey = React.useMemo(() => {
+        return stableKey({
+            src,
+            count,
+            topics,
+            difficulties,
+            includeIds,
+            excludeIds,
+            includesText,
+            hasInlineBank: !!bank,
+        });
+    }, [src, count, topics, difficulties, includeIds, excludeIds, includesText, bank]);
+
+    // Hàm xoá cache set khi Reset
+    const clearSelectionCache = React.useCallback(() => {
+        if (!isBrowser) return;
+        try { window.localStorage.removeItem(selectionSharedKey); } catch { /* noop */ }
+    }, [isBrowser, selectionSharedKey]);
+
+    // Chọn IDs
+    const selectedIds = React.useMemo(() => {
+        if (!filtered.length) return [];
+
+        // Có seed => deterministic
+        if (seed) {
+            const shuffled = seededShuffle(filtered, seed);
+            return pickFirstNIds(shuffled, count);
+        }
+
+        // Không seed => random & share giữa EN/VI
+        if (!isBrowser) {
+            const shuffled = cryptoShuffle(filtered);
+            return pickFirstNIds(shuffled, count);
+        }
+
+        try {
+            const raw = window.localStorage.getItem(selectionSharedKey);
+            if (raw) {
+                const cached: string[] = JSON.parse(raw);
+                const idSet = new Set(filtered.map((q) => q.id));
+                const valid = cached.filter((id) => idSet.has(id));
+                const target = Math.min(count, filtered.length);
+                if (valid.length >= target) return valid.slice(0, target);
+
+                // Bổ sung nếu thiếu
+                const missing = filtered.filter((q) => !valid.includes(q.id)).map((q) => q.id);
+                const need = target - valid.length;
+                const add = cryptoShuffle(missing).slice(0, need);
+                const next = [...valid, ...add];
+                window.localStorage.setItem(selectionSharedKey, JSON.stringify(next));
+                return next;
+            }
+
+            // Chưa có cache => random và lưu
+            const shuffled = cryptoShuffle(filtered);
+            const ids = pickFirstNIds(shuffled, count);
+            window.localStorage.setItem(selectionSharedKey, JSON.stringify(ids));
+            return ids;
+        } catch {
+            const shuffled = cryptoShuffle(filtered);
+            return pickFirstNIds(shuffled, count);
+        }
+    }, [filtered, count, seed, isBrowser, selectionSharedKey]);
+
+    // Chuẩn hoá theo ID đã chọn
     const selected = React.useMemo(() => {
-        const picked = seededSample(filtered, count, seed);
-        return picked.map(normalize);
-    }, [filtered, count, seed]);
+        if (!filtered.length || !selectedIds.length) return [];
+        const byId = new Map(filtered.map((q) => [q.id, q]));
+        return selectedIds.map((id) => byId.get(id)!).filter(Boolean).map(normalize);
+    }, [filtered, selectedIds]);
 
     if (!dataset) {
         return (
@@ -170,6 +283,7 @@ export default function MiniMockAuto({
             questions={selected}
             completeChecklistKeys={completeChecklistKeys}
             showVIOnSubmit
+            onResetAll={clearSelectionCache}
         />
     );
 }

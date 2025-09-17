@@ -12,9 +12,9 @@ export type Question = {
     correct: OptionKey;
     explanation?: string;          // EN explanation (Markdown OK)
     vi?: {
-        question?: string;         // VI question (Markdown OK)
+        question?: string;           // VI question (Markdown OK)
         options?: { A?: string; B?: string; C?: string; D?: string }; // Markdown OK
-        explanation?: string;      // VI explanation (Markdown OK)
+        explanation?: string;        // VI explanation (Markdown OK)
     };
 };
 
@@ -33,28 +33,25 @@ type Props = {
     completeChecklistKeys?: string[];
     /** Hiện tiếng Việt chỉ sau submit */
     showVIOnSubmit?: boolean;
+    /** Cho phép component cha xoá cache set random khi Reset */
+    onResetAll?: () => void;
 };
 
-/** Helper render Markdown – KHÔNG truyền className vào ReactMarkdown (v9 đã bỏ) */
+/** Helper render Markdown */
 function MarkdownText({
     children,
     inline = false,
     className,
 }: { children?: string; inline?: boolean; className?: string }) {
     const components: any = {
-        // mở link trong tab mới
         a: (props: any) => <a {...props} target="_blank" rel="noopener noreferrer" />,
     };
-    if (inline) {
-        // tránh sinh <p> block-level trong label
-        components.p = (props: any) => <span {...props} />;
-    }
+    if (inline) components.p = (props: any) => <span {...props} />;
     const node = (
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
             {children || ''}
         </ReactMarkdown>
     );
-    // cần class để style -> bọc bên ngoài
     return className ? <div className={className}>{node}</div> : node;
 }
 
@@ -81,7 +78,7 @@ function completeChecklist(storageKey: string) {
         data.completedAt = Date.now();
         window.localStorage.setItem(storageKey, JSON.stringify(data));
         window.dispatchEvent(new CustomEvent('study-checklist:updated', { detail: { storageKey } }));
-    } catch { }
+    } catch { /* noop */ }
 }
 
 export default function MiniMock({
@@ -91,6 +88,7 @@ export default function MiniMock({
     labels,
     completeChecklistKeys,
     showVIOnSubmit = true,
+    onResetAll,
 }: Props) {
     const L: Required<Labels> = {
         score: 'Score',
@@ -126,14 +124,14 @@ export default function MiniMock({
                 setSubmitted(!!parsed.submitted);
                 setIndex(Math.min(parsed.index ?? 0, total - 1));
             }
-        } catch { }
+        } catch { /* noop */ }
     }, [storageKey, isBrowser, total]);
 
     React.useEffect(() => {
         if (!isBrowser) return;
         try {
             window.localStorage.setItem(storageKey, JSON.stringify({ answers, submitted, index }));
-        } catch { }
+        } catch { /* noop */ }
     }, [answers, submitted, index, storageKey, isBrowser]);
 
     const score = questions.reduce((acc, q) => (answers[q.id] === q.correct ? acc + 1 : acc), 0);
@@ -154,7 +152,8 @@ export default function MiniMock({
         setAnswers({});
         setSubmitted(false);
         setIndex(0);
-        if (isBrowser) window.localStorage.removeItem(storageKey);
+        try { if (isBrowser) window.localStorage.removeItem(storageKey); } catch { /* noop */ }
+        try { onResetAll?.(); } catch { /* noop */ }
     };
 
     const onSubmit = () => {
@@ -321,7 +320,11 @@ export default function MiniMock({
 
                 {/* Wizard controls */}
                 <div className="mm-nav">
-                    <button className="button button--sm" onClick={prev} disabled={index === 0}>{L.prev}</button>
+                    {/* Prev có class riêng để style theo theme + không mờ khi disabled */}
+                    <button className="button button--sm mm-prev" onClick={prev} disabled={index === 0}>
+                        {L.prev}
+                    </button>
+
                     {!submitted && (
                         <button
                             className="button button--sm button--primary"

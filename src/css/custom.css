@@ -22,29 +22,25 @@
    Brand + globals
    ========================= */
 :root {
-  /* thương hiệu → dùng dải brand-green */
   --ifm-color-primary: var(--brand-green-600);
   --ifm-color-primary-dark: var(--brand-green-700);
   --ifm-color-primary-darker: var(--brand-green-800);
   --ifm-color-primary-light: var(--brand-green-500);
   --ifm-link-color: var(--brand-green-700);
 
-  /* typography */
   --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --ifm-heading-font-family: "Space Grotesk", Inter, system-ui, sans-serif;
   --ifm-font-size-base: 16px;
   --ifm-line-height-base: 1.7;
 
-  /* bố cục */
   --ifm-container-width: 1200px;
   --ifm-container-width-xl: 1320px;
 
-  /* Brand green scale */
   --brand-green-50: #ecfdf5;
   --brand-green-100: #d1fae5;
   --brand-green-200: #a7f3d0;
   --brand-green-500: #22c55e;
-  /* dùng cho primary-light */
+  /* primary-light */
   --brand-green-600: #16a34a;
   /* primary */
   --brand-green-700: #15803d;
@@ -53,21 +49,18 @@
   /* dark bg tone */
   --brand-green-900: #14532d;
 
-  /* ⛳️ Chữ trên mọi nền xanh → luôn TRẮNG */
   --brand-on-green: #ffffff;
+  /* chữ trên nền xanh */
 
-  /* Sticky VI/EN offset */
   --lang-tabs-offset: 8px;
 }
 
 html[data-theme='dark'] {
-  /* primary trong Dark theme vẫn theo brand-green */
   --ifm-color-primary: var(--brand-green-600);
   --ifm-color-primary-dark: var(--brand-green-700);
   --ifm-color-primary-darker: var(--brand-green-800);
   --ifm-color-primary-light: var(--brand-green-500);
 
-  /* brand scale cho dark */
   --brand-green-50: #0b1f14;
   --brand-green-100: #0f2a1a;
   --brand-green-200: #134024;
@@ -78,7 +71,6 @@ html[data-theme='dark'] {
   --brand-green-800: #14532d;
   --brand-green-900: #0b1f14;
 
-  /* vẫn giữ chữ trắng trên nền xanh */
   --brand-on-green: #ffffff;
 }
 
@@ -120,9 +112,7 @@ html[data-theme='dark'] .hero--primary {
   font-weight: 600;
 }
 
-/* =========================
-   Card utilities (homepage/MDX)
-   ========================= */
+/* ===== Cards ===== */
 .vno-card-grid {
   display: grid;
   gap: 1rem;
@@ -137,7 +127,6 @@ html[data-theme='dark'] .hero--primary {
   transition: transform .15s ease, box-shadow .15s ease;
   display: flex;
   flex-direction: column;
-  /* actions luôn ở đáy */
 }
 
 .vno-card:hover {
@@ -153,9 +142,7 @@ html[data-theme='dark'] .hero--primary {
   align-items: center;
 }
 
-/* =========================================================
-   Breadcrumbs – thân thiện mobile & a11y
-   ========================================================= */
+/* ===== Breadcrumbs ===== */
 .breadcrumbs {
   flex-wrap: wrap;
   gap: .25rem .5rem;
@@ -177,8 +164,7 @@ html[data-theme='dark'] .hero--primary {
 
 .breadcrumbs__link:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--ifm-background-color),
-    0 0 0 4px color-mix(in oklab, var(--ifm-color-primary) 70%, white);
+  box-shadow: 0 0 0 2px var(--ifm-background-color), 0 0 0 4px color-mix(in oklab, var(--ifm-color-primary) 70%, white);
 }
 
 .breadcrumbs__item--active .breadcrumbs__link {
@@ -199,9 +185,7 @@ html[data-theme='dark'] .hero--primary {
   }
 }
 
-/* =========================
-   CTA Quick Links (nền xanh)
-   ========================= */
+/* ===== CTA Quick (nền xanh) ===== */
 .cta-quick {
   display: flex;
   align-items: center;
@@ -209,14 +193,11 @@ html[data-theme='dark'] .hero--primary {
   flex-wrap: wrap;
   padding: 0.8rem;
   border-radius: 12px;
-  background: linear-gradient(180deg,
-      color-mix(in oklab, var(--brand-green-800), transparent 15%),
-      var(--brand-green-800));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand-green-800), transparent 15%), var(--brand-green-800));
   border: 1px solid color-mix(in oklab, var(--brand-green-700), black 10%);
   box-shadow: 0 2px 12px rgba(0, 0, 0, .07);
   margin-bottom: 1rem;
   color: var(--brand-on-green);
-  /* chữ trắng */
 }
 
 .cta-quick a {
@@ -237,7 +218,7 @@ html[data-theme='dark'] .hero--primary {
   gap: .5rem;
 }
 
-/* ===== ECO primary download button ===== */
+/* Download button trong CTA */
 .cta-quick .cta-download {
   display: inline-flex;
   align-items: center;
@@ -247,16 +228,14 @@ html[data-theme='dark'] .hero--primary {
   background: linear-gradient(135deg, var(--brand-green-600), var(--brand-green-700));
   border: 1px solid color-mix(in oklab, var(--brand-green-900), white 6%);
   color: #fff;
-  box-shadow:
-    0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent),
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent),
     0 0 0 1px color-mix(in oklab, var(--brand-green-700) 30%, transparent) inset;
   transform: translateZ(0);
 }
 
 .cta-quick .cta-download:hover {
   transform: translateY(-1px);
-  box-shadow:
-    0 16px 32px color-mix(in oklab, var(--brand-green-700) 34%, transparent),
+  box-shadow: 0 16px 32px color-mix(in oklab, var(--brand-green-700) 34%, transparent),
     0 0 0 1px color-mix(in oklab, var(--brand-green-600) 40%, transparent) inset;
 }
 
@@ -329,7 +308,7 @@ html[data-theme='dark'] .hero--primary {
   outline-offset: 2px;
 }
 
-/* Badge trên nền xanh (CTA) */
+/* Badge trong CTA */
 .cta-quick .pill-badge {
   font-size: .85rem;
   line-height: 1.1;
@@ -539,7 +518,6 @@ html[data-theme='dark'] .hero--primary {
 
 /* =========================
    Sticky VI/EN toggle cho <Tabs groupId="lang">
-   (2 nhánh: DOM cũ & DOM mới)
    ========================= */
 .tabs-container.lang-tabs .tabs,
 .tabs.lang-tabs {
@@ -559,7 +537,6 @@ html[data-theme='dark'] .hero--primary {
   backdrop-filter: saturate(160%) blur(6px);
 }
 
-/* Segmented look */
 .tabs-container.lang-tabs .tabs .tabs__item,
 .tabs.lang-tabs .tabs__item {
   border-radius: 999px;
@@ -574,14 +551,12 @@ html[data-theme='dark'] .hero--primary {
   transform: translateY(-1px);
 }
 
-/* Active tab: nền xanh → chữ trắng */
 .tabs-container.lang-tabs .tabs .tabs__item--active,
 .tabs.lang-tabs .tabs__item--active {
   background: var(--ifm-color-primary);
   color: #ffffff;
 }
 
-/* Mobile friendly */
 @media (max-width: 996px) {
 
   .tabs-container.lang-tabs .tabs,
@@ -599,7 +574,6 @@ html[data-theme='dark'] .hero--primary {
   }
 }
 
-/* iOS safe area */
 @supports(padding:max(0px)) {
 
   .tabs-container.lang-tabs .tabs,
@@ -608,20 +582,111 @@ html[data-theme='dark'] .hero--primary {
   }
 }
 
-/* Tránh sticky che tiêu đề khi nhảy anchor/Mục lục */
+/* Tránh sticky che anchor */
 .theme-doc-markdown h2[id],
 .theme-doc-markdown h3[id],
 .theme-doc-markdown h4[id] {
   scroll-margin-top: calc(var(--ifm-navbar-height, 60px) + 56px);
 }
 
-/* 🌟 Utility: ép chữ trắng khi thành phần nằm trên nền xanh */
+/* Utility: ép chữ trắng khi nằm trên nền xanh */
 .on-green {
   color: #ffffff !important;
 }
 
+/* Inputs focus */
 .input:focus {
   outline: none;
   border-color: var(--ifm-color-primary);
   box-shadow: 0 0 0 3px var(--ifm-color-primary-lightest);
+}
+
+/* ========= Text contrast: chữ trắng trên nền xanh brand ========= */
+.hero--primary,
+.cta-quick,
+.cta-quick .cta-download,
+.button--brand,
+.button.button--primary,
+.badge--primary,
+.tabs.lang-tabs .tabs__item--active,
+.tabs-container.lang-tabs .tabs .tabs__item--active,
+.mm-step.is-correct,
+.mm-option.is-correct {
+  color: var(--brand-on-green) !important;
+}
+
+.hero--primary :where(h1, h2, h3, h4, h5, h6, p, span, small, strong, em, li, code, pre, a, .badge, .pill-badge, .cta-download__text, .cta-download__meta),
+.cta-quick :where(h1, h2, h3, h4, h5, h6, p, span, small, strong, em, li, code, pre, a, .badge, .pill-badge, .cta-download__text, .cta-download__meta),
+.button--brand :where(span, small, strong, em, a),
+.button.button--primary :where(span, small, strong, em, a),
+.badge--primary :where(span, small, strong, em, a),
+.tabs.lang-tabs .tabs__item--active :where(span, small, strong, em, a),
+.tabs-container.lang-tabs .tabs .tabs__item--active :where(span, small, strong, em, a),
+.mm-step.is-correct :where(span, small, strong, em, a),
+.mm-option.is-correct :where(span, small, strong, em, a) {
+  color: var(--brand-on-green) !important;
+  text-decoration-color: var(--brand-on-green) !important;
+}
+
+.hero--primary svg,
+.cta-quick svg,
+.button--brand svg,
+.button.button--primary svg,
+.badge--primary svg,
+.tabs.lang-tabs .tabs__item--active svg,
+.tabs-container.lang-tabs .tabs .tabs__item--active svg,
+.mm-step.is-correct svg,
+.mm-option.is-correct svg {
+  fill: var(--brand-on-green) !important;
+  stroke: var(--brand-on-green) !important;
+}
+
+.cta-quick a:hover,
+.cta-quick a:focus-visible,
+.button--brand:hover,
+.button--brand:focus-visible,
+.button.button--primary:hover,
+.button.button--primary:focus-visible,
+.tabs.lang-tabs .tabs__item--active:hover,
+.tabs-container.lang-tabs .tabs .tabs__item--active:hover {
+  color: var(--brand-on-green) !important;
+}
+
+.mm-option.is-correct .mm-letter,
+.mm-option.is-correct .mm-option__text,
+.mm-step.is-correct {
+  color: var(--brand-on-green) !important;
+}
+
+.hero--primary .hero__title,
+.hero--primary .hero__subtitle,
+.hero--primary a {
+  color: var(--brand-on-green) !important;
+}
+
+/* =========================================================
+   🔧 Fix nút Previous: Light=đen, Dark=trắng; KHÔNG mờ khi disabled
+   ========================================================= */
+.mm-prev {
+  background: transparent;
+  color: #111 !important;
+  font-weight: 600;
+}
+
+html[data-theme='dark'] .mm-prev {
+  color: #fff !important;
+}
+
+.mm-prev[disabled],
+.mm-prev:disabled,
+.button.mm-prev[disabled] {
+  opacity: 1 !important;
+  color: #111 !important;
+}
+
+html[data-theme='dark'] .mm-prev[disabled],
+html[data-theme='dark'] .mm-prev:disabled,
+html[data-theme='dark'] .button.mm-prev[disabled] {
+  color: #fff !important;
+  opacity: 1 !important;
 }
