@@ -1,11 +1,14 @@
 ---
 id: "what-is-agile"
-title: "What Is Agile"
+title: "What Is Agile (Agile là gì?) — Scenario-first Guide & Exam Tips"
 sidebar_label: "What Is Agile"
 slug: "/pmi-acp/domains/mindset/what-is-agile"
 sidebar_position: 1
-description: "WIP — Bài viết \"What Is Agile\"."
-tags: ["article"]
+description: "Hướng dẫn Agile là gì theo tình huống: khi nào dùng Agile/Hybrid/Predictive, so sánh, phương pháp chính, bẫy đề PMI-ACP, mini-mock 10 câu."
+tags: ["article","agile","pmi-acp","mindset","waterfall","hybrid","scrum","kanban"]
+keywords: ["Agile là gì","What is Agile","Scrum","Kanban","Hybrid","Waterfall vs Agile","PMI-ACP"]
+toc_min_heading_level: 2
+toc_max_heading_level: 4
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,10 +16,21 @@ import TabItem from '@theme/TabItem';
 import StudyChecklist from '@site/src/components/StudyChecklist';
 import CtaQuickLinks from '@site/src/components/CtaQuickLinks';
 import MiniMockAuto from '@site/src/components/MiniMockAuto';
+import Subscribe from '@site/src/components/Subscribe';
 
 <Tabs groupId="lang">
 
 <TabItem value="vi" label="VI" default>
+
+<h2>❓ Câu hỏi tình huống</h2>
+<p>Bạn là PM của một sản phẩm nội bộ. Sếp muốn <strong>ra mắt trong 6–8 tuần</strong>, yêu cầu còn <strong>biến động</strong>, đội 9 người, mức <strong>tuân thủ vừa phải</strong>. Bạn nên chọn <strong>Agile, Predictive</strong> hay <strong>Hybrid</strong>? Vì sao?</p>
+
+<h3>Hướng giải quyết nhanh</h3>
+<ul>
+  <li><strong>Mục tiêu</strong>: đưa <strong>giá trị sớm</strong> và học nhanh từ phản hồi.</li>
+  <li><strong>Lựa chọn ban đầu</strong>: <strong>Agile/Hybrid</strong> với <strong>Sprint 2 tuần</strong>, ra <strong>MVP</strong> ở Sprint 1–2.</li>
+  <li><strong>Quản trị rủi ro</strong>: phần <strong>compliance</strong> chạy theo mốc (Hybrid), phần khám phá theo <strong>Agile</strong>.</li>
+</ul>
 
 {/* ======= CTA nhanh: Blueprint + 4 Domain (brand green) ======= */}
 <CtaQuickLinks />
@@ -26,45 +40,108 @@ import MiniMockAuto from '@site/src/components/MiniMockAuto';
   storageKey="what-is-agile-vi"
   title="Checklist ôn nhanh – What Is Agile (VI)"
   items={[
-    { id: 'vi-01', label: 'Đọc lại 4 giá trị Agile Manifesto & 12 nguyên tắc' },
-    { id: 'vi-02', label: 'Phân biệt: Agile vs Predictive vs Hybrid (bảng so sánh)' },
-    { id: 'vi-03', label: 'Đọc: Iterative vs Incremental & ví dụ minh hoạ' },
+    { id: 'vi-01', label: 'Đọc 4 giá trị Agile Manifesto & 12 nguyên tắc' },
+    { id: 'vi-02', label: 'So sánh Agile vs Predictive vs Hybrid (bảng)' },
+    { id: 'vi-03', label: 'Đọc: Iterative vs Incremental & ví dụ' },
     { id: 'vi-04', label: 'Làm Mini-mock 10 câu để kiểm tra hiểu bài' },
   ]}
 />
 
-<h2>Tóm tắt (VI)</h2>
-<p><strong>Agile</strong> là cách làm việc <em>lặp &amp; gia tăng</em> tập trung vào <strong>giá trị</strong>, <strong>phản hồi nhanh</strong>, và <strong>cộng tác</strong>. Dùng khi yêu cầu biến động cao, cần đưa giá trị sớm. Với tuân thủ/safety nặng hoặc scope cố định, cân nhắc <strong>Hybrid</strong> hay <strong>Predictive</strong>.</p>
-
-<h2>1) Agile là gì?</h2>
-
+<h2>Key takeaways</h2>
 <ul>
-  <li><strong>Agile</strong> là <strong>triết lý quản lý dự án</strong> tập trung vào <strong>phản hồi linh hoạt trước thay đổi</strong>.</li>
-  <li>Thay vì kế hoạch cố định, Agile <strong>chia nhỏ công việc</strong> thành các <strong>Sprint</strong> ngắn.</li>
-  <li>Mỗi Sprint tạo ra <strong>Increment</strong> – phần sản phẩm <strong>chạy được</strong> và <strong>mang lại giá trị</strong>.</li>
-  <li><em>Tóm tắt:</em> <strong>Làm nhỏ – làm sớm – học nhanh – điều chỉnh liên tục</strong>.</li>
+  <li><strong>Agile = lặp &amp; gia tăng</strong> để tối đa hóa <strong>giá trị sớm</strong> và <strong>phản hồi nhanh</strong>.</li>
+  <li><strong>Hybrid</strong> hữu ích khi có <strong>ràng buộc tuân thủ</strong> nhưng vẫn cần khám phá.</li>
+  <li><strong>Không</strong> phải lúc nào Agile cũng tối ưu; chọn theo <strong>bối cảnh rủi ro</strong>.</li>
 </ul>
 
-<h3>4 giá trị cốt lõi của Tuyên ngôn Agile</h3>
+:::tip Mẹo phòng thi
+Đề thường xoáy vào việc <strong>ưu tiên giá trị</strong>, <strong>feedback sớm</strong>, và <strong>tailoring</strong> theo bối cảnh. Nếu có compliance cao, ưu tiên <strong>Hybrid</strong> thay vì “Agile thuần”.  
+:::
+
+<h2>Bước 1 — Agile là gì?</h2>
+<p><strong>Agile</strong> là cách làm việc <em>lặp &amp; gia tăng</em> tập trung vào <strong>giá trị</strong>, <strong>phản hồi nhanh</strong>, và <strong>cộng tác</strong>. Thay vì kế hoạch cố định dài hạn, Agile <strong>chia nhỏ</strong> công việc thành <strong>Sprint</strong>; mỗi Sprint tạo <strong>Increment</strong> chạy được và có giá trị.</p>
+
+<h4>4 giá trị Tuyên ngôn Agile</h4>
 <ul>
-  <li><strong>Cá nhân &amp; tương tác</strong> <em>hơn</em> quy trình &amp; công cụ.</li>
-  <li><strong>Sản phẩm hoạt động được</strong> <em>hơn</em> tài liệu đầy đủ.</li>
-  <li><strong>Hợp tác với khách hàng</strong> <em>hơn</em> đàm phán hợp đồng.</li>
-  <li><strong>Đáp ứng thay đổi</strong> <em>hơn</em> tuân thủ kế hoạch.</li>
-  <li>Bên trái là <strong>ưu tiên cao hơn</strong> (không phủ nhận bên phải).</li>
+  <li><strong>Cá nhân &amp; tương tác</strong> hơn quy trình &amp; công cụ.</li>
+  <li><strong>Sản phẩm hoạt động</strong> hơn tài liệu đầy đủ.</li>
+  <li><strong>Hợp tác khách hàng</strong> hơn đàm phán hợp đồng.</li>
+  <li><strong>Đáp ứng thay đổi</strong> hơn theo kế hoạch.</li>
 </ul>
 
-<h3>Từ khóa trọng điểm</h3>
+:::note Quan trọng
+“<em>Hơn</em>” nghĩa là <strong>ưu tiên</strong>, không phải phủ định hoàn toàn vế bên phải.  
+:::
+
+<h4>Từ khóa</h4>
 <ul>
-  <li><strong>Sprint:</strong> timebox cố định để <strong>kiểm tra</strong> &amp; <strong>điều chỉnh nhanh</strong>.</li>
-  <li><strong>Increment:</strong> phần sản phẩm <strong>sẵn sàng sử dụng</strong> sau mỗi Sprint.</li>
+  <li><strong>Sprint</strong>: timebox kiểm tra &amp; thích nghi nhanh.</li>
+  <li><strong>Increment</strong>: phần sản phẩm <strong>sẵn sàng dùng</strong> sau Sprint.</li>
 </ul>
 
-<h3>Các phương pháp Agile nổi bật</h3>
+<h2>Bước 2 — Khi nào dùng Agile/Hybrid?</h2>
+
+<h3>Khi nên dùng Agile</h3>
 <ul>
-  <li><strong>Scrum</strong>, <strong>Kanban</strong>, <strong>XP</strong> (eXtreme Programming), <strong>Lean</strong>.</li>
-  <li>Vận hành theo chu kỳ <strong>minh bạch → thanh tra → thích nghi</strong> để <strong>cải tiến liên tục</strong>.</li>
+  <li>Yêu cầu <strong>biến động cao</strong> / <strong>discovery</strong> lớn.</li>
+  <li>Cần <strong>time-to-value</strong> sớm (MVP).</li>
+  <li>Rủi ro thị trường cao → cần học nhanh từ phản hồi.</li>
+  <li>Đội <strong>tự quản</strong>, stakeholder sẵn sàng phản hồi thường xuyên.</li>
+  <li>Bài toán có thể <strong>chia nhỏ</strong> thành increment có ý nghĩa.</li>
 </ul>
+
+<h3>Khi ưu tiên Predictive/Hybrid</h3>
+<ul>
+  <li><strong>Compliance/Safety</strong> khắt khe (y tế, hàng không…).</li>
+  <li>Hợp đồng <strong>fixed scope/price</strong>, cơ chế change hạn chế.</li>
+  <li>Phụ thuộc chuỗi cung ứng dài, khó ra increment đều đặn.</li>
+</ul>
+
+<h3>Ma trận quyết định nhanh</h3>
+
+| Tiêu chí | Thấp | Trung bình | Cao |
+|---|---|---|---|
+| Biến động yêu cầu | Predictive | Hybrid | Agile |
+| Phức tạp kỹ thuật | Predictive | Hybrid | Agile/Spike |
+| Tuân thủ/Safety | Agile/Hybrid | Hybrid | Predictive/Hybrid |
+| Cần giá trị sớm | Predictive | Hybrid | Agile |
+| Khả năng chia nhỏ | Predictive | Hybrid | Agile |
+
+<h2>Bước 3 — So sánh Agile vs Predictive vs Hybrid</h2>
+
+<h4>Predictive (Waterfall)</h4>
+<ul>
+  <li>Chuỗi <strong>tuần tự</strong>: phân tích → thiết kế → xây dựng → kiểm thử.</li>
+  <li><strong>Kế hoạch upfront</strong> chi tiết, giai đoạn cố định.</li>
+  <li>Phù hợp khi <strong>yêu cầu ổn định</strong>, thay đổi thấp.</li>
+</ul>
+
+<h4>Agile</h4>
+<ul>
+  <li><strong>Lặp &amp; gia tăng</strong>, làm việc theo <strong>Sprint</strong>; mỗi vòng lặp ra <strong>Increment</strong> dùng được.</li>
+</ul>
+
+<h4>Hybrid</h4>
+<ul>
+  <li><strong>Kết hợp</strong> Predictive cho <strong>hợp đồng/compliance</strong>, Agile cho <strong>phát triển/R&amp;D</strong>.</li>
+</ul>
+
+| Yếu tố | Agile | Predictive (Waterfall) | Hybrid |
+|---|---|---|---|
+| Cách tiếp cận | Lặp &amp; gia tăng | Tuần tự, upfront plan | Pha trộn theo bối cảnh |
+| Phạm vi | Tiến hoá | Cố định sớm | Một phần cố định |
+| Giá trị | Ra sớm theo increment | Cuối dự án | Mốc + increment |
+| Quản trị rủi ro | Liên tục, thực nghiệm | Đầu kỳ | Kết hợp |
+| Tài liệu | “Vừa đủ” | Nặng tài liệu | Theo tuân thủ |
+| Hợp đồng | T&amp;M, value-based | Fixed scope/price | Milestone + increment |
+
+:::caution Bẫy đề PMI-ACP (VI)
+1) Hiểu sai Tuyên ngôn là “bỏ tài liệu/quy trình”.  
+2) Chọn Agile dù <strong>compliance</strong> cực cao và không có cơ chế change.  
+3) Lẫn lộn <strong>iterative</strong> (cải tiến cùng lát) với <strong>incremental</strong> (thêm lát giá trị).  
+4) Nghĩ Scrum bắt buộc mọi nơi, quên <strong>tailoring</strong>.  
+5) Bỏ qua <strong>Stakeholder engagement</strong> liên tục.  
+:::
 
 {/* ==== Liên kết nội bộ quan trọng (VI) ==== */}
 <h3>🔗 Liên kết nội bộ</h3>
@@ -79,207 +156,61 @@ import MiniMockAuto from '@site/src/components/MiniMockAuto';
 | Bài tiếp: Iterative vs Incremental | [Iterative vs Incremental](/docs/pmi-acp/domains/mindset/iterative-vs-incremental) |
 | Mini-mock | [Làm bài Mock](/mock) |
 
-<h2>2) Dự án nào nên/không nên dùng Agile?</h2>
-
-<h3>Khi nên dùng Agile?</h3>
+<h3>Áp dụng lại tình huống mở đầu</h3>
 <ul>
-  <li><strong>Yêu cầu thay đổi thường xuyên</strong> hoặc giai đoạn <strong>discovery</strong> (khám phá) cao.</li>
-  <li>Cần <strong>time-to-value</strong> sớm → đưa sản phẩm ra thị trường nhanh (ví dụ: <strong>MVP</strong>).</li>
-  <li><strong>Rủi ro thị trường</strong> cao → cần <strong>học nhanh từ phản hồi người dùng</strong>.</li>
-  <li><strong>Đội ngũ tự quản</strong> và <strong>stakeholder</strong> sẵn sàng tham gia thường xuyên.</li>
-  <li>Bài toán có thể <strong>chia nhỏ</strong> thành <strong>increment</strong> có <strong>ý nghĩa &amp; giá trị</strong>.</li>
+  <li><strong>Hybrid thiên Agile</strong>: Sprint 2 tuần, backlog ưu tiên theo giá trị.</li>
+  <li><strong>Sprint 1</strong>: ra <strong>MVP</strong> cho nhóm pilot nội bộ.</li>
+  <li><strong>Sprint 2–3</strong>: iterate theo feedback; compliance theo mốc Predictive.</li>
+  <li>Đo <em>cycle/lead time</em>, usage thực tế, và học nhanh.</li>
 </ul>
 
-<h3>Khi không nên dùng Agile?</h3>
-<ul>
-  <li>Dự án có <strong>tuân thủ/an toàn khắt khe</strong> (y tế, hàng không…). <em>Gợi ý:</em> cân nhắc <strong>Hybrid</strong> cho phần R&amp;D/thiết kế.</li>
-  <li><strong>Hợp đồng fixed scope/price</strong> (phạm vi/giá cố định), cơ chế thay đổi bị hạn chế.</li>
-  <li><strong>Phụ thuộc chuỗi cung ứng</strong> dài &amp; phức tạp, khó tạo <strong>increment</strong> có giá trị đều đặn.</li>
-  <li><strong>Stakeholder thiếu sẵn sàng</strong> cung cấp phản hồi đều đặn.</li>
-</ul>
-
-<h3>Gợi ý chọn cách tiếp cận</h3>
-<ul>
-  <li><strong>Agile</strong>: khi mục tiêu là <strong>học nhanh + thay đổi nhanh + ra giá trị sớm</strong>.</li>
-  <li><strong>Hybrid</strong>: khi có <strong>ràng buộc tuân thủ</strong> nhưng vẫn cần <strong>thử nghiệm/khám phá</strong>.</li>
-  <li><strong>Plan-driven</strong>: khi <strong>phạm vi cố định</strong>, thay đổi khó, rủi ro tuân thủ cao.</li>
-</ul>
-
-<h3>Ma trận quyết định nhanh</h3>
-
-| Tiêu chí | Thấp | Trung bình | Cao |
-|---|---|---|---|
-| Biến động yêu cầu | Predictive | Hybrid | Agile |
-| Phức tạp kỹ thuật | Predictive | Hybrid | Agile/Spike |
-| Tuân thủ/Safety | Agile/Hybrid | Hybrid | Predictive/Hybrid |
-| Cần giá trị sớm | Predictive | Hybrid | Agile |
-| Khả năng chia nhỏ | Predictive | Hybrid | Agile |
-
-<h2>3) Khác biệt: Agile vs Predictive (Waterfall) vs Hybrid</h2>
-
-<h3>Predictive (Waterfall)</h3>
-<ul>
-  <li>Phương pháp <strong>tuần tự</strong>: phân tích → thiết kế → triển khai → kiểm thử.</li>
-  <li><strong>Lập kế hoạch chi tiết từ đầu</strong>, thực hiện theo từng giai đoạn cố định.</li>
-  <li>Phù hợp khi <strong>yêu cầu ổn định</strong>, mức độ thay đổi <strong>thấp</strong>.</li>
-</ul>
-
-<h3>Agile</h3>
-<ul>
-  <li>Phương pháp <strong>lặp &amp; gia tăng</strong> (iterative &amp; incremental).</li>
-  <li>Làm việc theo <strong>Sprint</strong>; mỗi vòng lặp tạo ra <strong>Increment có thể sử dụng</strong>.</li>
-  <li>Phù hợp khi <strong>thay đổi thường xuyên</strong>, cần <strong>học nhanh từ phản hồi</strong>.</li>
-</ul>
-
-<h3>Hybrid</h3>
-<ul>
-  <li><strong>Kết hợp</strong> Predictive và Agile dựa trên đặc thù từng phần việc.</li>
-  <li>Ví dụ: dùng <strong>Predictive</strong> cho <strong>hợp đồng/tuân thủ</strong> ổn định; dùng <strong>Agile</strong> cho <strong>phát triển hoặc R&amp;D</strong>.</li>
-  <li>Phù hợp khi vừa có <strong>ràng buộc cứng</strong> vừa cần <strong>khám phá/đổi mới</strong>.</li>
-</ul>
-
-| Yếu tố | Agile | Predictive (Waterfall) | Hybrid |
-|---|---|---|---|
-| Cách tiếp cận | Lặp & gia tăng | Tuần tự, kế hoạch upfront | Pha trộn theo bối cảnh |
-| Phạm vi | Tiến hoá | Cố định sớm | Một phần cố định |
-| Giá trị | Ra sớm theo increment | Cuối dự án | Vừa mốc vừa increment |
-| Quản trị rủi ro | Liên tục, thực nghiệm | Đầu kỳ | Kết hợp |
-| Tài liệu | “Vừa đủ” | Nặng tài liệu | Theo tuân thủ |
-| Hợp đồng | T&amp;M, value-based | Fixed scope/price | Milestone + increment |
-
-<p><em>Mẹo:</em> Bắt đầu bằng <strong>Hybrid theo rủi ro</strong>, rồi đẩy dần về Agile khi điều kiện cho phép.</p>
-
-<h2>4) Vắn tắt các phương pháp Agile</h2>
-
-<h3>Scrum</h3>
-<ul>
-  <li>Phương pháp Agile phổ biến; khung làm việc nhẹ dựa trên <strong>empiricism</strong>.</li>
-  <li><strong>Sprint</strong> có độ dài cố định <strong>2–4 tuần</strong>.</li>
-  <li>Vai trò: <strong>Product Owner</strong>, <strong>Scrum Master</strong>, <strong>Development Team</strong>.</li>
-  <li>Nghi thức: <strong>Daily Scrum</strong>, <strong>Sprint Review</strong>, <strong>Sprint Retrospective</strong> (và <em>Sprint Planning</em>).</li>
-</ul>
-
-<h3>Kanban</h3>
-<ul>
-  <li>Tối ưu <strong>luồng công việc</strong> bằng cách giới hạn <strong>WIP</strong> (Work In Progress).</li>
-  <li>Trực quan hóa trên <strong>Kanban board</strong> và kéo công việc qua các trạng thái.</li>
-  <li>Hệ thống <strong>pull</strong>; theo dõi <em>lead time</em>/<em>cycle time</em>; cải tiến liên tục.</li>
-</ul>
-
-<h3>eXtreme Programming (XP)</h3>
-<ul>
-  <li>Tập trung vào các thực hành <strong>kỹ thuật</strong> để nâng chất lượng &amp; khả năng thích ứng.</li>
-  <li>Thực hành tiêu biểu: <strong>pair programming</strong>, <strong>kiểm thử tự động/TDD</strong>, <strong>tích hợp liên tục (CI)</strong>.</li>
-  <li>Khuyến nghị thêm: <em>refactoring</em>, <em>simple design</em>, <em>continuous feedback</em>.</li>
-</ul>
-
-<h3>Lean</h3>
-<ul>
-  <li>Lấy cảm hứng từ <strong>Toyota Production System</strong>.</li>
-  <li>Mục tiêu: <strong>loại bỏ lãng phí (waste)</strong> để <strong>tối đa hóa giá trị</strong> cho khách hàng.</li>
-  <li>Nguyên lý: <em>flow</em>, <em>pull</em>, <em>kaizen</em> (cải tiến liên tục).</li>
-</ul>
+<h2>Phương pháp Agile vắn tắt</h2>
 
 | Phương pháp | Mô tả ngắn | Khi dùng | Tránh khi |
 |---|---|---|---|
-| Scrum | Sprint 1–4 tuần, vai trò rõ, review/retro | Sản phẩm số cần nhịp & minh bạch | Phụ thuộc lớn, khó ổn định timebox |
-| Kanban | Trực quan luồng, giới hạn WIP, đo flow | Ops/Support, yêu cầu ad-hoc | Thiếu kỷ luật WIP |
-| XP | TDD, pair, CI/CD, refactor | Yêu cầu chất lượng cao, đổi nhanh | Văn hoá chưa sẵn sàng kỹ thuật kỷ luật |
-| Lean | Loại bỏ lãng phí, tối ưu flow | Tối ưu value stream end-to-end | “Cắt giảm mù quáng” |
-| Crystal | Tùy biến theo cỡ/quan trọng | Nhóm nhỏ-vừa, ưu tiên giao tiếp | Tổ chức đòi chuẩn hoá cứng |
-| DSDM | Timeboxing + MoSCoW | Cần ranh giới thời gian rõ | Quy mô cực lớn, phụ thuộc nặng |
-| FDD | Phát triển theo tính năng | Enterprise đa domain | Cần feedback siêu nhanh |
-| SAFe/LeSS | Quy mô hoá Agile | Nhiều đội phối hợp | Tổ chức nhỏ; áp dụng máy móc |
-| Spotify Model | Squad/Tribe/Chapter/Guild | Văn hoá trao quyền mạnh | Sao chép không theo bối cảnh |
+| Scrum | Sprint 1–4 tuần, vai trò rõ, review/retro | Sản phẩm số cần nhịp & minh bạch | Phụ thuộc lớn, khó giữ timebox |
+| Kanban | Luồng liên tục, giới hạn WIP, đo flow | Ops/Support, ad-hoc | Thiếu kỷ luật WIP |
+| XP | TDD, pair, CI/CD, refactor | Cần chất lượng cao, đổi nhanh | Văn hoá chưa sẵn sàng kỹ thuật |
+| Lean | Loại bỏ lãng phí, tối ưu flow | Value stream end-to-end | “Cắt giảm mù quáng” |
+| Crystal/DSDM/FDD/SAFe/LeSS/Spotify | Pattern theo bối cảnh | Quy mô/đặc thù khác nhau | Sao chép máy móc |
 
-<h2>5) FAQ (VI)</h2>
-
-<h3>Agile có thay thế hoàn toàn Waterfall không?</h3>
+<h2>Ví dụ thực tế: Trợ lý ảo AI trong doanh nghiệp</h2>
 <ul>
-  <li><strong>Không</strong>. Hai cách tiếp cận <strong>bổ sung</strong> chứ không đối nghịch.</li>
-  <li>Nhiều bối cảnh phù hợp <strong>Hybrid</strong>: phần ổn định theo <em>Predictive</em>, phần biến động theo <em>Agile</em>.</li>
+  <li><strong>Sprint 2 tuần</strong>, <strong>MVP</strong> ở Sprint 1 (~10 FAQ).</li>
+  <li>Increment tiếp: <strong>pricing</strong>, tích hợp <strong>CRM</strong>, cải thiện <strong>NLP</strong>.</li>
+  <li>Compliance (GDPR/CCPA) theo mốc Predictive; phần R&amp;D theo Agile.</li>
 </ul>
 
-<h3>Scrum khác Kanban như thế nào?</h3>
-<ul>
-  <li><strong>Scrum</strong>: làm theo <strong>Sprint cố định</strong>, có <strong>vai trò</strong> &amp; <strong>sự kiện</strong> chuẩn hóa.</li>
-  <li><strong>Kanban</strong>: tối ưu <strong>luồng</strong>, giới hạn <strong>WIP</strong>, <strong>không bắt buộc Sprint</strong> hay vai trò cố định.</li>
-  <li>Chọn <em>Scrum</em> khi cần nhịp độ/timebox; chọn <em>Kanban</em> khi ưu tiên luồng liên tục.</li>
-</ul>
-
-<h3>PMI-ACP có yêu cầu “thuần Agile” không?</h3>
-<ul>
-  <li><strong>Không</strong>. Chứng chỉ đề cao <strong>tư duy linh hoạt</strong> và <strong>chọn phương pháp phù hợp bối cảnh</strong>.</li>
-  <li>Kiến thức bao trùm <strong>Scrum, Kanban, XP, Lean</strong> và hiểu biết về <strong>Predictive/Hybrid</strong>.</li>
-</ul>
-
-<h3>Dự án Agile có cần tài liệu không?</h3>
-<ul>
-  <li><strong>Có</strong>, nhưng theo nguyên tắc <strong>“vừa đủ”</strong> để tạo giá trị &amp; đáp ứng yêu cầu.</li>
-  <li>Hỗ trợ giao tiếp, chất lượng, và <strong>compliance</strong>; tài liệu được cập nhật lặp lại theo vòng đời.</li>
-</ul>
-
-<h3>Dự án tuân thủ cao có dùng Agile được không?</h3>
-<ul>
-  <li>Thường áp dụng <strong>Hybrid</strong>: <em>Agile</em> cho discovery/thiết kế, <em>Predictive</em> cho phần <strong>compliance</strong>.</li>
-  <li>Kết hợp kiểm soát: <strong>QA/validation/traceability</strong> song hành với Sprint.</li>
-</ul>
-
-<h2>6) Ví dụ thực tế: Trợ lý ảo AI cho doanh nghiệp</h2>
-
-<h3>Bối cảnh dự án</h3>
-<ul>
-  <li>Doanh nghiệp cần xây dựng <strong>trợ lý ảo AI</strong> trả lời FAQ cho khách hàng.</li>
-  <li>Yêu cầu ban đầu <strong>mơ hồ</strong>, thay đổi nhanh do tốc độ phát triển công nghệ AI.</li>
-</ul>
-
-<h3>Ứng dụng Agile (Scrum/Kanban)</h3>
-<ul>
-  <li><strong>Vòng lặp ngắn &amp; học hỏi</strong>: chia dự án thành <strong>Sprint 2 tuần</strong>, lấy phản hồi sớm.</li>
-  <li><strong>Sprint 1</strong>: xây <strong>MVP</strong> trả lời ~10 câu hỏi cơ bản.</li>
-  <li><strong>Sprint 2</strong>: thêm khả năng trả lời <strong>giá sản phẩm</strong> dựa trên phản hồi khách hàng.</li>
-  <li><strong>Sprint 3</strong>: cải thiện <strong>NLP</strong> &amp; tích hợp <strong>CRM</strong> nội bộ.</li>
-  <li><strong>Đáp ứng thay đổi</strong>: khi có <strong>LLM</strong> mới hiệu quả hơn, lên kế hoạch thay thế ngay Sprint kế tiếp.</li>
-  <li><strong>Time-to-value</strong>: khách hàng đã <strong>dùng được</strong> từ Sprint 1 thay vì chờ 6 tháng.</li>
-</ul>
-
-<h2>Kết hợp Hybrid trong bối cảnh AI</h2>
-
-<h3>Predictive (cố định)</h3>
-<ul>
-  <li><strong>Hợp đồng</strong>, <strong>bảo mật</strong> và <strong>tuân thủ pháp lý</strong> (GDPR, CCPA) được lập kế hoạch chi tiết.</li>
-  <li>Quy trình <strong>kiểm soát/traceability</strong> rõ ràng, mốc nghiệm thu ràng buộc.</li>
-</ul>
-
-<h3>Agile (linh hoạt)</h3>
-<ul>
-  <li><strong>R&amp;D</strong>, huấn luyện mô hình, triển khai tính năng mới theo <strong>Sprint/Kanban</strong>.</li>
-  <li>Tối ưu hóa theo <strong>feedback</strong>, thử nhanh – sai nhanh – học nhanh.</li>
-</ul>
-
-<h3>Kết quả</h3>
-<ul>
-  <li>Vừa đảm bảo <strong>compliance &amp; hợp đồng</strong>, vừa giữ <strong>tính linh hoạt</strong> để bắt kịp công nghệ AI.</li>
-  <li>Tối đa hóa <strong>giá trị sớm</strong> cho khách hàng và <strong>giảm rủi ro</strong> sai hướng.</li>
-</ul>
 <h2>Mini-mock</h2>
 <MiniMockAuto
   storageKey="mm-what-is-agile"
   title="Mini-mock – What Is Agile"
-  count={5}
+  count={10}
   seed="what-is-agile"
   topics={["Agile Principles and Mindset","Agile Values & Principles","Agile Mindset"]}
   completeChecklistKeys={["what-is-agile-vi","what-is-agile-en"]}
 />
 
-
 <hr />
 
-<p><strong>Bước tiếp theo:</strong> Xem <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a> • <a href="/docs/pmi-acp/domains/mindset">Mindset</a> • <a href="/docs/pmi-acp/domains/delivery">Delivery</a> • <a href="/mock">Mini-mock 10 câu</a>.</p>
+<p><strong>Bước tiếp theo:</strong> <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a> • <a href="/docs/pmi-acp/domains/mindset">Mindset</a> • <a href="/docs/pmi-acp/domains/delivery">Delivery</a> • <a href="/mock">Mini-mock 10 câu</a>.</p>
+
+<h3>Liên hệ &amp; cập nhật</h3>
+<Subscribe source="what-is-agile" />
 
 </TabItem>
 
 <TabItem value="en" label="EN">
+
+<h2>❓ Opening Scenario</h2>
+<p>You’re the PM of an internal product. Leadership wants a <strong>release in 6–8 weeks</strong>, requirements are <strong>volatile</strong>, team of 9, <strong>moderate compliance</strong>. Do you pick <strong>Agile, Predictive</strong>, or <strong>Hybrid</strong>—and why?</p>
+
+<h3>Quick Path to a Decision</h3>
+<ul>
+  <li><strong>Goal</strong>: deliver <strong>early value</strong> and learn fast from feedback.</li>
+  <li><strong>Initial choice</strong>: <strong>Agile/Hybrid</strong> with <strong>2-week Sprints</strong>; ship an <strong>MVP</strong> in Sprint 1–2.</li>
+  <li><strong>Risk control</strong>: pace <strong>compliance</strong> via milestones (Hybrid), keep discovery under <strong>Agile</strong>.</li>
+</ul>
 
 {/* ======= CTA: Blueprint + 4 Domains ======= */}
 <CtaQuickLinks />
@@ -289,83 +220,55 @@ import MiniMockAuto from '@site/src/components/MiniMockAuto';
   storageKey="what-is-agile-en"
   title="Quick Self-Check – What Is Agile (EN)"
   items={[
-    { id: 'en-01', label: 'Recall the 4 Manifesto values & 12 principles' },
-    { id: 'en-02', label: 'Contrast Agile vs Predictive vs Hybrid (comparison table)' },
+    { id: 'en-01', label: 'Recall 4 Manifesto values & 12 principles' },
+    { id: 'en-02', label: 'Contrast Agile vs Predictive vs Hybrid (table)' },
     { id: 'en-03', label: 'Read: Iterative vs Incremental + examples' },
-    { id: 'en-04', label: 'Do a 10-item mini-mock to verify understanding' },
+    { id: 'en-04', label: 'Do a 10-item mini-mock' },
   ]}
 />
 
-<h2>Summary (EN)</h2>
-<p><strong>Agile</strong> is an <em>iterative &amp; incremental</em> way of working focused on <strong>value</strong>, <strong>fast feedback</strong>, and <strong>collaboration</strong>. Use it when requirements are volatile and you need early value; for heavy compliance or fixed scope, consider <strong>Hybrid</strong> or <strong>Predictive</strong>.</p>
-
-<h2>1) What is Agile?</h2>
-
+<h2>Key takeaways</h2>
 <ul>
-  <li><strong>Agile</strong> is a <strong>project management philosophy</strong> centered on a <strong>flexible response to change</strong>.</li>
-  <li>Instead of a fixed plan, Agile <strong>breaks work down</strong> into short <strong>Sprints</strong>.</li>
-  <li>Each Sprint produces an <strong>Increment</strong>—a <strong>working</strong>, <strong>value-delivering</strong> product slice.</li>
-  <li><em>In short:</em> <strong>Small batches – early delivery – fast learning – continuous adaptation</strong>.</li>
+  <li><strong>Agile = iterative &amp; incremental</strong> to maximize <strong>early value</strong> &amp; <strong>fast feedback</strong>.</li>
+  <li><strong>Hybrid</strong> is powerful when <strong>compliance</strong> is real yet discovery is needed.</li>
+  <li><strong>Context over dogma</strong>: tailor to risk profile.</li>
 </ul>
 
-<h3>Agile Manifesto: 4 Core Values</h3>
+:::tip Exam tip
+Prefer answers that emphasize <strong>value, feedback, and tailoring</strong>. For heavy compliance, choose <strong>Hybrid</strong> over “pure Agile.”  
+:::
+
+<h2>Step 1 — What is Agile?</h2>
+<p><strong>Agile</strong> is an <em>iterative &amp; incremental</em> way of working focused on <strong>value</strong>, <strong>fast feedback</strong>, and <strong>collaboration</strong>. Work is <strong>sliced</strong> into short <strong>Sprints</strong>, each producing a <strong>working Increment</strong>.</p>
+
+<h4>Agile Manifesto: 4 values</h4>
 <ul>
-  <li><strong>Individuals &amp; interactions</strong> <em>over</em> processes &amp; tools.</li>
-  <li><strong>Working product</strong> <em>over</em> comprehensive documentation.</li>
-  <li><strong>Customer collaboration</strong> <em>over</em> contract negotiation.</li>
-  <li><strong>Responding to change</strong> <em>over</em> following a plan.</li>
-  <li>Items on the left are <strong>valued more</strong> (not a rejection of the right).</li>
+  <li><strong>Individuals &amp; interactions</strong> over processes &amp; tools.</li>
+  <li><strong>Working product</strong> over comprehensive documentation.</li>
+  <li><strong>Customer collaboration</strong> over contract negotiation.</li>
+  <li><strong>Responding to change</strong> over following a plan.</li>
 </ul>
 
-<h3>Key Terms</h3>
-<ul>
-  <li><strong>Sprint:</strong> a fixed timebox for <strong>inspection</strong> &amp; <strong>rapid adjustment</strong>.</li>
-  <li><strong>Increment:</strong> a <strong>shippable/usable</strong> product slice at the end of each Sprint.</li>
-</ul>
+:::note Important
+“<em>Over</em>” means <strong>prioritize</strong>, not eliminate the right-hand items.  
+:::
 
-<h3>Prominent Agile Methods</h3>
-<ul>
-  <li><strong>Scrum</strong>, <strong>Kanban</strong>, <strong>XP</strong> (eXtreme Programming), <strong>Lean</strong>.</li>
-  <li>Operate via <strong>transparency → inspection → adaptation</strong> for <strong>continuous improvement</strong>.</li>
-</ul>
-
-{/* ==== Internal links (EN) ==== */}
-<h3>🔗 Internal links</h3>
-
-| Topic | Link |
-|---|---|
-| Blueprint & weights | [Blueprint 2025](/docs/pmi-acp/blueprint-2025) |
-| Mindset hub | [Mindset](/docs/pmi-acp/domains/mindset) |
-| Leadership hub | [Leadership](/docs/pmi-acp/domains/leadership) |
-| Product hub | [Product](/docs/pmi-acp/domains/product) |
-| Delivery hub | [Delivery](/docs/pmi-acp/domains/delivery) |
-| Next article: Iterative vs Incremental | [Iterative vs Incremental](/docs/pmi-acp/domains/mindset/iterative-vs-incremental) |
-| Mini-mock | [Take the Mock](/mock) |
-
-<h2>2) When to use / not use Agile</h2>
+<h2>Step 2 — When to use Agile/Hybrid</h2>
 
 <h3>Use Agile when</h3>
 <ul>
-  <li>High requirement volatility / high <strong>discovery</strong>.</li>
-  <li>Need <strong>early time-to-value</strong> (e.g., <strong>MVP</strong>).</li>
-  <li><strong>High market risk</strong> → learn fast from feedback.</li>
-  <li><strong>Self-managing team</strong> and engaged <strong>stakeholders</strong>.</li>
-  <li>Work can be <strong>sliced</strong> into <strong>meaningful, valuable increments</strong>.</li>
+  <li>High volatility / high <strong>discovery</strong>.</li>
+  <li>Need <strong>early time-to-value</strong> (MVP).</li>
+  <li>High market risk → learn fast from feedback.</li>
+  <li><strong>Self-managing team</strong> &amp; engaged stakeholders.</li>
+  <li>Work can be <strong>sliced</strong> into valuable increments.</li>
 </ul>
 
-<h3>Avoid / go Hybrid when</h3>
+<h3>Prefer Predictive/Hybrid when</h3>
 <ul>
-  <li><strong>Heavy compliance/safety</strong> (healthcare, aviation…). <em>Tip:</em> consider <strong>Hybrid</strong> for R&amp;D/design.</li>
-  <li><strong>Fixed scope/price</strong> contracts with limited change mechanisms.</li>
-  <li><strong>Long, complex supply chains</strong> that hinder regular value increments.</li>
-  <li><strong>Stakeholders not ready</strong> to provide regular feedback.</li>
-</ul>
-
-<h3>How to pick an approach</h3>
-<ul>
-  <li><strong>Agile</strong>: when the goal is <strong>learn fast + change fast + deliver early value</strong>.</li>
-  <li><strong>Hybrid</strong>: when <strong>compliance constraints</strong> exist but you still need <strong>experimentation/discovery</strong>.</li>
-  <li><strong>Plan-driven</strong>: when <strong>scope is fixed</strong>, change is hard, and compliance risk is high.</li>
+  <li><strong>Heavy compliance/safety</strong> environments.</li>
+  <li><strong>Fixed scope/price</strong> contracts with limited change.</li>
+  <li>Long/complex dependencies hinder regular increments.</li>
 </ul>
 
 <h3>Quick decision matrix</h3>
@@ -378,158 +281,65 @@ import MiniMockAuto from '@site/src/components/MiniMockAuto';
 | Early value need | Predictive | Hybrid | Agile |
 | Increment slice-ability | Predictive | Hybrid | Agile |
 
-<h2>3) Agile vs Predictive vs Hybrid</h2>
+<h2>Step 3 — Agile vs Predictive vs Hybrid</h2>
 
-<h3>Predictive (Waterfall)</h3>
+<h4>Predictive (Waterfall)</h4>
 <ul>
-  <li><strong>Sequential</strong> approach: analysis → design → build → test.</li>
-  <li><strong>Up-front detailed planning</strong> with fixed phases.</li>
-  <li>Best when <strong>requirements are stable</strong> and change is <strong>low</strong>.</li>
+  <li><strong>Sequential</strong> phases and up-front detailed planning.</li>
+  <li>Best when requirements are <strong>stable</strong>.</li>
 </ul>
 
-<h3>Agile</h3>
+<h4>Agile</h4>
 <ul>
-  <li><strong>Iterative &amp; incremental</strong> approach.</li>
-  <li>Work in <strong>Sprints</strong>; each iteration delivers a <strong>usable Increment</strong>.</li>
-  <li>Best when <strong>requirements change often</strong> and you must <strong>learn fast</strong>.</li>
+  <li><strong>Iterative &amp; incremental</strong> Sprints; each delivers a <strong>usable Increment</strong>.</li>
 </ul>
 
-<h3>Hybrid</h3>
+<h4>Hybrid</h4>
 <ul>
-  <li><strong>Combines</strong> Predictive and Agile per workstream.</li>
-  <li>Example: <strong>Predictive</strong> for <strong>contracts/compliance</strong>; <strong>Agile</strong> for <strong>development or R&amp;D</strong>.</li>
-  <li>Useful when you face both <strong>hard constraints</strong> and <strong>exploration/innovation</strong> needs.</li>
+  <li><strong>Combine</strong> Predictive for <strong>contracts/compliance</strong> and Agile for <strong>development/R&amp;D</strong>.</li>
 </ul>
 
 | Aspect | Agile | Predictive (Waterfall) | Hybrid |
 |---|---|---|---|
 | Approach | Iterative &amp; incremental | Sequential, up-front plan | Contextual mix |
 | Scope | Evolves | Fixed early | Partly fixed |
-| Value | Delivered early via increments | End of project | Milestones + increments |
+| Value | Early via increments | End of project | Milestones + increments |
 | Risk mgmt | Continuous, empirical | Front-loaded | Combined |
-| Documentation | “Just enough” | Heavy | As compliance requires |
+| Documentation | “Just enough” | Heavy | As required |
 | Contracts | T&amp;M, value-based | Fixed scope/price | Milestones + increments |
 
-<p><em>Tip:</em> Start with a <strong>risk-based Hybrid</strong>, then shift toward Agile as conditions allow.</p>
+:::caution PMI-ACP traps (EN)
+1) Treating the Manifesto as “no docs/process”.  
+2) Choosing Agile in high-compliance context without change mechanisms.  
+3) Mixing up <strong>iterative</strong> vs <strong>incremental</strong>.  
+4) Assuming Scrum is mandatory everywhere; forgetting <strong>tailoring</strong>.  
+5) Ignoring continuous <strong>stakeholder engagement</strong>.  
+:::
 
-<h2>4) Agile methods in a nutshell</h2>
+{/* ==== Internal links (EN) ==== */}
+<h3>🔗 Internal links</h3>
 
-<h3>Scrum</h3>
+| Topic | Link |
+|---|---|
+| Blueprint & weights | [Blueprint 2025](/docs/pmi-acp/blueprint-2025) |
+| Mindset hub | [Mindset](/docs/pmi-acp/domains/mindset) |
+| Leadership hub | [Leadership](/docs/pmi-acp/domains/leadership) |
+| Product hub | [Product](/docs/pmi-acp/domains/product) |
+| Delivery hub | [Delivery](/docs/pmi-acp/domains/delivery) |
+| Next: Iterative vs Incremental | [Iterative vs Incremental](/docs/pmi-acp/domains/mindset/iterative-vs-incremental) |
+| Mini-mock | [Take the Mock](/mock) |
+
+<h2>Real-world example: Enterprise AI Virtual Assistant</h2>
 <ul>
-  <li>Widely used, lightweight framework based on <strong>empiricism</strong>.</li>
-  <li><strong>Sprint</strong> length fixed, typically <strong>2–4 weeks</strong>.</li>
-  <li>Roles: <strong>Product Owner</strong>, <strong>Scrum Master</strong>, <strong>Development Team</strong>.</li>
-  <li>Events: <strong>Daily Scrum</strong>, <strong>Sprint Review</strong>, <strong>Sprint Retrospective</strong> (and <em>Sprint Planning</em>).</li>
-</ul>
-
-<h3>Kanban</h3>
-<ul>
-  <li>Optimizes <strong>flow</strong> by limiting <strong>WIP</strong> (Work In Progress).</li>
-  <li>Visualized on a <strong>Kanban board</strong>; work is pulled across states.</li>
-  <li><strong>Pull</strong> system; track <em>lead time</em>/<em>cycle time</em>; continuous improvement.</li>
-</ul>
-
-<h3>eXtreme Programming (XP)</h3>
-<ul>
-  <li>Emphasizes <strong>technical practices</strong> for quality &amp; adaptability.</li>
-  <li>Key practices: <strong>pair programming</strong>, <strong>TDD/automated tests</strong>, <strong>continuous integration (CI)</strong>.</li>
-  <li>Also: <em>refactoring</em>, <em>simple design</em>, <em>continuous feedback</em>.</li>
-</ul>
-
-<h3>Lean</h3>
-<ul>
-  <li>Inspired by the <strong>Toyota Production System</strong>.</li>
-  <li>Goal: <strong>eliminate waste</strong> to <strong>maximize customer value</strong>.</li>
-  <li>Principles: <em>flow</em>, <em>pull</em>, <em>kaizen</em> (continuous improvement).</li>
-</ul>
-
-| Method | One-liner | Use when | Avoid when |
-|---|---|---|---|
-| Scrum | 1–4 week Sprints, clear roles, review/retro | Digital products needing cadence &amp; transparency | Heavy dependencies block timeboxes |
-| Kanban | Visual flow, WIP limits, flow metrics | Ops/Support, ad-hoc demand | Poor WIP discipline |
-| XP | TDD, pairing, CI/CD, refactoring | High quality &amp; rapid change | Culture not ready for disciplined engineering |
-| Lean | Remove waste, optimize flow | End-to-end value stream | “Blind cost-cutting” |
-| Crystal | Tailor by size/criticality | Small–mid teams, comms-first | Org demands rigid standardization |
-| DSDM | Timeboxing + MoSCoW | Clear time boundaries | Very large scale, heavy dependencies |
-| FDD | Feature-driven development | Multi-domain enterprise | Need ultra-fast feedback |
-| SAFe/LeSS | Scaling frameworks | Many teams to coordinate | Small orgs; cargo-cult adoption |
-| Spotify Model | Squad/Tribe/Chapter/Guild | Strong empowerment culture | Copying without context |
-
-<h2>5) FAQ (EN)</h2>
-
-<h3>Does Agile completely replace Waterfall?</h3>
-<ul>
-  <li><strong>No</strong>. They are <strong>complementary</strong>, not oppositional.</li>
-  <li>Many contexts benefit from <strong>Hybrid</strong>: stable parts run <em>Predictive</em>, evolving parts run <em>Agile</em>.</li>
-</ul>
-
-<h3>How is Scrum different from Kanban?</h3>
-<ul>
-  <li><strong>Scrum</strong>: fixed-length <strong>Sprints</strong>, standardized <strong>roles</strong> &amp; <strong>events</strong>.</li>
-  <li><strong>Kanban</strong>: <strong>flow</strong> optimization with <strong>WIP limits</strong>, <strong>no required Sprints</strong> or fixed roles.</li>
-  <li>Pick <em>Scrum</em> for cadence/timeboxes; pick <em>Kanban</em> for continuous flow.</li>
-</ul>
-
-<h3>Does PMI-ACP require “pure Agile”?</h3>
-<ul>
-  <li><strong>No</strong>. It emphasizes a <strong>flexible mindset</strong> and <strong>fit-for-context</strong> choices.</li>
-  <li>Covers <strong>Scrum, Kanban, XP, Lean</strong> plus awareness of <strong>Predictive/Hybrid</strong>.</li>
-</ul>
-
-<h3>Do Agile projects need documentation?</h3>
-<ul>
-  <li><strong>Yes</strong>, but <strong>“just enough”</strong> to deliver value &amp; meet requirements.</li>
-  <li>Supports communication, quality, and <strong>compliance</strong>; updated iteratively across the lifecycle.</li>
-</ul>
-
-<h3>Can Agile be used on high-compliance projects?</h3>
-<ul>
-  <li>Often via <strong>Hybrid</strong>: <em>Agile</em> for discovery/design, <em>Predictive</em> for <strong>compliance</strong> phases.</li>
-  <li>Combine controls such as <strong>QA/validation/traceability</strong> alongside Sprints.</li>
-</ul>
-
-<h2>6) Real-World Example: AI Virtual Assistant for an Enterprise</h2>
-
-<h3>Project Context</h3>
-<ul>
-  <li>Build an <strong>AI virtual assistant</strong> to answer customer FAQs.</li>
-  <li>Initial requirements are <strong>ambiguous</strong> and change quickly due to the pace of AI.</li>
-</ul>
-
-<h3>Applying Agile (Scrum/Kanban)</h3>
-<ul>
-  <li><strong>Short loops &amp; learning</strong>: split work into <strong>2-week Sprints</strong> with early feedback.</li>
-  <li><strong>Sprint 1</strong>: ship an <strong>MVP</strong> that answers ~10 basic questions.</li>
-  <li><strong>Sprint 2</strong>: add pricing-related answers based on customer feedback.</li>
-  <li><strong>Sprint 3</strong>: improve <strong>NLP</strong> and integrate with the internal <strong>CRM</strong>.</li>
-  <li><strong>Responding to change</strong>: when a better <strong>LLM</strong> appears, plan a swap in the next Sprint.</li>
-  <li><strong>Time-to-value</strong>: the customer can <strong>use it from Sprint 1</strong> instead of waiting six months.</li>
-</ul>
-
-<h2>Hybrid in the AI Context</h2>
-
-<h3>Predictive (fixed)</h3>
-<ul>
-  <li><strong>Contracts</strong>, <strong>security</strong>, and <strong>legal compliance</strong> (GDPR, CCPA) are planned in detail.</li>
-  <li>Clear <strong>controls/traceability</strong> and stage gates for acceptance.</li>
-</ul>
-
-<h3>Agile (flexible)</h3>
-<ul>
-  <li><strong>R&amp;D</strong>, model training, and feature rollout via <strong>Sprints/Kanban</strong>.</li>
-  <li>Optimize with <strong>feedback</strong>; try fast – fail fast – learn fast.</li>
-</ul>
-
-<h3>Outcomes</h3>
-<ul>
-  <li>Meets <strong>compliance &amp; contractual</strong> needs while keeping <strong>flexibility</strong> to track AI changes.</li>
-  <li>Maximizes <strong>early value</strong> and <strong>reduces the risk</strong> of building the wrong thing.</li>
+  <li><strong>2-week Sprints</strong>, <strong>MVP</strong> in Sprint 1 (~10 FAQs).</li>
+  <li>Next increments: <strong>pricing</strong>, <strong>CRM</strong> integration, better <strong>NLP</strong>.</li>
+  <li>Run <strong>compliance</strong> (GDPR/CCPA) via Predictive milestones; R&amp;D via Agile.</li>
 </ul>
 
 <MiniMockAuto
   storageKey="mm-what-is-agile"
   title="Mini-mock – What Is Agile"
-  count={5}
+  count={10}
   seed="what-is-agile"
   topics={["Agile Principles and Mindset"]}
   completeChecklistKeys={["what-is-agile-vi","what-is-agile-en"]}
@@ -537,12 +347,15 @@ import MiniMockAuto from '@site/src/components/MiniMockAuto';
 
 <hr />
 
-<p><strong>Next steps:</strong> See <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a> • <a href="/docs/pmi-acp/domains/mindset">Mindset</a> • <a href="/docs/pmi-acp/domains/delivery">Delivery</a> • <a href="/mock">10-item Mini-mock</a>.</p>
+<p><strong>Next steps:</strong> <a href="/docs/pmi-acp/blueprint-2025">Blueprint 2025</a> • <a href="/docs/pmi-acp/domains/mindset">Mindset</a> • <a href="/docs/pmi-acp/domains/delivery">Delivery</a> • <a href="/mock">10-item Mini-mock</a>.</p>
+
+<h3>Contact &amp; updates</h3>
+<Subscribe source="what-is-agile" />
 
 </TabItem>
 </Tabs>
 
-{/* Optional: FAQ schema for SEO (EN). Safe to keep even on bilingual page. */}
+{/* JSON-LD: FAQ (EN) */}
 <script type="application/ld+json">
 {JSON.stringify({
   "@context": "https://schema.org",
@@ -589,5 +402,17 @@ import MiniMockAuto from '@site/src/components/MiniMockAuto';
       }
     }
   ]
+})}
+</script>
+
+{/* JSON-LD: Article (for SEO) */}
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Agile (Agile là gì?) — Scenario-first Guide & Exam Tips",
+  "about": ["Agile","Scrum","Kanban","Hybrid","Waterfall","PMI-ACP"],
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "Viện Quản Lý Dự Án" }
 })}
 </script>
