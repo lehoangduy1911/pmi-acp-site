@@ -50,6 +50,11 @@ const config: Config = {
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
+
+          // 👇 Thêm để khớp UI mong muốn
+          blogSidebarTitle: 'Bài mới',   // thay "Recent posts"
+          blogSidebarCount: 'ALL',       // hiện tất cả ở sidebar
+          postsPerPage: 8,               // số bài mỗi trang list (tùy chỉnh)
         },
         theme: { customCss: require.resolve('./src/css/custom.css') },
       } satisfies Preset.Options,

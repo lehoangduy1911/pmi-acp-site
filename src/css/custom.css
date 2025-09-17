@@ -11,12 +11,10 @@
   display: none !important;
 }
 
-/* (Phòng hờ) Nếu Docusaurus gắn class mặc định cho locale dropdown */
 .navbar__item--locale-dropdown,
 .menu__list .navbar__item--locale-dropdown {
   display: none !important;
 }
-
 
 /* =========================
    Brand + globals
@@ -27,31 +25,21 @@
   --ifm-color-primary-darker: var(--brand-green-800);
   --ifm-color-primary-light: var(--brand-green-500);
   --ifm-link-color: var(--brand-green-700);
-
   --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --ifm-heading-font-family: "Space Grotesk", Inter, system-ui, sans-serif;
   --ifm-font-size-base: 16px;
   --ifm-line-height-base: 1.7;
-
   --ifm-container-width: 1200px;
   --ifm-container-width-xl: 1320px;
-
   --brand-green-50: #ecfdf5;
   --brand-green-100: #d1fae5;
   --brand-green-200: #a7f3d0;
   --brand-green-500: #22c55e;
-  /* primary-light */
   --brand-green-600: #16a34a;
-  /* primary */
   --brand-green-700: #15803d;
-  /* hover */
   --brand-green-800: #166534;
-  /* dark bg tone */
   --brand-green-900: #14532d;
-
   --brand-on-green: #ffffff;
-  /* chữ trên nền xanh */
-
   --lang-tabs-offset: 8px;
 }
 
@@ -60,17 +48,14 @@ html[data-theme='dark'] {
   --ifm-color-primary-dark: var(--brand-green-700);
   --ifm-color-primary-darker: var(--brand-green-800);
   --ifm-color-primary-light: var(--brand-green-500);
-
   --brand-green-50: #0b1f14;
   --brand-green-100: #0f2a1a;
   --brand-green-200: #134024;
   --brand-green-500: #22c55e;
   --brand-green-600: #22c55e;
-  /* sáng hơn cho dark */
   --brand-green-700: #16a34a;
   --brand-green-800: #14532d;
   --brand-green-900: #0b1f14;
-
   --brand-on-green: #ffffff;
 }
 
@@ -80,9 +65,7 @@ html[data-theme='dark'] {
 }
 
 html[data-theme='dark'] .hero--primary {
-  background: linear-gradient(180deg,
-      color-mix(in oklab, var(--brand-green-600) 92%, black) 0%,
-      var(--brand-green-600) 100%);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand-green-600) 92%, black) 0%, var(--brand-green-600) 100%);
 }
 
 .hero__title {
@@ -108,7 +91,7 @@ html[data-theme='dark'] .hero--primary {
 /* ===== CTA buttons ===== */
 .button--primary.button {
   border-radius: 10px;
-  padding: 0.7rem 1.1rem;
+  padding: .7rem 1.1rem;
   font-weight: 600;
 }
 
@@ -178,7 +161,7 @@ html[data-theme='dark'] .hero--primary {
   opacity: .5;
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
   .breadcrumbs {
     font-size: .9rem;
     line-height: 1.5;
@@ -191,7 +174,7 @@ html[data-theme='dark'] .hero--primary {
   align-items: center;
   gap: .5rem;
   flex-wrap: wrap;
-  padding: 0.8rem;
+  padding: .8rem;
   border-radius: 12px;
   background: linear-gradient(180deg, color-mix(in oklab, var(--brand-green-800), transparent 15%), var(--brand-green-800));
   border: 1px solid color-mix(in oklab, var(--brand-green-700), black 10%);
@@ -228,15 +211,13 @@ html[data-theme='dark'] .hero--primary {
   background: linear-gradient(135deg, var(--brand-green-600), var(--brand-green-700));
   border: 1px solid color-mix(in oklab, var(--brand-green-900), white 6%);
   color: #fff;
-  box-shadow: 0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--brand-green-700) 30%, transparent) inset;
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--brand-green-700) 26%, transparent), 0 0 0 1px color-mix(in oklab, var(--brand-green-700) 30%, transparent) inset;
   transform: translateZ(0);
 }
 
 .cta-quick .cta-download:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 32px color-mix(in oklab, var(--brand-green-700) 34%, transparent),
-    0 0 0 1px color-mix(in oklab, var(--brand-green-600) 40%, transparent) inset;
+  box-shadow: 0 16px 32px color-mix(in oklab, var(--brand-green-700) 34%, transparent), 0 0 0 1px color-mix(in oklab, var(--brand-green-600) 40%, transparent) inset;
 }
 
 .cta-download__icon {
@@ -261,7 +242,7 @@ html[data-theme='dark'] .hero--primary {
   color: #fff;
 }
 
-@media (max-width: 996px) {
+@media (max-width:996px) {
   .cta-quick .cta-download {
     padding: .8rem 1.05rem;
     border-radius: 14px;
@@ -320,7 +301,7 @@ html[data-theme='dark'] .hero--primary {
   opacity: .95;
 }
 
-@media (max-width: 996px) {
+@media (max-width:996px) {
   .cta-quick .pill-badge {
     font-size: .8rem;
     padding: .22rem .5rem;
@@ -557,7 +538,7 @@ html[data-theme='dark'] .hero--primary {
   color: #ffffff;
 }
 
-@media (max-width: 996px) {
+@media (max-width:996px) {
 
   .tabs-container.lang-tabs .tabs,
   .tabs.lang-tabs {
@@ -689,4 +670,73 @@ html[data-theme='dark'] .mm-prev:disabled,
 html[data-theme='dark'] .button.mm-prev[disabled] {
   color: #fff !important;
   opacity: 1 !important;
+}
+
+/* =========================
+   BLOG LIST TWEAKS (theo ảnh yêu cầu)
+   ========================= */
+
+/* Card bài + ngăn cách nhẹ */
+.theme-blog .blog-list-page article {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  margin-bottom: 1.25rem;
+}
+
+/* Tiêu đề nhỏ hơn, giữ màu brand */
+.theme-blog .blog-list-page article h2,
+.theme-blog .blog-list-page .margin-vert--lg h2 {
+  font-size: clamp(1.15rem, 1rem + 1vw, 1.85rem);
+  line-height: 1.25;
+  margin-bottom: .35rem;
+  font-family: var(--ifm-heading-font-family);
+}
+
+.theme-blog .blog-list-page article h2 a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.theme-blog .blog-list-page article h2 a:hover {
+  text-decoration: underline;
+}
+
+/* Đoạn tóm tắt dịu hơn */
+.theme-blog .blog-list-page .markdown>p {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Nút “Đọc tiếp” rõ ràng (không đụng nơi khác) */
+.theme-blog .blog-list-page article .button--secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .7rem;
+  border-radius: .6rem;
+  border: 1px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  background: transparent;
+  font-weight: 600;
+}
+
+.theme-blog .blog-list-page article .button--secondary:hover {
+  background: var(--ifm-color-primary);
+  color: #0b0f14;
+  /* dark text on green */
+}
+
+/* Ẩn Subscribe trong LIST (giữ ở trang chi tiết) */
+.theme-blog .blog-list-page .subscribe,
+.theme-blog .blog-list-page [data-subscribe],
+.theme-blog .blog-list-page form[action*="subscribe"],
+.theme-blog .blog-list-page #subscribe,
+.theme-blog .blog-list-page .Subscribe,
+.theme-blog .blog-list-page .subscribe-block {
+  display: none !important;
+}
+
+/* Tag nhỏ gọn hơn */
+.theme-blog .tags .tag {
+  font-size: .75rem;
+  padding: .15rem .5rem;
 }
