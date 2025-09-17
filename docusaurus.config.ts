@@ -73,6 +73,14 @@ const config: Config = {
         // tránh crash do phím tắt
         searchBarShortcut: false,
         searchBarShortcutHint: false,
+
+        // 👇 Loại các trang tổng quan cũ khỏi chỉ mục tìm kiếm
+        ignoreFiles: [
+          'docs/pmi-acp/domains/domain-mindset.mdx',
+          'docs/pmi-acp/domains/domain-delivery.mdx',
+          'docs/pmi-acp/domains/domain-leadership.mdx',
+          'docs/pmi-acp/domains/domain-product.mdx',
+        ],
       },
     ],
   ],
@@ -82,10 +90,17 @@ const config: Config = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          { from: '/docs/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/domain-mindset' },
-          { from: '/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/domain-mindset' },
-          { from: '/docs/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/domain-delivery' },
-          { from: '/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/domain-delivery' },
+          // giữ các redirect hiện có
+          { from: '/docs/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/mindset' },
+          { from: '/pmi-acp/module-01/lesson-01', to: '/docs/pmi-acp/domains/mindset' },
+          { from: '/docs/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/delivery' },
+          { from: '/pmi-acp/module-01/lesson-02', to: '/docs/pmi-acp/domains/delivery' },
+
+          // 👇 chuyển các URL domain-*.mdx cũ sang slug domain mới
+          { from: '/docs/pmi-acp/domains/domain-mindset', to: '/docs/pmi-acp/domains/mindset' },
+          { from: '/docs/pmi-acp/domains/domain-leadership', to: '/docs/pmi-acp/domains/leadership' },
+          { from: '/docs/pmi-acp/domains/domain-product', to: '/docs/pmi-acp/domains/product' },
+          { from: '/docs/pmi-acp/domains/domain-delivery', to: '/docs/pmi-acp/domains/delivery' },
         ],
       },
     ],
